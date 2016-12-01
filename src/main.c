@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <termios.h>
 
-#define BUFFER_SIZE 2
+#define BUFFER_SIZE 100
+
+struct termios CookedMode;
+struct termios RawMode;
 
 typedef struct _string {
   char str[BUFFER_SIZE];
@@ -43,7 +48,6 @@ void file_read(char* filename, string* head) {
 }
 
 int main(int argc, char *argv[]) {
-  printf("\e[2J\e[1;1H");//clear
   string* head = malloc(sizeof(string));
   head->prev = NULL;
   head->next = NULL;
@@ -53,23 +57,28 @@ int main(int argc, char *argv[]) {
     file_read(argv[1], head);
     string* current = head;
 
-    // normal
-    while(current->next) {
-      printf("%s", current->str);
-      current = current->next;
-    }
-    printf("%s", current->str);
+    int input_key;
+    tcgetattr(STDIN_FILENO, &CookedMode);
+    cfmakeraw(&RawMode);
 
-    // reverse
-    printf("\e[31m\e[47m");//color
-    while(current->prev) {
-      printf("%c", current->str[1]);
-      printf("%c", current->str[0]);
-      current = current->prev;
+    tcsetattr(STDIN_FILENO, 0, &RawMode);
+    while(current) {
+      printf("\e[2J\e[H");//clear
+      printf("%s", current->str);
+
+      input_key = getchar();
+      if(input_key == 110/*110 is n*/) {
+        current = current->next;
+      }
+      if(input_key == 112/*110 is p*/) {
+        current = current->prev;
+      }
+      if(input_key == 101/*101 is e*/) {
+        printf("\e[2J\e[H");//clear
+        break;
+      }
     }
-    printf("%c", current->str[1]);
-    printf("%c", current->str[0]);
-    printf("\e[39m\e[49m");//reset
+    tcsetattr(STDIN_FILENO, 0, &CookedMode);
 
   }
   return EXIT_SUCCESS;
