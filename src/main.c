@@ -6,46 +6,11 @@
 
 #define BUFFER_SIZE 100
 
+#include "lib/string.c"
+#include "lib/file_read.c"
+
 struct termios CookedMode;
 struct termios RawMode;
-
-typedef struct _string {
-  char str[BUFFER_SIZE];
-  struct _string *prev;
-  struct _string *next;
-} string;
-
-string* insert(string *from) {
-  string* to = malloc(sizeof(string));
-  if (from->next) {
-    from->next->prev = to;
-    to->next = from->next;
-  } else {
-    to->next = NULL;
-  }
-  if(from){
-    from->next = to;
-  }
-  to->prev = from;
-  return to;
-}
-
-void file_read(char* filename, string* head) {
-  FILE *fp;
-  char buf[BUFFER_SIZE];
-
-  if((fp = fopen(filename, "r")) == NULL) {
-    printf("[error]can't open\n");
-    return;
-  }
-  string* current = head;
-  while(fgets(buf, sizeof(buf), fp)) {
-    strcpy(current->str, buf);
-    insert(current);
-    current = current->next;
-  }
-  fclose(fp);
-}
 
 int main(int argc, char *argv[]) {
   string* head = malloc(sizeof(string));
