@@ -1,0 +1,3 @@
+[submodule "src/generator"]
+	path = src/generator
+	url = https://tinyco@github.com/tinyco/clang_gen_header.git
