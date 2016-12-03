@@ -16,9 +16,9 @@ macの標準的なbashで動作確認しています。
 
 # hello,world.
 
-- gccを入れます。brew install gccか、xcodeを入れるか、xcode-select --installで入るようです。
+まず、gccを入れます。brew install gccか、xcodeを入れるか、xcode-select --installで入るようです。
 
-- ソースコードを書きます。特に解説するところがないですね。
+つぎに、ソースコードを書きます。特に解説するところがないですね。
 
 ```main.c
 #include <stdio.h>
@@ -28,19 +28,16 @@ int main(void) {
 }
 ```
 
-- \$ gcc main.c でコンパイルします。
+`gcc main.c`でコンパイルして、`./a.out`で実行します。hello,worldが表示されれば成功です。
 
-- \$ ./a.out で実行します。hello,worldが表示されれば成功です。
-
-- \$ gcc main.c -o hello を実行すると、出力される実行ファイルがa.outからhelloになり、./helloで実行できます。
-
-- さらにパスを通すと./が不要になり、helloで実行できます。ちょっとコマンドっぽいですね。(パスは\$ export PATH=\$PATH:/ダウンロード先/tiny_code_editor/src等で通せます)
+`gcc main.c -o hello`を実行すると、出力される実行ファイルがa.outからhelloになり、`./hello`で実行できます。
+さらにパスを通すと./が不要になり、`hello`で実行できます。ちょっとコマンドっぽいですね。(パスは\$ export PATH=\$PATH:/ダウンロード先/tiny_code_editor/src等で通せます)
 
 # 引数を取得する
 
-- \$ vi sample.txt のように、エディタが開く対象を指定できるようにしたいです。そのために、実行したときに右につけた文字列を取得したいですね。
+`vi sample.txt`のように、エディタが開く対象を指定できるようにしたいです。そのために、実行したときに右につけた文字列を取得したいですね。
 
-- `int main(void)`を`int main(int argc, char *argv[])`に変えると、引数の数と文字列が取得できるようです。argcの数だけargvに文字列が入っていて、それを超える添字にアクセスするとランタイムエラーが起きます。
+`int main(void)`を`int main(int argc, char *argv[])`に変えると、引数の数と文字列が取得できるようです。argcの数だけargvに文字列が入っていて、それを超える添字にアクセスするとランタイムエラーが起きます。
 
 ```main.c
 #include <stdio.h>
@@ -67,6 +64,8 @@ Segmentation fault: 11
 ```
 になりました。
 
+気づいたこととしては、以下です。
+
 - 変数をprintfするときには、文字列のときは%sを、整数のときには%dを入れたところに展開されます。
 
 - argvにはコマンド自身(今回は./a.out)も入りました。argcが0の場合は考慮しなくて良さそうですね。
@@ -77,11 +76,11 @@ Segmentation fault: 11
 
 # コンソールの左上から表示したい
 
-- viにしてもemacsにしても、起動した瞬間に左上から文字が書かれていると思うのですが、上のmain.cはlsやcatコマンドのように今までのコンソールの続きから出力されます(伝わりますかね？)。コンソールの、見た目の左上の位置にprintfしたいです。
+viにしてもemacsにしても、起動した瞬間に左上から文字が書かれていると思うのですが、上のmain.cはlsやcatコマンドのように今までのコンソールの続きから出力されます(伝わりますかね？)。コンソールの、見た目の左上の位置にprintfしたいです。
 
-- 調べたところ、system("cls")を使う方法もあるようですが、自分の環境では`sh: cls: command not found`でした。Windows環境のみですかね。
+調べたところ、system("cls")を使う方法もあるようですが、自分の環境では`sh: cls: command not found`でした。Windows環境のみですかね。
 
-- [ここ](https://www.grapecity.com/tools/support/powernews/column/clang/047/page02.htm)を参考に、特殊な文字`\e[2J`と`\e[1;1H`とを出力すると、前者で画面をクリアして後者で左上の位置にカーソルを移動できました。画面のクリアだけをしてもカーソル位置が上に行くわけではなさそうです。
+[ここ](https://www.grapecity.com/tools/support/powernews/column/clang/047/page02.htm)を参考に、特殊な文字`\e[2J`と`\e[1;1H`とを出力すると、前者で画面をクリアして後者で左上の位置にカーソルを移動できました。画面のクリアだけをしてもカーソル位置が上に行くわけではなさそうです。
 
 
 ```main.c
@@ -98,9 +97,9 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-- 色も同様の方法で付けれました(๑•̀ㅂ•́)و✧
+色も同様の方法で付けれました(๑•̀ㅂ•́)و✧
 
-- この特殊な文字はC言語に用意されたものではなさそうです。試しにnode.jsで似たコードを書いても動作しました。(zsh等では試せていません。)
+この特殊な文字はC言語に用意されたものではなさそうです。試しにnode.jsで似たコードを書いても動作しました。(zsh等では試せていません。)
 
 # 今日のまとめ
 

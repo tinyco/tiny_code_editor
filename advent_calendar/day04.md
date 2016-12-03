@@ -125,6 +125,8 @@ $gcc main.o file_read.o string.o -o main
 $./main main.c
 ```
 
+gccの動作としては、
+
 - $gcc main.c はコンパイルもリンクもする
 - $gcc -c main.c はコンパイルだけする
 - $gcc main.o はリンクだけする。-o オプションで出力ファイル名を決めれる
@@ -134,8 +136,9 @@ $./main main.c
 # Makefileを作る
 
 どうやらMakefileを作ると、自動で
+
 ```
-$gcc -c 色々・・・
+$gcc -c 色々なファイル
 ```
 
 の手順をやってくれるようです。Makefileの書き方は
@@ -161,7 +164,7 @@ clean:
 	rm -rf *\.o main
 ```
 
-\$ make（\$make mainでも可）でビルドできて、\$make clean で作ったファイルを消すことができます。
+`make`（make mainでも可）でビルドできて、`make clean`で作ったファイルを消すことができます。
 
 ちょっとファイル構成いじるたびに、Makefileを書き直すのがすごく辛そうです。
 
@@ -203,10 +206,14 @@ clean:
 
 あまりC言語において一般的とは言えない方法ですが、gulpを使ってファイルを保存するたびにコンパイルが通るか確認するようにします。
 
-- npm init コマンドでpackage.jsonを作成
-- sudo npm install gulp -g
-- npm install gulp --save-dev
-- 以下のようにgulpfile.jsを作成
+そのための手順は
+
+1. npm init コマンドでpackage.jsonを作成
+1. sudo npm install gulp -g
+1. npm install gulp --save-dev
+1. 以下のようにgulpfile.jsを作成
+
+です。
 
 ```gulpfile.js
 let gulp = require("gulp")
@@ -246,7 +253,7 @@ gulp.task("c", () => {
 gulp.task("default", ["h","c"])
 ```
 
-これで、$gulpが起動している間は、ファイルを保存するたびにmakeしてくれるようになりました。
+これで、`gulp`が起動している間は、ファイルを保存するたびにmakeしてくれるようになりました。
 
 > このMakefileでは、ヘッダファイルを変更するたびにmake cleanする必要がある
 
@@ -260,14 +267,13 @@ Objective-Cのときは特に疑問に思わなかったけれど、Swift書く�
 ヘッダファイルも無理やり自動で作ることにします。
 
 作るものの仕様としては以下4点です。
-- `#include "string.h"//PUBLIC`のように、`//PUBLIC`という特殊なコメントがある行を、`#include "string.h"`のように出力する。
-- `int hoge(int arg)//PUBLIC;`のように、`//PUBLIC;`という特殊なコメントがある行を、`int hoge(int arg);`のようにセミコロンをつけて出力する。
-- `/*EXPORT ヘッダに書く内容*/`のコメントから`ヘッダに書く内容`をヘッダにコピーする
-- ファイル名を使って自動でインクルードガードをつける
 
-とりあえず、javascriptで作ってみました。
+1. `#include "string.h"//PUBLIC`のように、`//PUBLIC`という特殊なコメントがある行を、`#include "string.h"`のように出力する。
+1. `int hoge(int arg)//PUBLIC;`のように、`//PUBLIC;`という特殊なコメントがある行を、`int hoge(int arg);`のようにセミコロンをつけて出力する。
+1. `/*EXPORT ヘッダに書く内容*/`のコメントから`ヘッダに書く内容`をヘッダにコピーする
+1. ファイル名を使って自動でインクルードガードをつける
 
-- [こんなかんじ](https://github.com/tinyco/clang_gen_header)
+とりあえず、javascriptで作ってみました。レポジトリを分けて[ここ](https://github.com/tinyco/clang_gen_header)に置いておきます。
 
 ```generator.js
 
@@ -314,7 +320,7 @@ if (process.argv.length < 3) {
 }
 ```
 
-こうしてできた*.gen.hですが、nodeが入っていない環境でもビルドできるように、gitに含めることにしました。
+こうして自動できた*.gen.hですが、nodeが入っていない環境でもビルドできるように、gitに含めることにしました。
 これで、ヘッダファイルを書かなくても大丈夫ですね！
 
 # 今日のまとめ
