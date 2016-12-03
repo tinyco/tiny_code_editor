@@ -1,10 +1,11 @@
-#include "../const.h"
-#include "string.h"
+#include "../main.gen.h"
+#include "string.gen.h"//PUBLIC
 
 #include <stdio.h>
 #include <string.h>
 
-void file_read(char* filename, string* head) {
+void file_read(char* filename, string* head)//PUBLIC;
+{
   FILE *fp;
   char buf[BUFFER_SIZE];
 

@@ -20,16 +20,10 @@ let exe = (cmd, callback) => {
   })
 }
 
-gulp.task("h", () => {
-  gulp.watch("\./**/*\.h", event => {
-    exe("make clean",exe("make"))
-  })
-})
-
 gulp.task("c", () => {
   gulp.watch("\./**/*\.c", event => {
-    exe("make")
+    exe("find . | grep -v node_module | xargs node generator/generate_header.js",exe("make"))
   })
 })
 
-gulp.task("default", ["h","c"])
+gulp.task("default", ["c"])
