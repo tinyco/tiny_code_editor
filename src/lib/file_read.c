@@ -1,3 +1,9 @@
+#include "../const.h"
+#include "string.h"
+
+#include <stdio.h>
+#include <string.h>
+
 void file_read(char* filename, string* head) {
   FILE *fp;
   char buf[BUFFER_SIZE];

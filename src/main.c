@@ -4,10 +4,8 @@
 #include <unistd.h>
 #include <termios.h>
 
-#define BUFFER_SIZE 100
-
-#include "lib/string.c"
-#include "lib/file_read.c"
+#include "lib/string.h"
+#include "lib/file_read.h"
 
 struct termios CookedMode;
 struct termios RawMode;

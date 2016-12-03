@@ -1,8 +1,5 @@
-typedef struct _string {
-  char str[BUFFER_SIZE];
-  struct _string *prev;
-  struct _string *next;
-} string;
+#include <stdlib.h>
+#include "string.h"
 
 string* insert(string *from) {
   string* to = malloc(sizeof(string));
