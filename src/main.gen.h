@@ -3,6 +3,4 @@
 #define __MAIN_C
 //EXPORT
 //PUBLIC
-#define BUFFER_SIZE 100
-
 #endif

@@ -1,52 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <termios.h>
-
-/*EXPORT
-#define BUFFER_SIZE 100
-*/
-#include "main.gen.h"
-#include "lib/string.gen.h"
-#include "lib/file_read.gen.h"
-
-struct termios CookedMode;
-struct termios RawMode;
-
 int main(int argc, char *argv[]) {
-  string* head = malloc(sizeof(string));
-  head->prev = NULL;
-  head->next = NULL;
-  if(argc != 2) {
-    printf("[error]illegal args\n");
-  } else {
-    file_read(argv[1], head);
-    string* current = head;
-
-    int input_key;
-    tcgetattr(STDIN_FILENO, &CookedMode);
-    cfmakeraw(&RawMode);
-
-    tcsetattr(STDIN_FILENO, 0, &RawMode);
-    while(current) {
-      printf("\e[2J\e[H");//clear
-      printf("%s", current->str);
-
-      input_key = getchar();
-      if(input_key == 110/*110 is n*/) {
-        current = current->next;
-      }
-      if(input_key == 112/*110 is p*/) {
-        current = current->prev;
-      }
-      if(input_key == 101/*101 is e*/) {
-        printf("\e[2J\e[H");//clear
-        break;
-      }
-    }
-    tcsetattr(STDIN_FILENO, 0, &CookedMode);
-
-  }
-  return EXIT_SUCCESS;
+  // char* filename = get_args(argc, argv);
+  // context context = file_read(filename);
+  // while(1)
+  // {
+  //   input_key key = key_scan();
+  //   command = key_parse(key);
+  //   context = update_context(context, command);
+  //   render(context);
+  // }
+  // return EXIT_SUCCESS;
 }
