@@ -13,6 +13,7 @@
 #include "type/context_type.gen.h"
 */
 
+#include "render/render.gen.h"
 
 int main(int argc, char *argv[]) {
   if(argc != 2) {
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
   //   input_key key = key_scan();
   //   command = key_parse(key);
   //   context = update_context(context, command);
-  //   render(context);
+       render(context);
   // }
 
     return EXIT_SUCCESS;
