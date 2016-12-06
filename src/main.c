@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     return(EXIT_FAILURE);
   } else {
     context context;
-    context_set_filename(&context, argv[1]);
+    context_read_file(&context, argv[1]);
     printf("%s\n",context.filename);
 
   // while(1)

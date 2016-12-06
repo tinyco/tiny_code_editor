@@ -8,7 +8,7 @@ typedef struct _context {
 } context;
 */
 
-void context_set_filename(context* context, char *filename)//PUBLIC;
+void context_read_file(context* context, char *filename)//PUBLIC;
 {
   (*context).filename = malloc(sizeof(filename));
   strcpy((*context).filename, filename);

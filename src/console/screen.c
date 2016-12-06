@@ -20,7 +20,8 @@ view_size console_size(void)//PUBLIC;
   view_size.height = 0;
 
   struct winsize ws;
-  if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -1) {
+  if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -1)
+  {
     view_size.width = ws.ws_col;
     view_size.height = ws.ws_row;
   }
