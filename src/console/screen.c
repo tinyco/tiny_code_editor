@@ -10,7 +10,7 @@ typedef struct _view_size {
 
 void console_clear(void)//PUBLIC;
 {
-  printf("\e[1;1H\e[2J");
+  printf("\e[;H\e[2J");
 }
 
 view_size console_size(void)//PUBLIC;
