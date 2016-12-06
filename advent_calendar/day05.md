@@ -1,4 +1,4 @@
-本稿は[自作エディタをつくる Advent Calendar 2016](http://qiita.com/advent-calendar/2016/make_editor)の3日目です、レポジトリは[こちら](https://github.com/tinyco/tiny_code_editor)
+本稿は[自作エディタをつくる Advent Calendar 2016](http://qiita.com/advent-calendar/2016/make_editor)の5日目です、レポジトリは[こちら](https://github.com/tinyco/tiny_code_editor)
 
 このアドベントカレンダーは、コンソール上で動くエディタを25日間で1から自作することを目標としています。
 
@@ -93,6 +93,6 @@ int main(int argc, char *argv[]) {
 
 後はもくもくと実装して行けばよさそうですね。
 
-最近寒いですが、今日はたまたま暖か買った気がします。
+最近寒いですが、今日はたまたま暖かかった気がします。
 
 (過去分の読みづらかったところを少し直しました。内容はそのままです)
