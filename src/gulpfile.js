@@ -6,16 +6,14 @@ let exe = (cmd, callback) => {
   let reverse = "\u001b[7m"
   let reset = "\u001b[0m"
   child_process.exec(cmd, (error, stdout, stderr) => {
-    console.log(reverse + "> " + cmd + reset)
-    if(stdout){
-      console.log(green + "[ok]  " + reset + stdout)
+    if(stdout) {
+      console.log(reverse + green + "[ok]  " + cmd + " \n" + reset + stdout)
       callback && callback()
     }
-    if(stderr){
-      console.log(red + "[ng]  " + reset + stderr)
-    }
-    if (error !== null) {
-      console.log(red + "[err] " + reset  + error)
+    if(stderr) {
+      console.log(reverse + red + "[ng]  " + cmd + " \n" + reset + stderr)
+    } else if (error !== null) {
+      console.log(reverse + red + "[err] " + cmd + " \n" + reset + error)
     }
   })
 }
@@ -31,7 +29,7 @@ let exe_chain = cmds => {
 
 gulp.task("c", () => {
   gulp.watch("\./**/*\.c", event => {
-    exe_chain(["make create_gen_h", "make clean", "make"])
+    exe_chain(["clear", "make create_gen_h", "make clean", "make"])
   })
 })
 
