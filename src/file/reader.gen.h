@@ -3,5 +3,5 @@
 #define __FILE_READER_C
 //EXPORT
 //PUBLIC
-string* file_read(char* filepath);
+text* file_read(char* filepath);
 #endif

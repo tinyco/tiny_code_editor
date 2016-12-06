@@ -1,6 +1,8 @@
 #include "main.gen.h"
 
 /*EXPORT
+#define DEBUG
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +11,7 @@
 #include <locale.h>
 
 #define BUFFER_SIZE 100
+#include "type/mbchar_type.gen.h"
 #include "type/string_type.gen.h"
 #include "type/context_type.gen.h"
 */
@@ -29,7 +32,7 @@ int main(int argc, char *argv[]) {
   //   input_key key = key_scan();
   //   command = key_parse(key);
   //   context = update_context(context, command);
-       render(context);
+      //  render(context);
   // }
 
     return EXIT_SUCCESS;

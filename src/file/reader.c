@@ -1,28 +1,42 @@
 #include "../main.gen.h"
 
-string* file_read(char* filepath)//PUBLIC;
+text* file_read(char* filepath)//PUBLIC;
 {
 	FILE *fp;
-	char buf[BUFFER_SIZE];
-	double max, min;
-
 	if((fp = fopen(filepath, "r")) == NULL)
 	{
     printf("[error]can't open file\n");
     exit(EXIT_FAILURE);
 	}
 
-	string* head = malloc(sizeof(string));
-	head->prev = NULL;
-	head->next = NULL;
+	text* head = text_malloc();
 
-	string* current = head;
-	while(fgets(buf, sizeof(buf), fp))
+	text* current_text = head;
+	line* current_line = head->line;
+
+	mbchar buf = mbchar_malloc();
+	char c;
+	mbcher_zero_clear(buf);
+	int len = 0;
+	while(1)
 	{
-		strcpy(current->str, buf);
-		insert(current);
-		current = current->next;
+		c = (char)fgetc(fp);
+		if (feof(fp))	break;
+		buf[len] = c;
+		if(mbchar_size(buf) > 0) {
+			line_set_string(current_line, buf);
+			if(isLineBreak(buf)) {
+				text_insert(current_text);
+				current_line = current_text->line;
+			}
+			mbcher_zero_clear(buf);
+			len = 0;
+		} else if (mbchar_size(buf) < 0) {
+			len++;
+		}
 	}
+
+	mbchar_free(buf);
 	fclose(fp);
 	return head;
 }
