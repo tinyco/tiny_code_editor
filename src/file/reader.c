@@ -24,14 +24,14 @@ text* file_read(char* filepath)//PUBLIC;
 		if (feof(fp))	break;
 		buf[len] = c;
 		if(mbchar_size(buf) > 0) {
-			line_set_string(current_line, buf);
+			line_add_char(current_line, buf);
 			if(isLineBreak(buf)) {
-				text_insert(current_text);
+				current_text = text_insert(current_text);
 				current_line = current_text->line;
 			}
 			mbcher_zero_clear(buf);
 			len = 0;
-		} else if (mbchar_size(buf) < 0) {
+		} else if (mbchar_size(buf) <= 0) {
 			len++;
 		}
 	}

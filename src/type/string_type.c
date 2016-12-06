@@ -3,7 +3,7 @@
 /*EXPORT
 
 typedef struct _line {
-	int count;
+	int byte_count;
 	char string[BUFFER_SIZE];
 	struct _line *next;
 } line;
@@ -21,28 +21,28 @@ line* line_insert(line* current)//PUBLIC;
 	line* i = malloc(sizeof(line));
 	i->next = current->next;
 	current->next = i;
-	i->count = 0;
+	i->byte_count = 0;
 	return i;
 }
 
-void line_set_string(line* head, char* string)//PUBLIC;
+void line_add_char(line* head, mbchar c)//PUBLIC;
 {
-	int read = 0;
 	line* current = head;
-	while(string[read]) {
-		current->string[current->count] = string[read];
-		read++;
-		current->count++;
-		if(current->count == BUFFER_SIZE-1) {
-			if(current->next)
-			{
-				current = current->next;
-			}
-			else
-			{
-				current = line_insert(current);
-			}
+	while(current->byte_count >= BUFFER_SIZE - mbchar_size(c)){
+		if(current->next)
+		{
+			current = current->next;
 		}
+		else
+		{
+			current = line_insert(current);
+		}
+	}
+	int offset = 0;
+	while(offset<mbchar_size(c)){
+		current->string[current->byte_count+offset] = c[offset];
+		current->byte_count++;
+		offset++;
 	}
 }
 
@@ -62,7 +62,8 @@ text* text_insert(text* current)//PUBLIC;
 	}
 	i->prev = current;
 	i->line = malloc(sizeof(line));
-	i->line->count = 0;
+	i->line->next = NULL;
+	i->line->byte_count = 0;
 	return i;
 }
 
@@ -72,6 +73,7 @@ text* text_malloc(void)//PUBLIC;
 	head->prev = NULL;
 	head->next = NULL;
 	head->line = malloc(sizeof(line));
-	head->line->count = 0;
+	head->line->next = NULL;
+	head->line->byte_count = 0;
 	return head;
 }

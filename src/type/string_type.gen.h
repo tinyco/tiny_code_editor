@@ -4,7 +4,7 @@
 //EXPORT
 
 typedef struct _line {
-	int count;
+	int byte_count;
 	char string[BUFFER_SIZE];
 	struct _line *next;
 } line;
@@ -18,7 +18,7 @@ typedef struct _text {
 
 //PUBLIC
 line* line_insert(line* current);
-void line_set_string(line* head, char* string);
+void line_add_char(line* head, mbchar c);
 text* text_insert(text* current);
 text* text_malloc(void);
 #endif

@@ -4,7 +4,7 @@
 //EXPORT
 typedef struct _context {
 	char* filename;
-	text* filestr;
+	text* text;
 } context;
 
 //PUBLIC

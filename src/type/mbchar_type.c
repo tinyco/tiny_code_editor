@@ -29,5 +29,5 @@ int mbchar_size(mbchar mbchar)//PUBLIC;
 
 int isLineBreak(mbchar mbchar)//PUBLIC;
 {
-  return (mbchar[0] == '\n' && mbchar_size(mbchar) == 1 ? 1 : 0);
+  return (mbchar[0] == '\n' ? 1 : 0);
 }
