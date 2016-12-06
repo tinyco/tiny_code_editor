@@ -10,4 +10,3 @@ typedef struct _context {
 //PUBLIC
 void context_read_file(context* context, char *filename);
 #endif
-

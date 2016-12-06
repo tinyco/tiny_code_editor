@@ -5,4 +5,3 @@
 //PUBLIC
 void render(context context);
 #endif
-

@@ -11,4 +11,3 @@ typedef struct _string {
 //PUBLIC
 string* insert(string *current);
 #endif
-

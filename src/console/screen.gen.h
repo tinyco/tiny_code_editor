@@ -11,4 +11,3 @@ typedef struct _view_size {
 void console_clear(void);
 view_size console_size(void);
 #endif
-

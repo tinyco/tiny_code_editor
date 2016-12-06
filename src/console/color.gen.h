@@ -5,4 +5,3 @@
 //PUBLIC
 void color_header(int bool);
 #endif
-

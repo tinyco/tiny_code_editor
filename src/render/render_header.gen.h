@@ -10,4 +10,3 @@ typedef struct _context_header {
 //PUBLIC
 void render_header(context_header context);
 #endif
-
