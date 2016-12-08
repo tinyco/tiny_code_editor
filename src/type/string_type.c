@@ -9,6 +9,7 @@ typedef struct _line {
 } line;
 
 typedef struct _text {
+	int height;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -76,4 +77,29 @@ text* text_malloc(void)//PUBLIC;
 	head->line->next = NULL;
 	head->line->byte_count = 0;
 	return head;
+}
+
+void calculatotion_height(text* head, int max_width)//PUBLIC;
+{
+	text* current_text = head;
+	line* current_line = head->line;
+
+  int i;
+	while(current_text)
+  {
+		int total_width = 0;
+    current_line = current_text->line;
+  	while(current_line)
+    {
+      i = 0;
+      while(i < current_line->byte_count)
+      {
+				total_width += mbchar_width(&current_line->string[i]);
+		    i += safed_mbchar_size(&current_line->string[i]);
+      }
+	  	current_line = current_line->next;
+    }
+		current_text->height = total_width / max_width + 1;
+		current_text = current_text->next;
+	}
 }

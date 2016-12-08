@@ -10,6 +10,7 @@ void render(context context)//PUBLIC;
   context_header.view_size = view_size;
 
   console_clear();
+  calculatotion_height(context.text, view_size.width);
   render_header(context_header);
   debug_print_text(context);
 }
@@ -23,6 +24,7 @@ void debug_print_text(context context)
 	while(current_text)
   {
     current_line = current_text->line;
+    printf("#%d# ",current_text->height);
   	while(current_line)
     {
       i = 0;

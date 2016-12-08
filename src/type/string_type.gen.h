@@ -10,6 +10,7 @@ typedef struct _line {
 } line;
 
 typedef struct _text {
+	int height;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -21,4 +22,5 @@ line* line_insert(line* current);
 void line_add_char(line* head, mbchar c);
 text* text_insert(text* current);
 text* text_malloc(void);
+void calculatotion_height(text* head, int max_width);
 #endif
