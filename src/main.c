@@ -20,6 +20,7 @@
 
 #include "render/render.gen.h"
 #include "keyboard/keyboard.gen.h"
+#include "command/command.gen.h"
 
 int main(int argc, char *argv[]) {
 
@@ -29,16 +30,16 @@ int main(int argc, char *argv[]) {
   } else {
     context context;
     context_read_file(&context, argv[1]);
-    context.cursor.position_x = 0;
-    context.cursor.position_y = 0;
+    context.cursor.position_x = 1;
+    context.cursor.position_y = 1;
     mbchar key = mbchar_malloc();
     while(1)
     {
-      printf("%s", key);
-      //   command = key_parse(key);
+      render(context);
       keyboard_scan(&key);
-      //   context = update_context(context, command);
-      //   render(context);
+      command cmd = command_parse(key);
+      if (cmd.command_key == EXIT) break;
+      // context = update_context(context, command);
     }
     mbchar_free(key);
     return EXIT_SUCCESS;

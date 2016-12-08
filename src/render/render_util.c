@@ -4,6 +4,7 @@
 #include "../console/color.gen.h"
 #include "../console/screen.gen.h"
 #include "render_header.gen.h"
+#include "render_body.gen.h"
 */
 
 uint print_one_mbchar(uchar* str) //PUBLIC;

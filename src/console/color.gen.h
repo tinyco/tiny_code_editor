@@ -4,4 +4,5 @@
 //EXPORT
 //PUBLIC
 void color_header(int bool);
+void color_cursor_normal(int bool);
 #endif

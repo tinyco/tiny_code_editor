@@ -12,7 +12,7 @@ void render(context context)//PUBLIC;
   console_clear();
   calculatotion_height(context.text, view_size.width);
   render_header(context_header);
-  debug_print_text(context);
+  render_body(context);
 }
 
 void debug_print_text(context context)
