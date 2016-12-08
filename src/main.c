@@ -38,8 +38,7 @@ int main(int argc, char *argv[]) {
       render(context);
       keyboard_scan(&key);
       command cmd = command_parse(key);
-      if (cmd.command_key == EXIT) break;
-      // context = update_context(context, command);
+      command_perform(cmd, &context);
     }
     mbchar_free(key);
     return EXIT_SUCCESS;

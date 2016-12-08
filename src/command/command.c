@@ -10,5 +10,6 @@ typedef struct _command {
 } command;
 
 #include "command_parse.gen.h"
+#include "command_perform.gen.h"
 
 */
