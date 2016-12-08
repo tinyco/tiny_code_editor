@@ -6,10 +6,10 @@ DEFS := $(SRCS:%.c=%.gen.h)
 all: $(PROG)
 
 $(PROG): $(OBJS)
-	gcc -o $@ $^
+	gcc -g -Wall -Wextra -o $@ $^
 
 .o:
-	gcc -c $@
+	gcc -g -c $@
 
 clean:
 	rm -rf $(PROG) $(OBJS)
