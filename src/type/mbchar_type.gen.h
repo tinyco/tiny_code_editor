@@ -11,6 +11,6 @@ mbchar mbchar_malloc(void);
 void mbchar_free(mbchar mbchar);
 mbchar mbcher_zero_clear(mbchar mbchar);
 int mbchar_size(mbchar mbchar, int byte);
-int safe_mbchar_size(mbchar mbchar);
+int safed_mbchar_size(mbchar mbchar);
 int isLineBreak(mbchar mbchar);
 #endif

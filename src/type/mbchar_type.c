@@ -76,7 +76,7 @@ int mbchar_size(mbchar mbchar, int byte)//PUBLIC;
   return MBCHAR_ILLIEGAL;
 }
 
-int safe_mbchar_size(mbchar mbchar)//PUBLIC;
+int safed_mbchar_size(mbchar mbchar)//PUBLIC;
 {
   int head_one_bits = 0;
   while(head_one_bits < 8)
