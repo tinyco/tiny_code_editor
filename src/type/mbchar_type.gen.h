@@ -13,4 +13,6 @@ mbchar mbcher_zero_clear(mbchar mbchar);
 int mbchar_size(mbchar mbchar, int byte);
 int safed_mbchar_size(mbchar mbchar);
 int isLineBreak(mbchar mbchar);
+int mbchar_width(mbchar mbchar) ;
+int string_width(char* message) ;
 #endif

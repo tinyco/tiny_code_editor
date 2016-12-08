@@ -15,7 +15,8 @@ mbchar mbchar_malloc(void)//PUBLIC;
 
 void mbchar_free(mbchar mbchar)//PUBLIC;
 {
-  return free(mbchar);
+  free(mbchar);
+  mbchar = NULL;
 }
 
 mbchar mbcher_zero_clear(mbchar mbchar)//PUBLIC;
@@ -95,4 +96,27 @@ int safed_mbchar_size(mbchar mbchar)//PUBLIC;
 int isLineBreak(mbchar mbchar)//PUBLIC;
 {
   return (mbchar[0] == '\n' ? 1 : 0);
+}
+
+int mbchar_width(mbchar mbchar) //PUBLIC;
+{
+  if(safed_mbchar_size(mbchar) > 1)
+  {
+    return 2;
+  } else {
+    return 1;
+  }
+}
+
+int string_width(char* message) //PUBLIC;
+{
+  int width = 0;
+  long max_byte = strlen(message);
+  int i = 0;
+  while(i < max_byte)
+  {
+    width += mbchar_width(&message[i]);
+    i += safed_mbchar_size(&message[i]);
+  }
+  return width;
 }
