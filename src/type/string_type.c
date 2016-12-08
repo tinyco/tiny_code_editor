@@ -28,7 +28,7 @@ line* line_insert(line* current)//PUBLIC;
 void line_add_char(line* head, mbchar c)//PUBLIC;
 {
 	line* current = head;
-	while(current->byte_count >= BUFFER_SIZE - mbchar_size(c)){
+	while(current->byte_count >= BUFFER_SIZE - safe_mbchar_size(c)){
 		if(current->next)
 		{
 			current = current->next;
@@ -39,8 +39,8 @@ void line_add_char(line* head, mbchar c)//PUBLIC;
 		}
 	}
 	int offset = 0;
-	while(offset<mbchar_size(c)){
-		current->string[current->byte_count+offset] = c[offset];
+	while(offset < safe_mbchar_size(c)){
+		current->string[current->byte_count] = c[offset];
 		current->byte_count++;
 		offset++;
 	}

@@ -18,12 +18,14 @@ text* file_read(char* filepath)//PUBLIC;
 	char c;
 	mbcher_zero_clear(buf);
 	int len = 0;
+	int mbsize;
 	while(1)
 	{
 		c = (char)fgetc(fp);
 		if (feof(fp))	break;
 		buf[len] = c;
-		if(mbchar_size(buf) > 0) {
+		mbsize = mbchar_size(buf, len + 1);
+		if(mbsize > 0) {
 			line_add_char(current_line, buf);
 			if(isLineBreak(buf)) {
 				current_text = text_insert(current_text);
@@ -31,8 +33,10 @@ text* file_read(char* filepath)//PUBLIC;
 			}
 			mbcher_zero_clear(buf);
 			len = 0;
-		} else if (mbchar_size(buf) <= 0) {
+		} else if (mbsize == MBCHAR_NOT_FILL) {
 			len++;
+		} else {
+			mbcher_zero_clear(buf);
 		}
 	}
 
