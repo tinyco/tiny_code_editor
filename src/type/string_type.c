@@ -81,6 +81,9 @@ text* text_malloc(void)//PUBLIC;
 
 void calculatotion_height(text* head, uint max_width)//PUBLIC;
 {
+	static uint prev_width = 0;
+	if(prev_width == max_width) return;//cache hit
+	prev_width = max_width;
 	text* current_text = head;
 	line* current_line = head->line;
 
