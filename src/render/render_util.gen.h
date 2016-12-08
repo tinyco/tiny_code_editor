@@ -8,4 +8,6 @@
 #include "render_header.gen.h"
 
 //PUBLIC
+int print_one_mbchar(char* str) ;
+void trim_print(char* message, int max_width) ;
 #endif
