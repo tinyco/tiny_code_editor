@@ -20,15 +20,15 @@ void debug_print_text(context context)
   text* current_text = context.text;
 	line* current_line = context.text->line;
 
-  int i;
+  unum i;
 	while(current_text)
   {
     current_line = current_text->line;
-    printf("#%d# ",current_text->height);
+    printf("#%llu# ",current_text->height);
   	while(current_line)
     {
       i = 0;
-      printf("[%d]",current_line->byte_count);
+      printf("[%llu]",current_line->byte_count);
       while(i < current_line->byte_count)
       {
     		printf("%c", current_line->string[i]);

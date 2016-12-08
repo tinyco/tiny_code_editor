@@ -3,8 +3,8 @@
 
 /*EXPORT
 typedef struct _view_size {
-  int width;
-  int height;
+  uint width;
+  uint height;
 } view_size;
 */
 

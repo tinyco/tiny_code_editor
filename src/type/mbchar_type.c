@@ -21,7 +21,7 @@ void mbchar_free(mbchar mbchar)//PUBLIC;
 
 mbchar mbcher_zero_clear(mbchar mbchar)//PUBLIC;
 {
-  int i = UTF8_MAX_BYTE;
+  uint i = UTF8_MAX_BYTE;
   while(i--)
   {
     mbchar[i] = '\0';
@@ -29,13 +29,13 @@ mbchar mbcher_zero_clear(mbchar mbchar)//PUBLIC;
   return mbchar;
 }
 
-int mbchar_size(mbchar mbchar, int byte)//PUBLIC;
+int mbchar_size(mbchar mbchar, uint byte)//PUBLIC;
 {
   if(byte < 1 || UTF8_MAX_BYTE < byte) return MBCHAR_ILLIEGAL;
 
   if(byte == 1 && mbchar[0] == 0x00) return MBCHAR_NULL;
 
-  int head_one_bits = 0;
+  uint head_one_bits = 0;
   while(head_one_bits < 8)
   {
     if((mbchar[0]>>(7-head_one_bits) & 0x01) == 1)
@@ -77,9 +77,9 @@ int mbchar_size(mbchar mbchar, int byte)//PUBLIC;
   return MBCHAR_ILLIEGAL;
 }
 
-int safed_mbchar_size(mbchar mbchar)//PUBLIC;
+uint safed_mbchar_size(mbchar mbchar)//PUBLIC;
 {
-  int head_one_bits = 0;
+  uint head_one_bits = 0;
   while(head_one_bits < 8)
   {
     if((mbchar[0]>>(7-head_one_bits) & 0x01) == 1)
@@ -98,7 +98,7 @@ int isLineBreak(mbchar mbchar)//PUBLIC;
   return (mbchar[0] == '\n' ? 1 : 0);
 }
 
-int mbchar_width(mbchar mbchar) //PUBLIC;
+uint mbchar_width(mbchar mbchar) //PUBLIC;
 {
   if(safed_mbchar_size(mbchar) > 1)
   {
@@ -108,11 +108,11 @@ int mbchar_width(mbchar mbchar) //PUBLIC;
   }
 }
 
-int string_width(uchar* message) //PUBLIC;
+unum string_width(uchar* message) //PUBLIC;
 {
-  int width = 0;
+  uint width = 0;
   long max_byte = strlen((char*)message);
-  int i = 0;
+  uint i = 0;
   while(i < max_byte)
   {
     width += mbchar_width(&message[i]);

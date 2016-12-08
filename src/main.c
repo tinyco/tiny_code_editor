@@ -9,7 +9,7 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include "type/uchar_type.gen.h"
+#include "type/unsigned_type.gen.h"
 #include "type/mbchar_type.gen.h"
 #include "type/string_type.gen.h"
 #include "type/context_type.gen.h"

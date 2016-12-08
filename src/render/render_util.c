@@ -6,30 +6,30 @@
 #include "render_header.gen.h"
 */
 
-int print_one_mbchar(uchar* str) //PUBLIC;
+uint print_one_mbchar(uchar* str) //PUBLIC;
 {
-  int bytes = safed_mbchar_size(str);
-  for(int i = 0; i < bytes; i++)
+  uint bytes = safed_mbchar_size(str);
+  for(uint i = 0; i < bytes; i++)
   {
     printf("%c",str[i]);
   }
   return bytes;
 }
 
-void trim_print(uchar* message, int max_width) //PUBLIC;
+void trim_print(uchar* message, uint max_width) //PUBLIC;
 {
-  int messsage_width = string_width(message);
+  unum messsage_width = string_width(message);
   if (messsage_width <= max_width)
   {
     printf("%s",message);
-    int i = max_width - messsage_width;
+    unum i = max_width - messsage_width;
     while(i-- > 0)
     {
       printf(" ");
     }
   } else {
-    int wrote_bytes = 0;
-    int wrote_width = 0;
+    unum wrote_bytes = 0;
+    unum wrote_width = 0;
     while(max_width - wrote_width - mbchar_width(&message[wrote_bytes]) > 2)
     {
       wrote_width += mbchar_width(&message[wrote_bytes]);

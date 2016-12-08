@@ -17,7 +17,7 @@ text* file_read(const char* filepath)//PUBLIC;
 	mbchar buf = mbchar_malloc();
 	uchar c;
 	mbcher_zero_clear(buf);
-	int len = 0;
+	uint len = 0;
 	int mbsize;
 	while(1)
 	{

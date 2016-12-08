@@ -3,13 +3,13 @@
 /*EXPORT
 
 typedef struct _line {
-	int byte_count;
+	unum byte_count;
 	uchar string[BUFFER_SIZE];
 	struct _line *next;
 } line;
 
 typedef struct _text {
-	int height;
+	unum height;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -39,7 +39,7 @@ void line_add_char(line* head, mbchar c)//PUBLIC;
 			current = line_insert(current);
 		}
 	}
-	int offset = 0;
+	uint offset = 0;
 	while(offset < safed_mbchar_size(c)){
 		current->string[current->byte_count] = c[offset];
 		current->byte_count++;
@@ -79,15 +79,15 @@ text* text_malloc(void)//PUBLIC;
 	return head;
 }
 
-void calculatotion_height(text* head, int max_width)//PUBLIC;
+void calculatotion_height(text* head, uint max_width)//PUBLIC;
 {
 	text* current_text = head;
 	line* current_line = head->line;
 
-  int i;
+  uint i;
 	while(current_text)
   {
-		int total_width = 0;
+		unum total_width = 0;
     current_line = current_text->line;
   	while(current_line)
     {
