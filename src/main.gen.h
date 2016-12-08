@@ -9,6 +9,8 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <termios.h>
+
 
 #include "type/unsigned_type.gen.h"
 #include "type/mbchar_type.gen.h"
