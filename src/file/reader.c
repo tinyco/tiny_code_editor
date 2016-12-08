@@ -1,6 +1,6 @@
 #include "../main.gen.h"
 
-text* file_read(char* filepath)//PUBLIC;
+text* file_read(const char* filepath)//PUBLIC;
 {
 	FILE *fp;
 	if((fp = fopen(filepath, "r")) == NULL)
@@ -15,13 +15,13 @@ text* file_read(char* filepath)//PUBLIC;
 	line* current_line = head->line;
 
 	mbchar buf = mbchar_malloc();
-	char c;
+	uchar c;
 	mbcher_zero_clear(buf);
 	int len = 0;
 	int mbsize;
 	while(1)
 	{
-		c = (char)fgetc(fp);
+		c = (uchar)fgetc(fp);
 		if (feof(fp))	break;
 		buf[len] = c;
 		mbsize = mbchar_size(buf, len + 1);

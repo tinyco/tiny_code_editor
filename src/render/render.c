@@ -6,7 +6,7 @@ void render(context context)//PUBLIC;
   view_size view_size;
   view_size = console_size();
   context_header context_header;
-  context_header.message = context.filename;
+  context_header.message = (uchar*)context.filename;
   context_header.view_size = view_size;
 
   console_clear();

@@ -4,7 +4,7 @@
 
 typedef struct _line {
 	int byte_count;
-	char string[BUFFER_SIZE];
+	uchar string[BUFFER_SIZE];
 	struct _line *next;
 } line;
 

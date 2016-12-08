@@ -6,7 +6,7 @@
 #define MBCHAR_NULL 0 
 #define MBCHAR_NOT_FILL -1 
 #define MBCHAR_ILLIEGAL -2 
-typedef char* mbchar;
+typedef uchar* mbchar;
 mbchar mbchar_malloc(void);
 void mbchar_free(mbchar mbchar);
 mbchar mbcher_zero_clear(mbchar mbchar);
@@ -14,5 +14,5 @@ int mbchar_size(mbchar mbchar, int byte);
 int safed_mbchar_size(mbchar mbchar);
 int isLineBreak(mbchar mbchar);
 int mbchar_width(mbchar mbchar) ;
-int string_width(char* message) ;
+int string_width(uchar* message) ;
 #endif

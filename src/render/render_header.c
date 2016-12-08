@@ -3,7 +3,7 @@
 /*EXPORT
 typedef struct _context_header {
   view_size view_size;
-	char* message;
+	uchar* message;
 } context_header;
 */
 

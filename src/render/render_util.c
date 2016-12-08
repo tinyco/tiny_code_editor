@@ -6,7 +6,7 @@
 #include "render_header.gen.h"
 */
 
-int print_one_mbchar(char* str) //PUBLIC;
+int print_one_mbchar(uchar* str) //PUBLIC;
 {
   int bytes = safed_mbchar_size(str);
   for(int i = 0; i < bytes; i++)
@@ -16,7 +16,7 @@ int print_one_mbchar(char* str) //PUBLIC;
   return bytes;
 }
 
-void trim_print(char* message, int max_width) //PUBLIC;
+void trim_print(uchar* message, int max_width) //PUBLIC;
 {
   int messsage_width = string_width(message);
   if (messsage_width <= max_width)

@@ -6,11 +6,11 @@
 #define MBCHAR_NOT_FILL -1 //PUBLIC
 #define MBCHAR_ILLIEGAL -2 //PUBLIC
 
-typedef char* mbchar;//PUBLIC
+typedef uchar* mbchar;//PUBLIC
 
 mbchar mbchar_malloc(void)//PUBLIC;
 {
-  return malloc(sizeof(char) * UTF8_MAX_BYTE);
+  return malloc(sizeof(uchar) * UTF8_MAX_BYTE);
 }
 
 void mbchar_free(mbchar mbchar)//PUBLIC;
@@ -108,10 +108,10 @@ int mbchar_width(mbchar mbchar) //PUBLIC;
   }
 }
 
-int string_width(char* message) //PUBLIC;
+int string_width(uchar* message) //PUBLIC;
 {
   int width = 0;
-  long max_byte = strlen(message);
+  long max_byte = strlen((char*)message);
   int i = 0;
   while(i < max_byte)
   {
