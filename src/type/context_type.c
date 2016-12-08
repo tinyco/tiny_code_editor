@@ -5,6 +5,7 @@
 typedef struct _context {
 	char* filename;
 	text* text;
+  cursor cursor;
 } context;
 */
 
