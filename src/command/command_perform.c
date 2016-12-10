@@ -26,6 +26,8 @@ void command_perform(command command, context *context)//PUBLIC;
     case EXIT:
       exit(EXIT_SUCCESS);
       break;
+    case INSERT:
+      break;
     case NONE:
       break;
   }

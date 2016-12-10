@@ -3,7 +3,7 @@
 #define __COMMAND_COMMAND_C
 //EXPORT
 
-enum CommandType {NONE, UP, DOWN, LEFT, RIGHT, EXIT};
+enum CommandType {NONE, INSERT, UP, DOWN, LEFT, RIGHT, EXIT};
 
 typedef struct _command {
   enum CommandType command_key;

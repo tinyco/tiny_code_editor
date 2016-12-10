@@ -5,6 +5,7 @@ command command_parse(mbchar key)//PUBLIC;
 {
   command cmd;
   cmd.command_key = NONE;
+  cmd.command_key = INSERT; // TODO
   cmd.command_value = key;
   char up[3]    = {0x1B,0x5B,0x41};
   char down[3]  = {0x1B,0x5B,0x42};
