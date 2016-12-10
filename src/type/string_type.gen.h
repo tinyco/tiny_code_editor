@@ -22,5 +22,6 @@ line* line_insert(line* current);
 void line_add_char(line* head, mbchar c);
 text* text_insert(text* current);
 text* text_malloc(void);
+line* getLineHeadFromPositionY(text* head, unum position_y);
 void calculatotion_height(text* head, uint max_width);
 #endif

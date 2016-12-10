@@ -79,6 +79,18 @@ text* text_malloc(void)//PUBLIC;
 	return head;
 }
 
+line* getLineHeadFromPositionY(text* head, unum position_y)//PUBLIC;
+{
+	unum i = position_y-1;
+	text* current_text = head;
+	while(i-- > 0 && current_text)
+	{
+		current_text = current_text->next;
+	}
+	if(current_text) return current_text->line;
+	return NULL;
+}
+
 void calculatotion_height(text* head, uint max_width)//PUBLIC;
 {
 	static uint prev_width = 0;

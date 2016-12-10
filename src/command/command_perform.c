@@ -27,6 +27,8 @@ void command_perform(command command, context *context)//PUBLIC;
       exit(EXIT_SUCCESS);
       break;
     case INSERT:
+      context->filename = (char*)(command.command_value); // TODO
+      context->filename = (char*)(getLineHeadFromPositionY(context->text, context->cursor.position_y)->string); // TODO
       break;
     case NONE:
       break;
