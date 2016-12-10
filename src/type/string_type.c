@@ -113,7 +113,7 @@ line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte)//PUBL
 }
 
 
-void calculatotion_height(text* head, uint max_width)//PUBLIC;
+void calculatotion_width(text* head, uint max_width)//PUBLIC;
 {
 	static uint prev_width = 0;
 	if(prev_width == max_width) return;//cache hit

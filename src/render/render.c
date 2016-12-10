@@ -10,10 +10,11 @@ void render(context context)//PUBLIC;
   context_header.view_size = view_size;
 
   console_clear();
-  calculatotion_height(context.text, view_size.width);
+  calculatotion_width(context.text, view_size.width);
   render_header(context_header);
   render_body(context);
-  // debug_print_text(context);
+  printf("\n---debug---\n");
+  debug_print_text(context);
 }
 
 void debug_print_text(context context)
