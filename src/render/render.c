@@ -13,6 +13,7 @@ void render(context context)//PUBLIC;
   calculatotion_height(context.text, view_size.width);
   render_header(context_header);
   render_body(context);
+  // debug_print_text(context);
 }
 
 void debug_print_text(context context)
@@ -24,11 +25,11 @@ void debug_print_text(context context)
 	while(current_text)
   {
     current_line = current_text->line;
-    printf("#%llu# ",current_text->height);
+    printf("#%llu# ",current_text->width_count);
   	while(current_line)
     {
       i = 0;
-      printf("[%llu]",current_line->byte_count);
+      printf("[%db,%dp]",current_line->byte_count, current_line->position_count);
       while(i < current_line->byte_count)
       {
     		printf("%c", current_line->string[i]);
@@ -38,7 +39,7 @@ void debug_print_text(context context)
       if(current_line)printf(" -> ");
     }
 		current_text = current_text->next;
-    if(current_text)printf("-------\n");
+    if(current_text)printf("\n-------\n");
 	}
   printf("\n");
 }

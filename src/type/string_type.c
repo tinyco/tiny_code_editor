@@ -3,13 +3,14 @@
 /*EXPORT
 
 typedef struct _line {
-	unum byte_count;
+	uint byte_count;
+	uint position_count;
 	uchar string[BUFFER_SIZE];
 	struct _line *next;
 } line;
 
 typedef struct _text {
-	unum height;
+	unum width_count;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -91,6 +92,27 @@ line* getLineHeadFromPositionY(text* head, unum position_y)//PUBLIC;
 	return NULL;
 }
 
+line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte)//PUBLIC;
+{
+	unum i = position_x;
+	line* current_line = head;
+	while(current_line && i > current_line->position_count)
+	{
+		i -= current_line->position_count;
+		current_line = current_line->next;
+	}
+	if(current_line)
+	{
+		*byte = 0;
+		while(i--) {
+			*byte += safed_mbchar_size(&current_line->string[*byte]);
+		}
+		return current_line;
+	}
+	return NULL;
+}
+
+
 void calculatotion_height(text* head, uint max_width)//PUBLIC;
 {
 	static uint prev_width = 0;
@@ -106,15 +128,19 @@ void calculatotion_height(text* head, uint max_width)//PUBLIC;
     current_line = current_text->line;
   	while(current_line)
     {
+			int line_postition = 0;
       i = 0;
       while(i < current_line->byte_count)
       {
-				total_width += mbchar_width(&current_line->string[i]);
+				int w = mbchar_width(&current_line->string[i]);
+				total_width += w;
+				line_postition++;
 		    i += safed_mbchar_size(&current_line->string[i]);
       }
+			current_line->position_count = line_postition;
 	  	current_line = current_line->next;
     }
-		current_text->height = total_width / max_width + 1;
+		current_text->width_count = total_width;
 		current_text = current_text->next;
 	}
 }

@@ -4,13 +4,14 @@
 //EXPORT
 
 typedef struct _line {
-	unum byte_count;
+	uint byte_count;
+	uint position_count;
 	uchar string[BUFFER_SIZE];
 	struct _line *next;
 } line;
 
 typedef struct _text {
-	unum height;
+	unum width_count;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -23,5 +24,6 @@ void line_add_char(line* head, mbchar c);
 text* text_insert(text* current);
 text* text_malloc(void);
 line* getLineHeadFromPositionY(text* head, unum position_y);
+line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte);
 void calculatotion_height(text* head, uint max_width);
 #endif
