@@ -27,14 +27,12 @@ void command_perform(command command, context *context)//PUBLIC;
       exit(EXIT_SUCCESS);
       break;
     case INSERT:
-      context->filename = (char*)(command.command_value); // TODO
-      context->filename = (char*)(getLineHeadFromPositionY(context->text, context->cursor.position_y)->string); // TODO
-      line* head = getLineHeadFromPositionY(context->text, context->cursor.position_y);
-      context->filename = (char*)(head->string); // TODO
-      uint byte;
-      line* line = getLineAndByteFromPositionX(head, context->cursor.position_x, &byte);
-      context->filename = (char*)&line->string[byte]; // TODO
-
+      {
+        uint byte;
+        line* head = getLineHeadFromPositionY(context->text, context->cursor.position_y);
+        line* line = getLineAndByteFromPositionX(head, context->cursor.position_x, &byte);
+        insert_mbchar(line, byte, command.command_value);
+      }
       break;
     case NONE:
       break;

@@ -104,7 +104,8 @@ line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte)//PUBL
 	if(current_line)
 	{
 		*byte = 0;
-		while(i--) {
+		while(i-- > 1) // insert before cursor
+		{
 			*byte += safed_mbchar_size(&current_line->string[*byte]);
 		}
 		return current_line;
@@ -112,11 +113,49 @@ line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte)//PUBL
 	return NULL;
 }
 
+mbchar get_tail(line* line)
+{
+	uint i = 0;
+	while(line->byte_count > i + safed_mbchar_size(&line->string[i]))
+	{
+		i+= safed_mbchar_size(&line->string[i]);
+	}
+	return &line->string[i];
+}
+
+void insert_mbchar(line* line, uint byte, mbchar c)//PUBLIC;
+{
+	uint s = safed_mbchar_size(c);
+	if(line->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE && line->next && line->next->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE)
+	{
+		line_insert(line);
+	}
+	while(BUFFER_SIZE <= line->byte_count + s)
+	{
+		mbchar tail = get_tail(line);
+		line->byte_count -= safed_mbchar_size(tail);
+		insert_mbchar(line->next, 0, tail);
+	}
+	uint move = line->byte_count;
+	while(move > byte)
+	{
+		move--;
+		line->string[move+s] = line->string[move];
+	}
+
+	uint offset = 0;
+	while(offset < s){
+		line->string[byte+offset] = c[offset];
+		line->byte_count++;
+		offset++;
+	}
+}
+
 
 void calculatotion_width(text* head, uint max_width)//PUBLIC;
 {
 	static uint prev_width = 0;
-	if(prev_width == max_width) return;//cache hit
+	// if(prev_width == max_width) return;//cache hit TODO
 	prev_width = max_width;
 	text* current_text = head;
 	line* current_line = head->line;

@@ -3,6 +3,7 @@
 #define __TYPE_MBCHAR_TYPE_C
 //EXPORT
 //PUBLIC
+#define UTF8_MAX_BYTE 6 
 #define MBCHAR_NULL 0 
 #define MBCHAR_NOT_FILL -1 
 #define MBCHAR_ILLIEGAL -2 

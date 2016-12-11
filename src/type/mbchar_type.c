@@ -1,6 +1,6 @@
 #include "../main.gen.h"
 
-#define UTF8_MAX_BYTE 6
+#define UTF8_MAX_BYTE 6 //PUBLIC
 
 #define MBCHAR_NULL 0 //PUBLIC
 #define MBCHAR_NOT_FILL -1 //PUBLIC

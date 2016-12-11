@@ -13,12 +13,12 @@ void render(context context)//PUBLIC;
   calculatotion_width(context.text, view_size.width);
   render_header(context_header);
   render_body(context);
-  printf("\n---debug---\n");
   debug_print_text(context);
 }
 
 void debug_print_text(context context)
 {
+  printf("\n---debug---\n");
   text* current_text = context.text;
 	line* current_line = context.text->line;
 
@@ -26,7 +26,7 @@ void debug_print_text(context context)
 	while(current_text)
   {
     current_line = current_text->line;
-    printf("#%llu# ",current_text->width_count);
+    printf("#%lluw ",current_text->width_count);
   	while(current_line)
     {
       i = 0;

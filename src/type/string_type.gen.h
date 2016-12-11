@@ -25,5 +25,6 @@ text* text_insert(text* current);
 text* text_malloc(void);
 line* getLineHeadFromPositionY(text* head, unum position_y);
 line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte);
+void insert_mbchar(line* line, uint byte, mbchar c);
 void calculatotion_width(text* head, uint max_width);
 #endif
