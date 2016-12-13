@@ -30,6 +30,7 @@ void vailidate_cursor_position(context *context)
 
 void command_perform(command command, context *context)//PUBLIC;
 {
+  calculatotion_width(context->text, context->view_size.width);
   switch(command.command_key)
   {
     case UP:
@@ -58,15 +59,24 @@ void command_perform(command command, context *context)//PUBLIC;
       break;
     case DELETE:
       {
-        uint byte;
-        text* head = getTextFromPositionY(context->text, context->cursor.position_y);
-        line* line = getLineAndByteFromPositionX(head->line, context->cursor.position_x ? context->cursor.position_x-1 : 0, &byte);
-        delete_mbchar(line, byte);
-        (*context).cursor.position_x -= 1;
+        if(context->cursor.position_x > 1)
+        {
+          uint byte;
+          text* head = getTextFromPositionY(context->text, context->cursor.position_y);
+          line* line = getLineAndByteFromPositionX(head->line, context->cursor.position_x-1, &byte);
+          delete_mbchar(line, byte);
+          (*context).cursor.position_x -= 1;
+        } else if(context->cursor.position_y > 1) {
+          text* head = getTextFromPositionY(context->text, context->cursor.position_y - 1);
+          text_combine_next(head);
+          (*context).cursor.position_x = getTextFromPositionY((*context).text,(*context).cursor.position_y-1)->position_count;
+          (*context).cursor.position_y -= 1;
+        }
       }
       break;
     case NONE:
       break;
   }
+  calculatotion_width(context->text, context->view_size.width);
   vailidate_cursor_position(context);
 }

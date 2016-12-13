@@ -5,12 +5,12 @@ void render(context context)//PUBLIC;
 {
   view_size view_size;
   view_size = console_size();
+  context.view_size = view_size;
   context_header context_header;
   context_header.message = (uchar*)context.filename;
   context_header.view_size = view_size;
 
   console_clear();
-  calculatotion_width(context.text, view_size.width);
   render_header(context_header);
   render_body(context);
   debug_print_text(context);

@@ -24,6 +24,8 @@ line* line_insert(line* current);
 void line_add_char(line* head, mbchar c);
 text* text_insert(text* current);
 text* text_malloc(void);
+void text_free(text* t);
+void text_combine_next(text* current);
 text* getTextFromPositionY(text* head, unum position_y);
 line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte);
 void insert_mbchar(line* line, uint byte, mbchar c);

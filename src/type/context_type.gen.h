@@ -2,9 +2,12 @@
 #ifndef __TYPE_CONTEXT_TYPE_C
 #define __TYPE_CONTEXT_TYPE_C
 //EXPORT
+#include "../console/screen.gen.h"
+
 typedef struct _context {
 	char* filename;
 	text* text;
+  view_size view_size;
   cursor cursor;
 } context;
 

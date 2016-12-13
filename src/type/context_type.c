@@ -2,9 +2,12 @@
 #include "../file/reader.gen.h"
 
 /*EXPORT
+#include "../console/screen.gen.h"
+
 typedef struct _context {
 	char* filename;
 	text* text;
+  view_size view_size;
   cursor cursor;
 } context;
 */

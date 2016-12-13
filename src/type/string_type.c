@@ -81,6 +81,28 @@ text* text_malloc(void)//PUBLIC;
 	return head;
 }
 
+void text_free(text* t)//PUBLIC;
+{
+	text* p = t->prev;
+	text* n = t->next;
+	p->next = n;
+	n->prev = p;
+	free(t);
+}
+
+mbchar get_tail(line* line);
+void text_combine_next(text* current)//PUBLIC;
+{
+	line* tail = current->line;
+	while(tail->next)
+	{
+		tail = tail->next;
+	}
+	delete_mbchar(tail, tail->byte_count - safed_mbchar_size(get_tail(tail)));
+	tail->next = current->next->line;
+	text_free(current->next);
+}
+
 text* getTextFromPositionY(text* head, unum position_y)//PUBLIC;
 {
 	unum i = position_y-1;
