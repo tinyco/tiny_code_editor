@@ -12,6 +12,7 @@ typedef struct _line {
 
 typedef struct _text {
 	unum width_count;
+	unum position_count;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -23,7 +24,7 @@ line* line_insert(line* current);
 void line_add_char(line* head, mbchar c);
 text* text_insert(text* current);
 text* text_malloc(void);
-line* getLineHeadFromPositionY(text* head, unum position_y);
+text* getTextFromPositionY(text* head, unum position_y);
 line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte);
 void insert_mbchar(line* line, uint byte, mbchar c);
 void calculatotion_width(text* head, uint max_width);

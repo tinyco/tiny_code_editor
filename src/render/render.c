@@ -26,7 +26,7 @@ void debug_print_text(context context)
 	while(current_text)
   {
     current_line = current_text->line;
-    printf("#%lluw ",current_text->width_count);
+    printf("#%lluw %llup", current_text->width_count, current_text->position_count);
   	while(current_line)
     {
       i = 0;

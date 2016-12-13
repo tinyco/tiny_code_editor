@@ -11,6 +11,7 @@ typedef struct _line {
 
 typedef struct _text {
 	unum width_count;
+	unum position_count;
 	line* line;
 	struct _text *prev;
 	struct _text *next;
@@ -80,7 +81,7 @@ text* text_malloc(void)//PUBLIC;
 	return head;
 }
 
-line* getLineHeadFromPositionY(text* head, unum position_y)//PUBLIC;
+text* getTextFromPositionY(text* head, unum position_y)//PUBLIC;
 {
 	unum i = position_y-1;
 	text* current_text = head;
@@ -88,7 +89,7 @@ line* getLineHeadFromPositionY(text* head, unum position_y)//PUBLIC;
 	{
 		current_text = current_text->next;
 	}
-	if(current_text) return current_text->line;
+	if(current_text) return current_text;
 	return NULL;
 }
 
@@ -164,6 +165,7 @@ void calculatotion_width(text* head, uint max_width)//PUBLIC;
 	while(current_text)
   {
 		unum total_width = 0;
+		unum total_position = 0;
     current_line = current_text->line;
   	while(current_line)
     {
@@ -177,9 +179,11 @@ void calculatotion_width(text* head, uint max_width)//PUBLIC;
 		    i += safed_mbchar_size(&current_line->string[i]);
       }
 			current_line->position_count = line_postition;
+			total_position += line_postition;
 	  	current_line = current_line->next;
     }
 		current_text->width_count = total_width;
+		current_text->position_count = total_position;
 		current_text = current_text->next;
 	}
 }
