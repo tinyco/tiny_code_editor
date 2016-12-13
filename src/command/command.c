@@ -2,7 +2,7 @@
 
 /*EXPORT
 
-enum CommandType {NONE, INSERT, UP, DOWN, LEFT, RIGHT, EXIT};
+enum CommandType {NONE, INSERT, DELETE, UP, DOWN, LEFT, RIGHT, EXIT};
 
 typedef struct _command {
   enum CommandType command_key;

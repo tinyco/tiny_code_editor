@@ -21,6 +21,7 @@ command command_parse(mbchar key)//PUBLIC;
     flag = NOT_CTRL;
   } else {
     /**/ if(key[0] == 0x11) {cmd.command_key = EXIT;}
+    else if(key[0] == 0x7F) {cmd.command_key = DELETE;}
     /**/ else               {cmd.command_key = INSERT;}
     flag = NOT_CTRL;
   }

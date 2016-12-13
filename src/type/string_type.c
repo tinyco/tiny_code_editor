@@ -153,6 +153,18 @@ void insert_mbchar(line* line, uint byte, mbchar c)//PUBLIC;
 }
 
 
+void delete_mbchar(line* line, uint byte)//PUBLIC;
+{
+	uint s = safed_mbchar_size(&line->string[byte]);
+	uint move = byte;
+	while(move < line->byte_count)
+	{
+		line->string[move] = line->string[move+s];
+		move++;
+	}
+	line->byte_count-=s;
+}
+
 void calculatotion_width(text* head, uint max_width)//PUBLIC;
 {
 	static uint prev_width = 0;
