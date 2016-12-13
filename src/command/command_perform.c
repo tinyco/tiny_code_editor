@@ -39,10 +39,10 @@ void command_perform(command command, context *context)//PUBLIC;
       (*context).cursor.position_y += 1;
       break;
     case RIGHT:
-      (*context).cursor.position_x -= 1;
+      (*context).cursor.position_x += 1;
       break;
     case LEFT:
-      (*context).cursor.position_x += 1;
+      (*context).cursor.position_x -= 1;
       break;
     case EXIT:
       exit(EXIT_SUCCESS);
