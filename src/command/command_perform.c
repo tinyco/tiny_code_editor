@@ -32,6 +32,7 @@ void command_perform(command command, context *context)//PUBLIC;
         line* head = getLineHeadFromPositionY(context->text, context->cursor.position_y);
         line* line = getLineAndByteFromPositionX(head, context->cursor.position_x, &byte);
         insert_mbchar(line, byte, command.command_value);
+        (*context).cursor.position_x += 1;
       }
       break;
     case NONE:
