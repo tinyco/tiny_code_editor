@@ -103,9 +103,12 @@ void text_combine_next(text* current)//PUBLIC;
 void text_divide(text* current_text, line* current, uint byte, mbchar divide_char)//PUBLIC;
 {
 	text_insert(current_text);
-	free(current_text->next->line);
-	current_text->next->line = current->next;
-	current->next = NULL;
+	if (current->next)
+	{
+		free(current_text->next->line);
+		current_text->next->line = current->next;
+		current->next = NULL;
+	}
 	while(current->byte_count > byte)
 	{
 		mbchar tail = get_tail(current);
