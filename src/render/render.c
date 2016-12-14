@@ -33,7 +33,12 @@ void debug_print_text(context context)
       printf("[%db,%dp]",current_line->byte_count, current_line->position_count);
       while(i < current_line->byte_count)
       {
-    		printf("%c", current_line->string[i]);
+        if(isLineBreak(&current_line->string[i]))
+        {
+          printf("<BR>");
+        } else {
+          printf("%c", current_line->string[i]);
+        }
         i++;
       }
 	  	current_line = current_line->next;

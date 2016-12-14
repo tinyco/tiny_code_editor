@@ -103,6 +103,21 @@ void text_combine_next(text* current)//PUBLIC;
 	text_free(current->next);
 }
 
+void text_devide(text* current_text, line* current, uint byte, mbchar devide_char)//PUBLIC;
+{
+	text_insert(current_text);
+	free(current_text->next->line);
+	current_text->next->line = current->next;
+	current->next = NULL;
+	while(current->byte_count > byte)
+	{
+		mbchar tail = get_tail(current);
+		current->byte_count -= safed_mbchar_size(tail);
+		insert_mbchar(current_text->next->line, 0, tail);
+	}
+	line_add_char(current, devide_char);
+}
+
 text* getTextFromPositionY(text* head, unum position_y)//PUBLIC;
 {
 	unum i = position_y-1;

@@ -30,7 +30,7 @@ void vailidate_cursor_position(context *context)
 
 void command_perform(command command, context *context)//PUBLIC;
 {
-  calculatotion_width(context->text, context->view_size.width);
+  calculatotion_width((*context).text, (*context).view_size.width);
   switch(command.command_key)
   {
     case UP:
@@ -74,9 +74,19 @@ void command_perform(command command, context *context)//PUBLIC;
         }
       }
       break;
+    case ENTER:
+      {
+        uint byte;
+        text* head = getTextFromPositionY(context->text, context->cursor.position_y);
+        line* line = getLineAndByteFromPositionX(head->line, context->cursor.position_x, &byte);
+        text_devide(head, line, byte, command.command_value);
+        (*context).cursor.position_x = 1;
+        (*context).cursor.position_y += 1;
+      }
+      break;
     case NONE:
       break;
   }
-  calculatotion_width(context->text, context->view_size.width);
+  calculatotion_width((*context).text, (*context).view_size.width);
   vailidate_cursor_position(context);
 }
