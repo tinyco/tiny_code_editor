@@ -9,7 +9,7 @@ $(PROG): $(OBJS)
 	gcc -g -Wall -Wextra -o $@ $^
 
 .c.o:
-	gcc -g -c -o $@ $^
+	gcc -g -Wall -Wextra -c -o $@ $^
 
 clean:
 	rm -rf $(PROG) $(OBJS)
