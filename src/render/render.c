@@ -7,7 +7,6 @@ void vailidate_render_position(context *context)
   {
     (*context).render_start_height -= 1;
   }
-
   while((*context).cursor.position_y >= (*context).render_start_height + (*context).body_height)
   {
     (*context).render_start_height += 1;
@@ -31,7 +30,9 @@ void render(context context)//PUBLIC;
   context_header.message = (uchar*)context.filename;
   context_header.view_size = context.view_size;
   context_footer context_footer;
-  context_footer.message = (uchar*)context.filename;
+  uchar pathname[256];//TODO
+	getcwd((char*)pathname, 256);
+  context_footer.message = pathname;
   context_footer.view_size = context.view_size;
   console_clear();
   render_header(context_header);
