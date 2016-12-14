@@ -100,7 +100,7 @@ void text_combine_next(text* current)//PUBLIC;
 	text_free(current->next);
 }
 
-void text_devide(text* current_text, line* current, uint byte, mbchar devide_char)//PUBLIC;
+void text_divide(text* current_text, line* current, uint byte, mbchar divide_char)//PUBLIC;
 {
 	text_insert(current_text);
 	free(current_text->next->line);
@@ -112,7 +112,7 @@ void text_devide(text* current_text, line* current, uint byte, mbchar devide_cha
 		current->byte_count -= safed_mbchar_size(tail);
 		insert_mbchar(current_text->next->line, 0, tail);
 	}
-	line_add_char(current, devide_char);
+	line_add_char(current, divide_char);
 }
 
 text* getTextFromPositionY(text* head, unum position_y)//PUBLIC;
