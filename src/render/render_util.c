@@ -10,7 +10,8 @@
 uint print_one_mbchar(uchar* str) //PUBLIC;
 {
   uint bytes = safed_mbchar_size(str);
-  for(uint i = 0; i < bytes; i++)
+  uint i;
+  for(i = 0; i < bytes; i++)
   {
     printf("%c",str[i]);
   }
