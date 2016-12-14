@@ -8,6 +8,10 @@ typedef struct _context {
 	char* filename;
 	text* text;
   view_size view_size;
+  uint header_height;
+  uint body_height;
+  uint footer_height;
+  uint render_start_height;
   cursor cursor;
 } context;
 

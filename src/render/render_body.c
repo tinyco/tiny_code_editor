@@ -2,6 +2,8 @@
 
 void render_body(context context)//PUBLIC;
 {
+  int height = context.body_height;
+  int render_max_height = context.render_start_height + height;
   text* current_text = context.text;
 	line* current_line = context.text->line;
 
@@ -17,24 +19,34 @@ void render_body(context context)//PUBLIC;
       wrote_byte = 0;
       while(wrote_byte < current_line->byte_count)
       {
-        if(cursor_color_flag)
+        if(render_max_height > pos_y && pos_y > context.render_start_height)
         {
-          color_cursor_normal(0);
-          cursor_color_flag = 0;
+          if(cursor_color_flag)
+          {
+            color_cursor_normal(0);
+            cursor_color_flag = 0;
+          }
+          if(context.cursor.position_x == pos_x && context.cursor.position_y == pos_y)
+          {
+            color_cursor_normal(1);
+            cursor_color_flag = 1;
+          }
+          wrote_byte += print_one_mbchar(&(current_line->string[wrote_byte]));
+          pos_x++;
+        } else {
+          wrote_byte++;
         }
-        if(context.cursor.position_x == pos_x && context.cursor.position_y == pos_y)
-        {
-          color_cursor_normal(1);
-          cursor_color_flag = 1;
-        }
-    		wrote_byte += print_one_mbchar(&(current_line->string[wrote_byte]));
-        pos_x++;
       }
 	  	current_line = current_line->next;
     }
 		current_text = current_text->next;
     pos_y++;
+    height--;
     pos_x=1;
 	}
-  printf("\n");
+  while(height>0)
+  {
+    printf("\n");
+    height--;
+  }
 }

@@ -32,12 +32,14 @@ int main(int argc, char *argv[]) {
     context_read_file(&context, argv[1]);
     context.cursor.position_x = 1;
     context.cursor.position_y = 1;
+    context.render_start_height = 0;
     mbchar key = mbchar_malloc();
     command cmd_none;
     cmd_none.command_key = NONE;
     command_perform(cmd_none, &context);
     while(1)
     {
+      render_setting(&context);
       render(context);
       keyboard_scan(&key);
       command cmd = command_parse(key);

@@ -1,19 +1,43 @@
 #include "render_util.gen.h"
 void debug_print_text(context context);
 
-void render(context context)//PUBLIC;
+void vailidate_render_position(context *context)
+{
+  while((*context).cursor.position_y <= (*context).render_start_height)
+  {
+    (*context).render_start_height -= 1;
+  }
+
+  while((*context).cursor.position_y >= (*context).render_start_height + (*context).body_height)
+  {
+    (*context).render_start_height += 1;
+  }
+}
+
+void render_setting(context *context)//PUBLIC;
 {
   view_size view_size;
   view_size = console_size();
-  context.view_size = view_size;
+  (*context).view_size = view_size;
+  (*context).header_height = 1;
+  (*context).body_height = (*context).view_size.height - 2;
+  (*context).footer_height = 1;
+  vailidate_render_position(context);
+}
+
+void render(context context)//PUBLIC;
+{
   context_header context_header;
   context_header.message = (uchar*)context.filename;
-  context_header.view_size = view_size;
-
+  context_header.view_size = context.view_size;
+  context_footer context_footer;
+  context_footer.message = (uchar*)context.filename;
+  context_footer.view_size = context.view_size;
   console_clear();
   render_header(context_header);
   render_body(context);
-  debug_print_text(context);
+  render_footer(context_footer);
+  // debug_print_text(context);
 }
 
 void debug_print_text(context context)
