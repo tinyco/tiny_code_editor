@@ -52,18 +52,15 @@ void line_add_char(line* head, mbchar c)//PUBLIC;
 text* text_insert(text* current)//PUBLIC;
 {
 	text* i = malloc(sizeof(text));
-  if (current->next)
-	{
-    current->next->prev = i;
-    i->next = current->next;
-  } else {
-    i->next = NULL;
-  }
-	if(current)
-	{
-  	current->next = i;
-	}
 	i->prev = current;
+	i->next = NULL;
+	if (current) {
+		if (current->next) {
+			current->next->prev = i;
+			i->next = current->next;
+		}
+		current->next = i;
+	}
 	i->line = malloc(sizeof(line));
 	i->line->next = NULL;
 	i->line->byte_count = 0;
