@@ -14,4 +14,5 @@ void render_header(context_header context)//PUBLIC;
 	trim_print(context.message, context.view_size.width - 2);
 	printf(" ");
 	color_header(0);
+	printf("\n");
 }
