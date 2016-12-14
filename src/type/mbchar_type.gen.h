@@ -13,7 +13,7 @@ void mbchar_free(mbchar mbchar);
 mbchar mbcher_zero_clear(mbchar mbchar);
 int mbchar_size(mbchar mbchar, uint byte);
 uint safed_mbchar_size(mbchar mbchar);
-int isLineBreak(mbchar mbchar);
+int is_line_break(mbchar mbchar);
 uint mbchar_width(mbchar mbchar) ;
 unum string_width(uchar* message) ;
 #endif

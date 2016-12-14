@@ -93,7 +93,7 @@ uint safed_mbchar_size(mbchar mbchar)//PUBLIC;
   return head_one_bits;
 }
 
-int isLineBreak(mbchar mbchar)//PUBLIC;
+int is_line_break(mbchar mbchar)//PUBLIC;
 {
   return (mbchar[0] == '\n' ? 1 : 0);
 }

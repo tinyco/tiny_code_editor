@@ -27,7 +27,7 @@ text* file_read(const char* filepath)//PUBLIC;
 		mbsize = mbchar_size(buf, len + 1);
 		if(mbsize > 0) {
 			line_add_char(current_line, buf);
-			if(isLineBreak(buf)) {
+			if(is_line_break(buf)) {
 				current_text = text_insert(current_text);
 				current_line = current_text->line;
 			}
