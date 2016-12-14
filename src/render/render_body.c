@@ -17,7 +17,7 @@ void render_body(context context)//PUBLIC;
   	while(current_line)
     {
       wrote_byte = 0;
-      if(current_line->byte_count <= 1 && context.cursor.position_y == pos_y)
+      if(current_text->position_count <= 1 && context.cursor.position_y == pos_y)
       {
         color_cursor_normal(1);
         printf(" ");
