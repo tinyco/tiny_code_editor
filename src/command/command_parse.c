@@ -24,6 +24,7 @@ command command_parse(mbchar key)//PUBLIC;
     else if(key[0] == 0x7F) {cmd.command_key = DELETE;}
     else if(key[0] == 0x0D) {cmd.command_key = ENTER; cmd.command_value=(mbchar)"\n";}
     else if(key[0] == 0x20) {cmd.command_key = INSERT; cmd.command_value=(mbchar)" ";}
+    else if(key[0] == 0x13) {cmd.command_key = SAVE_OVERRIDE;}
     /**/ else               {cmd.command_key = INSERT;}
     flag = NOT_CTRL;
   }

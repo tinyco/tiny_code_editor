@@ -84,6 +84,9 @@ void command_perform(command command, context *context)//PUBLIC;
         (*context).cursor.position_y += 1;
       }
       break;
+    case SAVE_OVERRIDE:
+      context_write_override_file(context);
+      break;
     case NONE:
       break;
   }

@@ -1,5 +1,6 @@
 #include "../main.gen.h"
 #include "../file/reader.gen.h"
+#include "../file/writer.gen.h"
 
 /*EXPORT
 #include "../console/screen.gen.h"
@@ -17,4 +18,9 @@ void context_read_file(context* context, char *filename)//PUBLIC;
   (*context).filename = malloc(sizeof(filename));
   strcpy((*context).filename, filename);
   (*context).text = file_read((*context).filename);
+}
+
+void context_write_override_file(context* context)//PUBLIC;
+{
+  file_write((*context).filename, (*context).text);
 }

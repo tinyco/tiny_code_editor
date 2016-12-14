@@ -13,4 +13,5 @@ typedef struct _context {
 
 //PUBLIC
 void context_read_file(context* context, char *filename);
+void context_write_override_file(context* context);
 #endif
