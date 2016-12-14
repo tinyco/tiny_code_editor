@@ -164,7 +164,7 @@ mbchar get_tail(line* line)
 void insert_mbchar(line* line, uint byte, mbchar c)//PUBLIC;
 {
 	uint s = safed_mbchar_size(c);
-	if(line->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE && line->next && line->next->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE)
+	if(line->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE)
 	{
 		line_insert(line);
 	}
