@@ -6,8 +6,8 @@
 #include "../console/screen.gen.h"
 
 typedef struct _context {
-	char* filename;
-	text* text;
+  char* filename;
+  text* text;
   view_size view_size;
   uint header_height;
   uint body_height;

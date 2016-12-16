@@ -31,7 +31,7 @@ void render(context context)//PUBLIC;
   context_header.view_size = context.view_size;
   context_footer context_footer;
   uchar pathname[256];//TODO
-	getcwd((char*)pathname, 256);
+  getcwd((char*)pathname, 256);
   context_footer.message = pathname;
   context_footer.view_size = context.view_size;
   console_clear();
@@ -45,14 +45,14 @@ void debug_print_text(context context)
 {
   printf("\n---debug---\n");
   text* current_text = context.text;
-	line* current_line = context.text->line;
+  line* current_line = context.text->line;
 
   unum i;
-	while(current_text)
+  while(current_text)
   {
     current_line = current_text->line;
     printf("#%lluw %llup", current_text->width_count, current_text->position_count);
-  	while(current_line)
+    while(current_line)
     {
       i = 0;
       printf("[%db,%dp]",current_line->byte_count, current_line->position_count);
@@ -66,11 +66,11 @@ void debug_print_text(context context)
         }
         i++;
       }
-	  	current_line = current_line->next;
+      current_line = current_line->next;
       if(current_line)printf(" -> ");
     }
-		current_text = current_text->next;
+    current_text = current_text->next;
     if(current_text)printf("\n-------\n");
-	}
+  }
   printf("\n");
 }
