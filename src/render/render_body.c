@@ -25,7 +25,7 @@ void render_body(context context)//PUBLIC;
       }
       while(wrote_byte < current_line->byte_count)
       {
-        if(render_max_height > pos_y && pos_y > context.render_start_height)
+        if((unum)render_max_height > pos_y && pos_y > context.render_start_height)
         {
           if(cursor_color_flag)
           {
