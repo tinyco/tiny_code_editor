@@ -8,8 +8,8 @@ all: $(PROG)
 $(PROG): $(OBJS)
 	gcc -g -Wall -Wextra -o $@ $^
 
-.o:
-	gcc -g -c $@
+.c.o:
+	gcc -g -Wall -Wextra -c -o $@ $<
 
 clean:
 	rm -rf $(PROG) $(OBJS)
