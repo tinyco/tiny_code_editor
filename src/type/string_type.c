@@ -52,18 +52,15 @@ void line_add_char(line* head, mbchar c)//PUBLIC;
 text* text_insert(text* current)//PUBLIC;
 {
 	text* i = malloc(sizeof(text));
-  if (current->next)
-	{
-    current->next->prev = i;
-    i->next = current->next;
-  } else {
-    i->next = NULL;
-  }
-	if(current)
-	{
-  	current->next = i;
-	}
 	i->prev = current;
+	i->next = NULL;
+	if (current) {
+		if (current->next) {
+			current->next->prev = i;
+			i->next = current->next;
+		}
+		current->next = i;
+	}
 	i->line = malloc(sizeof(line));
 	i->line->next = NULL;
 	i->line->byte_count = 0;
@@ -103,19 +100,22 @@ void text_combine_next(text* current)//PUBLIC;
 	text_free(current->next);
 }
 
-void text_devide(text* current_text, line* current, uint byte, mbchar devide_char)//PUBLIC;
+void text_divide(text* current_text, line* current, uint byte, mbchar divide_char)//PUBLIC;
 {
 	text_insert(current_text);
-	free(current_text->next->line);
-	current_text->next->line = current->next;
-	current->next = NULL;
+	if (current->next)
+	{
+		free(current_text->next->line);
+		current_text->next->line = current->next;
+		current->next = NULL;
+	}
 	while(current->byte_count > byte)
 	{
 		mbchar tail = get_tail(current);
 		current->byte_count -= safed_mbchar_size(tail);
 		insert_mbchar(current_text->next->line, 0, tail);
 	}
-	line_add_char(current, devide_char);
+	line_add_char(current, divide_char);
 }
 
 text* getTextFromPositionY(text* head, unum position_y)//PUBLIC;

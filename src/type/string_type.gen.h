@@ -26,7 +26,7 @@ text* text_insert(text* current);
 text* text_malloc(void);
 void text_free(text* t);
 void text_combine_next(text* current);
-void text_devide(text* current_text, line* current, uint byte, mbchar devide_char);
+void text_divide(text* current_text, line* current, uint byte, mbchar divide_char);
 text* getTextFromPositionY(text* head, unum position_y);
 line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte);
 void insert_mbchar(line* line, uint byte, mbchar c);

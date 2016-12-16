@@ -79,7 +79,7 @@ void command_perform(command command, context *context)//PUBLIC;
         uint byte;
         text* head = getTextFromPositionY(context->text, context->cursor.position_y);
         line* line = getLineAndByteFromPositionX(head->line, context->cursor.position_x, &byte);
-        text_devide(head, line, byte, command.command_value);
+        text_divide(head, line, byte, command.command_value);
         (*context).cursor.position_x = 1;
         (*context).cursor.position_y += 1;
       }
