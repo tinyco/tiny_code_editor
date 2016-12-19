@@ -7,7 +7,7 @@ typedef struct _context_footer {
 } context_footer;
 */
 
-void render_footer(context_footer context)//PUBLIC;
+void render_footer(context_footer context) // PUBLIC;
 {
   color_footer(1);
   printf(" ");

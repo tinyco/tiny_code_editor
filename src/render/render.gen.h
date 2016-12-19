@@ -3,6 +3,6 @@
 #define __RENDER_RENDER_C
 //EXPORT
 //PUBLIC
-void render_setting(context *context);
-void render(context context);
+void render_setting(context *context)  ;
+void render(context context)  ;
 #endif

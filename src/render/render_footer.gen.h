@@ -4,9 +4,9 @@
 //EXPORT
 typedef struct _context_footer {
   view_size view_size;
-	uchar* message;
+  uchar* message;
 } context_footer;
 
 //PUBLIC
-void render_footer(context_footer context);
+void render_footer(context_footer context)  ;
 #endif

@@ -1,29 +1,26 @@
 #include "../main.gen.h"
 
-void color_header(int bool)//PUBLIC;
+void color_header(int bool) // PUBLIC;
 {
-  if (bool)
-  {
+  if (bool) {
     printf("\e[7m");
   } else {
     printf("\e[m");
   }
 }
 
-void color_footer(int bool)//PUBLIC;
+void color_footer(int bool) // PUBLIC;
 {
-  if (bool)
-  {
+  if (bool) {
     printf("\e[7m");
   } else {
     printf("\e[m");
   }
 }
 
-void color_cursor_normal(int bool)//PUBLIC;
+void color_cursor_normal(int bool) // PUBLIC;
 {
-  if (bool)
-  {
+  if (bool) {
     printf("\e[30m\e[45m");
   } else {
     printf("\e[m");

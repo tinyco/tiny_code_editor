@@ -3,5 +3,5 @@
 #define __RENDER_RENDER_BODY_C
 //EXPORT
 //PUBLIC
-void render_body(context context);
+void render_body(context context)  ;
 #endif

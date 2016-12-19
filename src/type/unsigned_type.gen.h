@@ -3,7 +3,7 @@
 #define __TYPE_UNSIGNED_TYPE_C
 //EXPORT
 //PUBLIC
-typedef unsigned int uint;
-typedef unsigned long long unum;
-typedef unsigned char uchar;
+typedef unsigned int uint;        
+typedef unsigned long long unum;  
+typedef unsigned char uchar;      
 #endif

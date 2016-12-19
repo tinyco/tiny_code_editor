@@ -4,9 +4,9 @@
 //EXPORT
 typedef struct _context_header {
   view_size view_size;
-	uchar* message;
+  uchar* message;
 } context_header;
 
 //PUBLIC
-void render_header(context_header context);
+void render_header(context_header context)  ;
 #endif

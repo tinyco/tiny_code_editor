@@ -3,5 +3,5 @@
 #define __FILE_WRITER_C
 //EXPORT
 //PUBLIC
-void file_write(const char* filepath, text* head);
+void file_write(const char *filepath, text *head)  ;
 #endif

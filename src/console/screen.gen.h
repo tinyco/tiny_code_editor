@@ -8,6 +8,6 @@ typedef struct _view_size {
 } view_size;
 
 //PUBLIC
-void console_clear(void);
-view_size console_size(void);
+void console_clear(void)  ;
+view_size console_size(void)  ;
 #endif

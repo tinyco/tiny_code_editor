@@ -19,39 +19,36 @@ typedef struct _text {
 
 */
 
-line* line_insert(line* current)//PUBLIC;
+line *line_insert(line *current) // PUBLIC;
 {
-  line* i = malloc(sizeof(line));
+  line *i = malloc(sizeof(line));
   i->next = current->next;
   current->next = i;
   i->byte_count = 0;
   return i;
 }
 
-void line_add_char(line* head, mbchar c)//PUBLIC;
+void line_add_char(line *head, mbchar c) // PUBLIC;
 {
-  line* current = head;
-  while(current->byte_count >= BUFFER_SIZE - safed_mbchar_size(c)){
-    if(current->next)
-    {
+  line *current = head;
+  while (current->byte_count >= BUFFER_SIZE - safed_mbchar_size(c)) {
+    if (current->next) {
       current = current->next;
-    }
-    else
-    {
+    } else {
       current = line_insert(current);
     }
   }
   uint offset = 0;
-  while(offset < safed_mbchar_size(c)){
+  while (offset < safed_mbchar_size(c)) {
     current->string[current->byte_count] = c[offset];
     current->byte_count++;
     offset++;
   }
 }
 
-text* text_insert(text* current)//PUBLIC;
+text *text_insert(text *current) // PUBLIC;
 {
-  text* i = malloc(sizeof(text));
+  text *i = malloc(sizeof(text));
   i->prev = current;
   i->next = NULL;
   if (current) {
@@ -67,9 +64,9 @@ text* text_insert(text* current)//PUBLIC;
   return i;
 }
 
-text* text_malloc(void)//PUBLIC;
+text *text_malloc(void) // PUBLIC;
 {
-  text* head = malloc(sizeof(text));
+  text *head = malloc(sizeof(text));
   head->prev = NULL;
   head->next = NULL;
   head->line = malloc(sizeof(line));
@@ -78,21 +75,20 @@ text* text_malloc(void)//PUBLIC;
   return head;
 }
 
-void text_free(text* t)//PUBLIC;
+void text_free(text *t) // PUBLIC;
 {
-  text* p = t->prev;
-  text* n = t->next;
+  text *p = t->prev;
+  text *n = t->next;
   p->next = n;
   n->prev = p;
   free(t);
 }
 
-mbchar get_tail(line* line);
-void text_combine_next(text* current)//PUBLIC;
+mbchar get_tail(line *line);
+void text_combine_next(text *current) // PUBLIC;
 {
-  line* tail = current->line;
-  while(tail->next)
-  {
+  line *tail = current->line;
+  while (tail->next) {
     tail = tail->next;
   }
   delete_mbchar(tail, tail->byte_count - safed_mbchar_size(get_tail(tail)));
@@ -100,17 +96,15 @@ void text_combine_next(text* current)//PUBLIC;
   text_free(current->next);
 }
 
-void text_divide(text* current_text, line* current, uint byte, mbchar divide_char)//PUBLIC;
+void text_divide(text *current_text, line *current, uint byte, mbchar divide_char) // PUBLIC;
 {
   text_insert(current_text);
-  if (current->next)
-  {
+  if (current->next) {
     free(current_text->next->line);
     current_text->next->line = current->next;
     current->next = NULL;
   }
-  while(current->byte_count > byte)
-  {
+  while (current->byte_count > byte) {
     mbchar tail = get_tail(current);
     current->byte_count -= safed_mbchar_size(tail);
     insert_mbchar(current_text->next->line, 0, tail);
@@ -118,31 +112,29 @@ void text_divide(text* current_text, line* current, uint byte, mbchar divide_cha
   line_add_char(current, divide_char);
 }
 
-text* getTextFromPositionY(text* head, unum position_y)//PUBLIC;
+text *getTextFromPositionY(text *head, unum position_y) // PUBLIC;
 {
-  unum i = position_y-1;
-  text* current_text = head;
-  while(i-- > 0 && current_text)
-  {
+  unum i = position_y - 1;
+  text *current_text = head;
+  while (i-- > 0 && current_text) {
     current_text = current_text->next;
   }
-  if(current_text) return current_text;
+  if (current_text)
+    return current_text;
   return NULL;
 }
 
-line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte)//PUBLIC;
+line *getLineAndByteFromPositionX(line *head, unum position_x, uint *byte) // PUBLIC;
 {
   unum i = position_x;
-  line* current_line = head;
-  while(current_line && i > current_line->position_count)
-  {
+  line *current_line = head;
+  while (current_line && i > current_line->position_count) {
     i -= current_line->position_count;
     current_line = current_line->next;
   }
-  if(current_line)
-  {
+  if (current_line) {
     *byte = 0;
-    while(i-- > 1) // insert before cursor
+    while (i-- > 1) // insert before cursor
     {
       *byte += safed_mbchar_size(&current_line->string[*byte]);
     }
@@ -151,77 +143,67 @@ line* getLineAndByteFromPositionX(line* head, unum position_x, uint* byte)//PUBL
   return NULL;
 }
 
-mbchar get_tail(line* line)
-{
+mbchar get_tail(line *line) {
   uint i = 0;
-  while(line->byte_count > i + safed_mbchar_size(&line->string[i]))
-  {
-    i+= safed_mbchar_size(&line->string[i]);
+  while (line->byte_count > i + safed_mbchar_size(&line->string[i])) {
+    i += safed_mbchar_size(&line->string[i]);
   }
   return &line->string[i];
 }
 
-void insert_mbchar(line* line, uint byte, mbchar c)//PUBLIC;
+void insert_mbchar(line *line, uint byte, mbchar c) // PUBLIC;
 {
   uint s = safed_mbchar_size(c);
-  if(line->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE)
-  {
+  if (line->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE) {
     line_insert(line);
   }
-  while(BUFFER_SIZE <= line->byte_count + s)
-  {
+  while (BUFFER_SIZE <= line->byte_count + s) {
     mbchar tail = get_tail(line);
     line->byte_count -= safed_mbchar_size(tail);
     insert_mbchar(line->next, 0, tail);
   }
   uint move = line->byte_count;
-  while(move > byte)
-  {
+  while (move > byte) {
     move--;
-    line->string[move+s] = line->string[move];
+    line->string[move + s] = line->string[move];
   }
 
   uint offset = 0;
-  while(offset < s){
-    line->string[byte+offset] = c[offset];
+  while (offset < s) {
+    line->string[byte + offset] = c[offset];
     line->byte_count++;
     offset++;
   }
 }
 
-
-void delete_mbchar(line* line, uint byte)//PUBLIC;
+void delete_mbchar(line *line, uint byte) // PUBLIC;
 {
   uint s = safed_mbchar_size(&line->string[byte]);
   uint move = byte;
-  while(move < line->byte_count)
-  {
-    line->string[move] = line->string[move+s];
+  while (move < line->byte_count) {
+    line->string[move] = line->string[move + s];
     move++;
   }
-  line->byte_count-=s;
+  line->byte_count -= s;
 }
 
-void calculatotion_width(text* head, uint max_width)//PUBLIC;
+void calculatotion_width(text *head, uint max_width) // PUBLIC;
 {
   static uint prev_width = 0;
   // if(prev_width == max_width) return;//cache hit TODO
   prev_width = max_width;
-  text* current_text = head;
-  line* current_line = head->line;
+  text *current_text = head;
+  line *current_line = head->line;
 
   uint i;
-  while(current_text)
-  {
+  while (current_text) {
     unum total_width = 0;
     unum total_position = 0;
     current_line = current_text->line;
-    while(current_line)
-    {
+    while (current_line) {
       int line_postition = 0;
       i = 0;
-      while(i < current_line->byte_count)
-      {
+      while (i < current_line->byte_count) {
         int w = mbchar_width(&current_line->string[i]);
         total_width += w;
         line_postition++;

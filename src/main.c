@@ -24,9 +24,9 @@
 
 int main(int argc, char *argv[]) {
 
-  if(argc != 2) {
+  if (argc != 2) {
     printf("[error]illegal args\n");
-    return(EXIT_FAILURE);
+    return (EXIT_FAILURE);
   } else {
     context context;
     context_read_file(&context, argv[1]);
@@ -37,8 +37,7 @@ int main(int argc, char *argv[]) {
     command cmd_none;
     cmd_none.command_key = NONE;
     command_perform(cmd_none, &context);
-    while(1)
-    {
+    while (1) {
       render_setting(&context);
       render(context);
       keyboard_scan(&key);

@@ -3,5 +3,5 @@
 #define __COMMAND_COMMAND_PERFORM_C
 //EXPORT
 //PUBLIC
-void command_perform(command command, context *context);
+void command_perform(command command, context *context)  ;
 #endif

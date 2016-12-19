@@ -7,7 +7,7 @@ typedef struct _context_header {
 } context_header;
 */
 
-void render_header(context_header context)//PUBLIC;
+void render_header(context_header context) // PUBLIC;
 {
   color_header(1);
   printf(" ");
