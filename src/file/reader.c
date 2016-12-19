@@ -14,11 +14,11 @@ lines *file_read(const char *filepath) // PUBLIC;
   mutable_string *current_mutable_string = head->mutable_string;
 
   utf8char buf = utf8char_malloc();
-  uchar c;
   mbcher_zero_clear(buf);
   uint len = 0;
-  int mbsize;
   while (1) {
+    uchar c;
+    int mbsize;
     c = (uchar)fgetc(fp);
     if (feof(fp))
       break;
