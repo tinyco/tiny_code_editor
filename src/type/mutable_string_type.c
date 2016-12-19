@@ -40,7 +40,7 @@ void mutable_string_add_char(mutable_string *head, multibyte_char c) // PUBLIC;
   }
 }
 
-mutable_string *getLineAndByteFromPositionX(mutable_string *head, unum position_x, uint *byte) // PUBLIC;
+mutable_string *mutable_string_select_position_x(mutable_string *head, unum position_x, uint *byte) // PUBLIC;
 {
   unum i = position_x;
   mutable_string *current_mutable_string = head;

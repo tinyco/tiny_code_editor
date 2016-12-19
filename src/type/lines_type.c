@@ -78,7 +78,7 @@ void lines_divide(lines *current_lines, mutable_string *current, uint byte, mult
   mutable_string_add_char(current, divide_char);
 }
 
-lines *getTextFromPositionY(lines *head, unum position_y) // PUBLIC;
+lines *lines_select_position_y(lines *head, unum position_y) // PUBLIC;
 {
   unum i = position_y - 1;
   lines *current_lines = head;
@@ -90,7 +90,7 @@ lines *getTextFromPositionY(lines *head, unum position_y) // PUBLIC;
   return NULL;
 }
 
-void calculatotion_width(lines *head, uint max_width) // PUBLIC;
+void lines_calculatotion_width(lines *head, uint max_width) // PUBLIC;
 {
   static uint prev_width = 0;
   // if(prev_width == max_width) return;//cache hit TODO
