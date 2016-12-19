@@ -3,5 +3,5 @@
 #define __KEYBOARD_KEYBOARD_C
 //EXPORT
 //PUBLIC
-multibyte_char keyboard_scan(multibyte_char *out)  ;
+utf8char keyboard_scan(utf8char *out)  ;
 #endif

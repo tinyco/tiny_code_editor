@@ -7,9 +7,9 @@
 #include "render_footer.gen.h"
 */
 
-uint print_one_multibyte_char(uchar *str) // PUBLIC;
+uint print_one_utf8char(uchar *str) // PUBLIC;
 {
-  uint bytes = safed_multibyte_char_size(str);
+  uint bytes = safed_utf8char_size(str);
   uint i;
   for (i = 0; i < bytes; i++) {
     printf("%c", str[i]);
@@ -29,9 +29,9 @@ void trim_print(uchar *message, uint max_width) // PUBLIC;
   } else {
     unum wrote_bytes = 0;
     unum wrote_width = 0;
-    while (max_width - wrote_width - multibyte_char_width(&message[wrote_bytes]) > 2) {
-      wrote_width += multibyte_char_width(&message[wrote_bytes]);
-      wrote_bytes += print_one_multibyte_char(&message[wrote_bytes]);
+    while (max_width - wrote_width - utf8char_width(&message[wrote_bytes]) > 2) {
+      wrote_width += utf8char_width(&message[wrote_bytes]);
+      wrote_bytes += print_one_utf8char(&message[wrote_bytes]);
     }
     printf("...");
   }

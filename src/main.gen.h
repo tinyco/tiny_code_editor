@@ -13,7 +13,7 @@
 
 
 #include "type/unsigned_type.gen.h"
-#include "type/multibyte_char_type.gen.h"
+#include "type/utf8char_type.gen.h"
 #include "type/mutable_string_type.gen.h"
 #include "type/lines_type.gen.h"
 #include "type/cursor_type.gen.h"

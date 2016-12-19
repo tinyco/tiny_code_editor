@@ -3,5 +3,5 @@
 #define __COMMAND_COMMAND_PARSE_C
 //EXPORT
 //PUBLIC
-command command_parse(multibyte_char key)  ;
+command command_parse(utf8char key)  ;
 #endif

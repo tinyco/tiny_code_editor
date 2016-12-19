@@ -57,12 +57,12 @@ void lines_combine_next(lines *current) // PUBLIC;
   while (tail->next) {
     tail = tail->next;
   }
-  delete_multibyte_char(tail, tail->byte_count - safed_multibyte_char_size(get_tail(tail)));
+  delete_utf8char(tail, tail->byte_count - safed_utf8char_size(get_tail(tail)));
   tail->next = current->next->mutable_string;
   lines_free(current->next);
 }
 
-void lines_divide(lines *current_lines, mutable_string *current, uint byte, multibyte_char divide_char) // PUBLIC;
+void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char) // PUBLIC;
 {
   lines_insert(current_lines);
   if (current->next) {
@@ -71,9 +71,9 @@ void lines_divide(lines *current_lines, mutable_string *current, uint byte, mult
     current->next = NULL;
   }
   while (current->byte_count > byte) {
-    multibyte_char tail = get_tail(current);
-    current->byte_count -= safed_multibyte_char_size(tail);
-    insert_multibyte_char(current_lines->next->mutable_string, 0, tail);
+    utf8char tail = get_tail(current);
+    current->byte_count -= safed_utf8char_size(tail);
+    insert_utf8char(current_lines->next->mutable_string, 0, tail);
   }
   mutable_string_add_char(current, divide_char);
 }
@@ -107,10 +107,10 @@ void lines_calculatotion_width(lines *head, uint max_width) // PUBLIC;
       int mutable_string_postition = 0;
       i = 0;
       while (i < current_mutable_string->byte_count) {
-        int w = multibyte_char_width(&current_mutable_string->string[i]);
+        int w = utf8char_width(&current_mutable_string->string[i]);
         total_width += w;
         mutable_string_postition++;
-        i += safed_multibyte_char_size(&current_mutable_string->string[i]);
+        i += safed_utf8char_size(&current_mutable_string->string[i]);
       }
       current_mutable_string->position_count = mutable_string_postition;
       total_position += mutable_string_postition;

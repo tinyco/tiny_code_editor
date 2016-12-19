@@ -15,9 +15,9 @@ typedef struct _mutable_string {
 
 //PUBLIC
 mutable_string *mutable_string_insert(mutable_string *current)  ;
-void mutable_string_add_char(mutable_string *head, multibyte_char c)  ;
+void mutable_string_add_char(mutable_string *head, utf8char c)  ;
 mutable_string *mutable_string_select_position_x(mutable_string *head, unum position_x, uint *byte)  ;
-multibyte_char get_tail(mutable_string *mutable_string)  ;
-void insert_multibyte_char(mutable_string *mutable_string, uint byte, multibyte_char c)  ;
-void delete_multibyte_char(mutable_string *mutable_string, uint byte)  ;
+utf8char get_tail(mutable_string *mutable_string)  ;
+void insert_utf8char(mutable_string *mutable_string, uint byte, utf8char c)  ;
+void delete_utf8char(mutable_string *mutable_string, uint byte)  ;
 #endif

@@ -30,7 +30,7 @@ void render_body(context context) // PUBLIC;
             color_cursor_normal(1);
             cursor_color_flag = 1;
           }
-          wrote_byte += print_one_multibyte_char(&(current_mutable_string->string[wrote_byte]));
+          wrote_byte += print_one_utf8char(&(current_mutable_string->string[wrote_byte]));
           pos_x++;
         } else {
           wrote_byte++;
