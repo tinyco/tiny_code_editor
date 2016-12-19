@@ -41,25 +41,25 @@ void render(context context) // PUBLIC;
 void debug_print_text(context context) {
   printf("\n---debug---\n");
   text *current_text = context.text;
-  line *current_line = context.text->line;
+  mutable_string *current_mutable_string = context.text->mutable_string;
 
   unum i;
   while (current_text) {
-    current_line = current_text->line;
+    current_mutable_string = current_text->mutable_string;
     printf("#%lluw %llup", current_text->width_count, current_text->position_count);
-    while (current_line) {
+    while (current_mutable_string) {
       i = 0;
-      printf("[%db,%dp]", current_line->byte_count, current_line->position_count);
-      while (i < current_line->byte_count) {
-        if (is_line_break(&current_line->string[i])) {
+      printf("[%db,%dp]", current_mutable_string->byte_count, current_mutable_string->position_count);
+      while (i < current_mutable_string->byte_count) {
+        if (is_mutable_string_break(&current_mutable_string->string[i])) {
           printf("<BR>");
         } else {
-          printf("%c", current_line->string[i]);
+          printf("%c", current_mutable_string->string[i]);
         }
         i++;
       }
-      current_line = current_line->next;
-      if (current_line)
+      current_mutable_string = current_mutable_string->next;
+      if (current_mutable_string)
         printf(" -> ");
     }
     current_text = current_text->next;

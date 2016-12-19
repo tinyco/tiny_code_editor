@@ -13,7 +13,7 @@ void multibyte_char_free(multibyte_char multibyte_char)  ;
 multibyte_char mbcher_zero_clear(multibyte_char multibyte_char)  ;
 int multibyte_char_size(multibyte_char multibyte_char, uint byte)  ;
 uint safed_multibyte_char_size(multibyte_char multibyte_char)  ;
-int is_line_break(multibyte_char multibyte_char)  ;
+int is_mutable_string_break(multibyte_char multibyte_char)  ;
 uint multibyte_char_width(multibyte_char multibyte_char)  ;
 unum string_width(uchar *message)  ;
 #endif

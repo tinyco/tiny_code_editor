@@ -96,7 +96,7 @@ uint safed_multibyte_char_size(multibyte_char multibyte_char) // PUBLIC;
   return head_one_bits;
 }
 
-int is_line_break(multibyte_char multibyte_char) // PUBLIC;
+int is_mutable_string_break(multibyte_char multibyte_char) // PUBLIC;
 {
   return (multibyte_char[0] == '\n' ? 1 : 0);
 }

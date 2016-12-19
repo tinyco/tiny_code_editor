@@ -43,16 +43,16 @@ void command_perform(command command, context *context) // PUBLIC;
   case INSERT: {
     uint byte;
     text *head = getTextFromPositionY(context->text, context->cursor.position_y);
-    line *line = getLineAndByteFromPositionX(head->line, context->cursor.position_x, &byte);
-    insert_multibyte_char(line, byte, command.command_value);
+    mutable_string *mutable_string = getLineAndByteFromPositionX(head->mutable_string, context->cursor.position_x, &byte);
+    insert_multibyte_char(mutable_string, byte, command.command_value);
     (*context).cursor.position_x += 1;
   } break;
   case DELETE: {
     if (context->cursor.position_x > 1) {
       uint byte;
       text *head = getTextFromPositionY(context->text, context->cursor.position_y);
-      line *line = getLineAndByteFromPositionX(head->line, context->cursor.position_x - 1, &byte);
-      delete_multibyte_char(line, byte);
+      mutable_string *mutable_string = getLineAndByteFromPositionX(head->mutable_string, context->cursor.position_x - 1, &byte);
+      delete_multibyte_char(mutable_string, byte);
       (*context).cursor.position_x -= 1;
     } else if (context->cursor.position_y > 1) {
       text *head = getTextFromPositionY(context->text, context->cursor.position_y - 1);
@@ -64,8 +64,8 @@ void command_perform(command command, context *context) // PUBLIC;
   case ENTER: {
     uint byte;
     text *head = getTextFromPositionY(context->text, context->cursor.position_y);
-    line *line = getLineAndByteFromPositionX(head->line, context->cursor.position_x, &byte);
-    text_divide(head, line, byte, command.command_value);
+    mutable_string *mutable_string = getLineAndByteFromPositionX(head->mutable_string, context->cursor.position_x, &byte);
+    text_divide(head, mutable_string, byte, command.command_value);
     (*context).cursor.position_x = 1;
     (*context).cursor.position_y += 1;
   } break;

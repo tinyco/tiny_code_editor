@@ -11,7 +11,7 @@ text *file_read(const char *filepath) // PUBLIC;
   text *head = text_malloc();
 
   text *current_text = head;
-  line *current_line = head->line;
+  mutable_string *current_mutable_string = head->mutable_string;
 
   multibyte_char buf = multibyte_char_malloc();
   uchar c;
@@ -25,10 +25,10 @@ text *file_read(const char *filepath) // PUBLIC;
     buf[len] = c;
     mbsize = multibyte_char_size(buf, len + 1);
     if (mbsize > 0) {
-      line_add_char(current_line, buf);
-      if (is_line_break(buf)) {
+      mutable_string_add_char(current_mutable_string, buf);
+      if (is_mutable_string_break(buf)) {
         current_text = text_insert(current_text);
-        current_line = current_text->line;
+        current_mutable_string = current_text->mutable_string;
       }
       mbcher_zero_clear(buf);
       len = 0;
