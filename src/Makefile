@@ -20,5 +20,5 @@ create_gen_h:
 delete_gen_h:
 	rm -rf $(DEFS)
 
-indent_format:
-	sh indent_format.sh
+code_format:
+	sh code_format.sh
