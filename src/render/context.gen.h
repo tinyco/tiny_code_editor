@@ -1,6 +1,6 @@
-//This file is auto-generated from ./type/context_type.c
-#ifndef __TYPE_CONTEXT_TYPE_C
-#define __TYPE_CONTEXT_TYPE_C
+//This file is auto-generated from ./render/context.c
+#ifndef __RENDER_CONTEXT_C
+#define __RENDER_CONTEXT_C
 //EXPORT
 #include "../console/screen.gen.h"
 

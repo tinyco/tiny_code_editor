@@ -17,7 +17,7 @@
 #include "type/mutable_string_type.gen.h"
 #include "type/lines_type.gen.h"
 #include "type/cursor_type.gen.h"
-#include "type/context_type.gen.h"
+#include "render/context.gen.h"
 
 //PUBLIC
 #endif
