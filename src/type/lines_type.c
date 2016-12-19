@@ -53,13 +53,17 @@ void lines_free(lines *t) // PUBLIC;
 
 void lines_combine_next(lines *current) // PUBLIC;
 {
+  if (!current && !current->next) {
+    return;
+  }
   mutable_string *tail = current->mutable_string;
   while (tail->next) {
     tail = tail->next;
   }
   delete_utf8char(tail, tail->byte_count - safed_utf8char_size(mutable_string_get_tail(tail)));
   tail->next = current->next->mutable_string;
-  lines_free(current->next);
+  free(current->next);
+  current->next = NULL;
 }
 
 void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char) // PUBLIC;
