@@ -44,7 +44,7 @@ void command_perform(command command, context *context) // PUBLIC;
     uint byte;
     text *head = getTextFromPositionY(context->text, context->cursor.position_y);
     line *line = getLineAndByteFromPositionX(head->line, context->cursor.position_x, &byte);
-    insert_mbchar(line, byte, command.command_value);
+    insert_multibyte_char(line, byte, command.command_value);
     (*context).cursor.position_x += 1;
   } break;
   case DELETE: {
@@ -52,7 +52,7 @@ void command_perform(command command, context *context) // PUBLIC;
       uint byte;
       text *head = getTextFromPositionY(context->text, context->cursor.position_y);
       line *line = getLineAndByteFromPositionX(head->line, context->cursor.position_x - 1, &byte);
-      delete_mbchar(line, byte);
+      delete_multibyte_char(line, byte);
       (*context).cursor.position_x -= 1;
     } else if (context->cursor.position_y > 1) {
       text *head = getTextFromPositionY(context->text, context->cursor.position_y - 1);

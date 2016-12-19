@@ -12,7 +12,7 @@
 
 
 #include "type/unsigned_type.gen.h"
-#include "type/mbchar_type.gen.h"
+#include "type/multibyte_char_type.gen.h"
 #include "type/string_type.gen.h"
 #include "type/cursor_type.gen.h"
 #include "type/context_type.gen.h"
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     context.cursor.position_x = 1;
     context.cursor.position_y = 1;
     context.render_start_height = 0;
-    mbchar key = mbchar_malloc();
+    multibyte_char key = multibyte_char_malloc();
     command cmd_none;
     cmd_none.command_key = NONE;
     command_perform(cmd_none, &context);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
       command cmd = command_parse(key);
       command_perform(cmd, &context);
     }
-    mbchar_free(key);
+    multibyte_char_free(key);
     return EXIT_SUCCESS;
   }
 }

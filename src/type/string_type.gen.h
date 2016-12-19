@@ -21,15 +21,15 @@ typedef struct _text {
 
 //PUBLIC
 line *line_insert(line *current)  ;
-void line_add_char(line *head, mbchar c)  ;
+void line_add_char(line *head, multibyte_char c)  ;
 text *text_insert(text *current)  ;
 text *text_malloc(void)  ;
 void text_free(text *t)  ;
 void text_combine_next(text *current)  ;
-void text_divide(text *current_text, line *current, uint byte, mbchar divide_char)  ;
+void text_divide(text *current_text, line *current, uint byte, multibyte_char divide_char)  ;
 text *getTextFromPositionY(text *head, unum position_y)  ;
 line *getLineAndByteFromPositionX(line *head, unum position_x, uint *byte)  ;
-void insert_mbchar(line *line, uint byte, mbchar c)  ;
-void delete_mbchar(line *line, uint byte)  ;
+void insert_multibyte_char(line *line, uint byte, multibyte_char c)  ;
+void delete_multibyte_char(line *line, uint byte)  ;
 void calculatotion_width(text *head, uint max_width)  ;
 #endif

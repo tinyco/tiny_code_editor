@@ -16,14 +16,14 @@ uchar get_single_byte_key() {
   return key;
 }
 
-mbchar keyboard_scan(mbchar *out) // PUBLIC;
+multibyte_char keyboard_scan(multibyte_char *out) // PUBLIC;
 {
   mbcher_zero_clear(*out);
   uint i = 0;
-  while (mbchar_size(*out, i) < 0) {
+  while (multibyte_char_size(*out, i) < 0) {
     *out[i] = get_single_byte_key();
     i++;
-    if (mbchar_size(*out, i) == MBCHAR_ILLIEGAL) {
+    if (multibyte_char_size(*out, i) == MULTIBYTE_CHAR_ILLIEGAL) {
       mbcher_zero_clear(*out);
     }
   }

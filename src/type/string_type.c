@@ -28,10 +28,10 @@ line *line_insert(line *current) // PUBLIC;
   return i;
 }
 
-void line_add_char(line *head, mbchar c) // PUBLIC;
+void line_add_char(line *head, multibyte_char c) // PUBLIC;
 {
   line *current = head;
-  while (current->byte_count >= BUFFER_SIZE - safed_mbchar_size(c)) {
+  while (current->byte_count >= BUFFER_SIZE - safed_multibyte_char_size(c)) {
     if (current->next) {
       current = current->next;
     } else {
@@ -39,7 +39,7 @@ void line_add_char(line *head, mbchar c) // PUBLIC;
     }
   }
   uint offset = 0;
-  while (offset < safed_mbchar_size(c)) {
+  while (offset < safed_multibyte_char_size(c)) {
     current->string[current->byte_count] = c[offset];
     current->byte_count++;
     offset++;
@@ -84,19 +84,19 @@ void text_free(text *t) // PUBLIC;
   free(t);
 }
 
-mbchar get_tail(line *line);
+multibyte_char get_tail(line *line);
 void text_combine_next(text *current) // PUBLIC;
 {
   line *tail = current->line;
   while (tail->next) {
     tail = tail->next;
   }
-  delete_mbchar(tail, tail->byte_count - safed_mbchar_size(get_tail(tail)));
+  delete_multibyte_char(tail, tail->byte_count - safed_multibyte_char_size(get_tail(tail)));
   tail->next = current->next->line;
   text_free(current->next);
 }
 
-void text_divide(text *current_text, line *current, uint byte, mbchar divide_char) // PUBLIC;
+void text_divide(text *current_text, line *current, uint byte, multibyte_char divide_char) // PUBLIC;
 {
   text_insert(current_text);
   if (current->next) {
@@ -105,9 +105,9 @@ void text_divide(text *current_text, line *current, uint byte, mbchar divide_cha
     current->next = NULL;
   }
   while (current->byte_count > byte) {
-    mbchar tail = get_tail(current);
-    current->byte_count -= safed_mbchar_size(tail);
-    insert_mbchar(current_text->next->line, 0, tail);
+    multibyte_char tail = get_tail(current);
+    current->byte_count -= safed_multibyte_char_size(tail);
+    insert_multibyte_char(current_text->next->line, 0, tail);
   }
   line_add_char(current, divide_char);
 }
@@ -136,31 +136,31 @@ line *getLineAndByteFromPositionX(line *head, unum position_x, uint *byte) // PU
     *byte = 0;
     while (i-- > 1) // insert before cursor
     {
-      *byte += safed_mbchar_size(&current_line->string[*byte]);
+      *byte += safed_multibyte_char_size(&current_line->string[*byte]);
     }
     return current_line;
   }
   return NULL;
 }
 
-mbchar get_tail(line *line) {
+multibyte_char get_tail(line *line) {
   uint i = 0;
-  while (line->byte_count > i + safed_mbchar_size(&line->string[i])) {
-    i += safed_mbchar_size(&line->string[i]);
+  while (line->byte_count > i + safed_multibyte_char_size(&line->string[i])) {
+    i += safed_multibyte_char_size(&line->string[i]);
   }
   return &line->string[i];
 }
 
-void insert_mbchar(line *line, uint byte, mbchar c) // PUBLIC;
+void insert_multibyte_char(line *line, uint byte, multibyte_char c) // PUBLIC;
 {
-  uint s = safed_mbchar_size(c);
+  uint s = safed_multibyte_char_size(c);
   if (line->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE) {
     line_insert(line);
   }
   while (BUFFER_SIZE <= line->byte_count + s) {
-    mbchar tail = get_tail(line);
-    line->byte_count -= safed_mbchar_size(tail);
-    insert_mbchar(line->next, 0, tail);
+    multibyte_char tail = get_tail(line);
+    line->byte_count -= safed_multibyte_char_size(tail);
+    insert_multibyte_char(line->next, 0, tail);
   }
   uint move = line->byte_count;
   while (move > byte) {
@@ -176,9 +176,9 @@ void insert_mbchar(line *line, uint byte, mbchar c) // PUBLIC;
   }
 }
 
-void delete_mbchar(line *line, uint byte) // PUBLIC;
+void delete_multibyte_char(line *line, uint byte) // PUBLIC;
 {
-  uint s = safed_mbchar_size(&line->string[byte]);
+  uint s = safed_multibyte_char_size(&line->string[byte]);
   uint move = byte;
   while (move < line->byte_count) {
     line->string[move] = line->string[move + s];
@@ -204,10 +204,10 @@ void calculatotion_width(text *head, uint max_width) // PUBLIC;
       int line_postition = 0;
       i = 0;
       while (i < current_line->byte_count) {
-        int w = mbchar_width(&current_line->string[i]);
+        int w = multibyte_char_width(&current_line->string[i]);
         total_width += w;
         line_postition++;
-        i += safed_mbchar_size(&current_line->string[i]);
+        i += safed_multibyte_char_size(&current_line->string[i]);
       }
       current_line->position_count = line_postition;
       total_position += line_postition;

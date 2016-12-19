@@ -9,6 +9,6 @@
 #include "render_footer.gen.h"
 
 //PUBLIC
-uint print_one_mbchar(uchar *str)  ;
+uint print_one_multibyte_char(uchar *str)  ;
 void trim_print(uchar *message, uint max_width)  ;
 #endif

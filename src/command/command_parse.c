@@ -3,7 +3,7 @@
 
 enum ControlKeyFlag { NOT_CTRL, ALLOW_1, ALLOW_2 };
 
-command command_parse(mbchar key) // PUBLIC;
+command command_parse(multibyte_char key) // PUBLIC;
 {
   static enum ControlKeyFlag flag = 0;
   command cmd;
@@ -31,10 +31,10 @@ command command_parse(mbchar key) // PUBLIC;
       cmd.command_key = DELETE;
     } else if (key[0] == 0x0D) {
       cmd.command_key = ENTER;
-      cmd.command_value = (mbchar) "\n";
+      cmd.command_value = (multibyte_char) "\n";
     } else if (key[0] == 0x20) {
       cmd.command_key = INSERT;
-      cmd.command_value = (mbchar) " ";
+      cmd.command_value = (multibyte_char) " ";
     } else if (key[0] == 0x13) {
       cmd.command_key = SAVE_OVERRIDE;
     }

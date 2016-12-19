@@ -13,7 +13,7 @@ text *file_read(const char *filepath) // PUBLIC;
   text *current_text = head;
   line *current_line = head->line;
 
-  mbchar buf = mbchar_malloc();
+  multibyte_char buf = multibyte_char_malloc();
   uchar c;
   mbcher_zero_clear(buf);
   uint len = 0;
@@ -23,7 +23,7 @@ text *file_read(const char *filepath) // PUBLIC;
     if (feof(fp))
       break;
     buf[len] = c;
-    mbsize = mbchar_size(buf, len + 1);
+    mbsize = multibyte_char_size(buf, len + 1);
     if (mbsize > 0) {
       line_add_char(current_line, buf);
       if (is_line_break(buf)) {
@@ -32,14 +32,14 @@ text *file_read(const char *filepath) // PUBLIC;
       }
       mbcher_zero_clear(buf);
       len = 0;
-    } else if (mbsize == MBCHAR_NOT_FILL) {
+    } else if (mbsize == MULTIBYTE_CHAR_NOT_FILL) {
       len++;
     } else {
       mbcher_zero_clear(buf);
     }
   }
 
-  mbchar_free(buf);
+  multibyte_char_free(buf);
   fclose(fp);
   return head;
 }

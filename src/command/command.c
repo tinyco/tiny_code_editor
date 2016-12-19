@@ -6,7 +6,7 @@ enum CommandType {NONE, INSERT, DELETE, ENTER, UP, DOWN, LEFT, RIGHT, SAVE_OVERR
 
 typedef struct _command {
   enum CommandType command_key;
-  mbchar command_value;
+  multibyte_char command_value;
 } command;
 
 #include "command_parse.gen.h"
