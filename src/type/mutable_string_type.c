@@ -16,14 +16,20 @@ typedef struct _mutable_string {
 mutable_string *mutable_string_insert(mutable_string *current) // PUBLIC;
 {
   mutable_string *i = malloc(sizeof(mutable_string));
-  i->next = current->next;
-  current->next = i;
+  i->next = NULL;
+  if (current) {
+    i->next = current->next;
+    current->next = i;
+  }
   i->byte_count = 0;
   return i;
 }
 
 void mutable_string_add_char(mutable_string *head, utf8char c) // PUBLIC;
 {
+  if (!head) {
+    return;
+  }
   mutable_string *current = head;
   while (current->byte_count >= BUFFER_SIZE - safed_utf8char_size(c)) {
     if (current->next) {
