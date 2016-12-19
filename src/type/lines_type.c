@@ -57,7 +57,7 @@ void lines_combine_next(lines *current) // PUBLIC;
   while (tail->next) {
     tail = tail->next;
   }
-  delete_utf8char(tail, tail->byte_count - safed_utf8char_size(get_tail(tail)));
+  delete_utf8char(tail, tail->byte_count - safed_utf8char_size(mutable_string_get_tail(tail)));
   tail->next = current->next->mutable_string;
   lines_free(current->next);
 }
@@ -71,7 +71,7 @@ void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8
     current->next = NULL;
   }
   while (current->byte_count > byte) {
-    utf8char tail = get_tail(current);
+    utf8char tail = mutable_string_get_tail(current);
     current->byte_count -= safed_utf8char_size(tail);
     insert_utf8char(current_lines->next->mutable_string, 0, tail);
   }

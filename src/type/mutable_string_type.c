@@ -65,7 +65,7 @@ mutable_string *mutable_string_select_position_x(mutable_string *head, unum posi
   return NULL;
 }
 
-utf8char get_tail(mutable_string *mutable_string) // PUBLIC;
+utf8char mutable_string_get_tail(mutable_string *mutable_string) // PUBLIC;
 {
   uint i = 0;
   while (mutable_string->byte_count > i + safed_utf8char_size(&mutable_string->string[i])) {
@@ -81,7 +81,7 @@ void insert_utf8char(mutable_string *mutable_string, uint byte, utf8char c) // P
     mutable_string_insert(mutable_string);
   }
   while (BUFFER_SIZE <= mutable_string->byte_count + s) {
-    utf8char tail = get_tail(mutable_string);
+    utf8char tail = mutable_string_get_tail(mutable_string);
     mutable_string->byte_count -= safed_utf8char_size(tail);
     insert_utf8char(mutable_string->next, 0, tail);
   }
