@@ -9,13 +9,13 @@ typedef struct _mutable_string {
   struct _mutable_string *next;
 } mutable_string;
 
-typedef struct _text {
+typedef struct _lines {
   unum width_count;
   unum position_count;
   mutable_string* mutable_string;
-  struct _text *prev;
-  struct _text *next;
-} text;
+  struct _lines *prev;
+  struct _lines *next;
+} lines;
 
 */
 
@@ -46,9 +46,9 @@ void mutable_string_add_char(mutable_string *head, multibyte_char c) // PUBLIC;
   }
 }
 
-text *text_insert(text *current) // PUBLIC;
+lines *lines_insert(lines *current) // PUBLIC;
 {
-  text *i = malloc(sizeof(text));
+  lines *i = malloc(sizeof(lines));
   i->prev = current;
   i->next = NULL;
   if (current) {
@@ -64,9 +64,9 @@ text *text_insert(text *current) // PUBLIC;
   return i;
 }
 
-text *text_malloc(void) // PUBLIC;
+lines *lines_malloc(void) // PUBLIC;
 {
-  text *head = malloc(sizeof(text));
+  lines *head = malloc(sizeof(lines));
   head->prev = NULL;
   head->next = NULL;
   head->mutable_string = malloc(sizeof(mutable_string));
@@ -75,17 +75,17 @@ text *text_malloc(void) // PUBLIC;
   return head;
 }
 
-void text_free(text *t) // PUBLIC;
+void lines_free(lines *t) // PUBLIC;
 {
-  text *p = t->prev;
-  text *n = t->next;
+  lines *p = t->prev;
+  lines *n = t->next;
   p->next = n;
   n->prev = p;
   free(t);
 }
 
 multibyte_char get_tail(mutable_string *mutable_string);
-void text_combine_next(text *current) // PUBLIC;
+void lines_combine_next(lines *current) // PUBLIC;
 {
   mutable_string *tail = current->mutable_string;
   while (tail->next) {
@@ -93,34 +93,34 @@ void text_combine_next(text *current) // PUBLIC;
   }
   delete_multibyte_char(tail, tail->byte_count - safed_multibyte_char_size(get_tail(tail)));
   tail->next = current->next->mutable_string;
-  text_free(current->next);
+  lines_free(current->next);
 }
 
-void text_divide(text *current_text, mutable_string *current, uint byte, multibyte_char divide_char) // PUBLIC;
+void lines_divide(lines *current_lines, mutable_string *current, uint byte, multibyte_char divide_char) // PUBLIC;
 {
-  text_insert(current_text);
+  lines_insert(current_lines);
   if (current->next) {
-    free(current_text->next->mutable_string);
-    current_text->next->mutable_string = current->next;
+    free(current_lines->next->mutable_string);
+    current_lines->next->mutable_string = current->next;
     current->next = NULL;
   }
   while (current->byte_count > byte) {
     multibyte_char tail = get_tail(current);
     current->byte_count -= safed_multibyte_char_size(tail);
-    insert_multibyte_char(current_text->next->mutable_string, 0, tail);
+    insert_multibyte_char(current_lines->next->mutable_string, 0, tail);
   }
   mutable_string_add_char(current, divide_char);
 }
 
-text *getTextFromPositionY(text *head, unum position_y) // PUBLIC;
+lines *getTextFromPositionY(lines *head, unum position_y) // PUBLIC;
 {
   unum i = position_y - 1;
-  text *current_text = head;
-  while (i-- > 0 && current_text) {
-    current_text = current_text->next;
+  lines *current_lines = head;
+  while (i-- > 0 && current_lines) {
+    current_lines = current_lines->next;
   }
-  if (current_text)
-    return current_text;
+  if (current_lines)
+    return current_lines;
   return NULL;
 }
 
@@ -187,19 +187,19 @@ void delete_multibyte_char(mutable_string *mutable_string, uint byte) // PUBLIC;
   mutable_string->byte_count -= s;
 }
 
-void calculatotion_width(text *head, uint max_width) // PUBLIC;
+void calculatotion_width(lines *head, uint max_width) // PUBLIC;
 {
   static uint prev_width = 0;
   // if(prev_width == max_width) return;//cache hit TODO
   prev_width = max_width;
-  text *current_text = head;
+  lines *current_lines = head;
   mutable_string *current_mutable_string = head->mutable_string;
 
   uint i;
-  while (current_text) {
+  while (current_lines) {
     unum total_width = 0;
     unum total_position = 0;
-    current_mutable_string = current_text->mutable_string;
+    current_mutable_string = current_lines->mutable_string;
     while (current_mutable_string) {
       int mutable_string_postition = 0;
       i = 0;
@@ -213,8 +213,8 @@ void calculatotion_width(text *head, uint max_width) // PUBLIC;
       total_position += mutable_string_postition;
       current_mutable_string = current_mutable_string->next;
     }
-    current_text->width_count = total_width;
-    current_text->position_count = total_position;
-    current_text = current_text->next;
+    current_lines->width_count = total_width;
+    current_lines->position_count = total_position;
+    current_lines = current_lines->next;
   }
 }

@@ -1,5 +1,5 @@
 #include "render_util.gen.h"
-void debug_print_text(context context);
+void debug_print_lines(context context);
 
 void vailidate_render_position(context *context) {
   while ((*context).cursor.position_y <= (*context).render_start_height) {
@@ -35,18 +35,18 @@ void render(context context) // PUBLIC;
   render_header(context_header);
   render_body(context);
   render_footer(context_footer);
-  // debug_print_text(context);
+  // debug_print_lines(context);
 }
 
-void debug_print_text(context context) {
+void debug_print_lines(context context) {
   printf("\n---debug---\n");
-  text *current_text = context.text;
-  mutable_string *current_mutable_string = context.text->mutable_string;
+  lines *current_lines = context.lines;
+  mutable_string *current_mutable_string = context.lines->mutable_string;
 
   unum i;
-  while (current_text) {
-    current_mutable_string = current_text->mutable_string;
-    printf("#%lluw %llup", current_text->width_count, current_text->position_count);
+  while (current_lines) {
+    current_mutable_string = current_lines->mutable_string;
+    printf("#%lluw %llup", current_lines->width_count, current_lines->position_count);
     while (current_mutable_string) {
       i = 0;
       printf("[%db,%dp]", current_mutable_string->byte_count, current_mutable_string->position_count);
@@ -62,8 +62,8 @@ void debug_print_text(context context) {
       if (current_mutable_string)
         printf(" -> ");
     }
-    current_text = current_text->next;
-    if (current_text)
+    current_lines = current_lines->next;
+    if (current_lines)
       printf("\n-------\n");
   }
   printf("\n");

@@ -6,7 +6,7 @@
 
 typedef struct _context {
   char* filename;
-  text* text;
+  lines* lines;
   view_size view_size;
   uint header_height;
   uint body_height;

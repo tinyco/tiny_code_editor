@@ -7,7 +7,7 @@
 
 typedef struct _context {
   char* filename;
-  text* text;
+  lines* lines;
   view_size view_size;
   uint header_height;
   uint body_height;
@@ -21,10 +21,10 @@ void context_read_file(context *context, char *filename) // PUBLIC;
 {
   (*context).filename = malloc(strlen(filename));
   strcpy((*context).filename, filename);
-  (*context).text = file_read((*context).filename);
+  (*context).lines = file_read((*context).filename);
 }
 
 void context_write_override_file(context *context) // PUBLIC;
 {
-  file_write((*context).filename, (*context).text);
+  file_write((*context).filename, (*context).lines);
 }

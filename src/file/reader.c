@@ -1,6 +1,6 @@
 #include "../main.gen.h"
 
-text *file_read(const char *filepath) // PUBLIC;
+lines *file_read(const char *filepath) // PUBLIC;
 {
   FILE *fp;
   if ((fp = fopen(filepath, "r")) == NULL) {
@@ -8,9 +8,9 @@ text *file_read(const char *filepath) // PUBLIC;
     exit(EXIT_FAILURE);
   }
 
-  text *head = text_malloc();
+  lines *head = lines_malloc();
 
-  text *current_text = head;
+  lines *current_lines = head;
   mutable_string *current_mutable_string = head->mutable_string;
 
   multibyte_char buf = multibyte_char_malloc();
@@ -27,8 +27,8 @@ text *file_read(const char *filepath) // PUBLIC;
     if (mbsize > 0) {
       mutable_string_add_char(current_mutable_string, buf);
       if (is_mutable_string_break(buf)) {
-        current_text = text_insert(current_text);
-        current_mutable_string = current_text->mutable_string;
+        current_lines = lines_insert(current_lines);
+        current_mutable_string = current_lines->mutable_string;
       }
       mbcher_zero_clear(buf);
       len = 0;

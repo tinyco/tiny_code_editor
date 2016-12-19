@@ -3,5 +3,5 @@
 #define __FILE_READER_C
 //EXPORT
 //PUBLIC
-text *file_read(const char *filepath)  ;
+lines *file_read(const char *filepath)  ;
 #endif
