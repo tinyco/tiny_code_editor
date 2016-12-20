@@ -1,7 +1,7 @@
 #include "../main.gen.h"
 #include "command.gen.h"
 
-enum ControlKeyFlag { NOT_CTRL, ALLOW_1, ALLOW_2 };
+enum ControlKeyFlag { NORMAL_KEY, ESC_KEY, ARROW_KEY };
 
 command command_parse(utf8char key) // PUBLIC;
 {
@@ -9,11 +9,11 @@ command command_parse(utf8char key) // PUBLIC;
   command cmd;
   cmd.command_key = NONE;
   cmd.command_value = key;
-  if (key[0] == 0x1B && flag == NOT_CTRL) {
-    flag = ALLOW_1;
-  } else if (key[0] == 0x5B && flag == ALLOW_1) {
-    flag = ALLOW_2;
-  } else if (flag == ALLOW_2) {
+  if (key[0] == 0x1B && flag == NORMAL_KEY) {
+    flag = ESC_KEY;
+  } else if (key[0] == 0x5B && flag == ESC_KEY) {
+    flag = ARROW_KEY;
+  } else if (flag == ARROW_KEY) {
     if (key[0] == 0x41) {
       cmd.command_key = UP;
     } else if (key[0] == 0x42) {
@@ -23,7 +23,7 @@ command command_parse(utf8char key) // PUBLIC;
     } else if (key[0] == 0x44) {
       cmd.command_key = LEFT;
     }
-    flag = NOT_CTRL;
+    flag = NORMAL_KEY;
   } else {
     if (key[0] == 0x11) {
       cmd.command_key = EXIT;
@@ -41,7 +41,7 @@ command command_parse(utf8char key) // PUBLIC;
     /**/ else {
       cmd.command_key = INSERT;
     }
-    flag = NOT_CTRL;
+    flag = NORMAL_KEY;
   }
   return cmd;
 }
