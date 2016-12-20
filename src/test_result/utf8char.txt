@@ -1,14 +1,14 @@
 test - utf8char
-- 
-- あ
-- 3
-- 0
-- 2
-- 
+- clear 
+- char あ
+- size 3
+- is_\n 0
+- width 2
+- char 
 
-- 1
-- 1
-- 1
-- 10
-- 5
+- size 1
+- is_\n 1
+- width 1
+- jp-width 10
+- ascii-width 5
 finish
