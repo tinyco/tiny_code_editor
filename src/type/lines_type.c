@@ -89,16 +89,11 @@ lines *lines_select_position_y(lines *head, unum position_y) // PUBLIC;
   while (i-- > 0 && current_lines) {
     current_lines = current_lines->next;
   }
-  if (current_lines)
-    return current_lines;
-  return NULL;
+  return current_lines;
 }
 
-void lines_calculatotion_width(lines *head, uint max_width) // PUBLIC;
+void lines_calculatotion_width(lines *head) // PUBLIC;
 {
-  // static uint prev_width = 0;
-  // if(prev_width == max_width) return;//cache hit TODO
-  // prev_width = max_width;
   lines *current_lines = head;
   mutable_string *current_mutable_string = head->mutable_string;
 

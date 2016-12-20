@@ -19,5 +19,5 @@ void lines_free(lines *t)  ;
 void lines_combine_next(lines *current)  ;
 void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char)  ;
 lines *lines_select_position_y(lines *head, unum position_y)  ;
-void lines_calculatotion_width(lines *head, uint max_width)  ;
+void lines_calculatotion_width(lines *head)  ;
 #endif

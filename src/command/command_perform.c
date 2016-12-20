@@ -23,7 +23,7 @@ void vailidate_cursor_position(context *context) {
 
 void command_perform(command command, context *context) // PUBLIC;
 {
-  lines_calculatotion_width((*context).lines, (*context).view_size.width);
+  lines_calculatotion_width((*context).lines);
   switch (command.command_key) {
   case UP:
     (*context).cursor.position_y -= 1;
@@ -75,6 +75,6 @@ void command_perform(command command, context *context) // PUBLIC;
   case NONE:
     break;
   }
-  lines_calculatotion_width((*context).lines, (*context).view_size.width);
+  lines_calculatotion_width((*context).lines);
   vailidate_cursor_position(context);
 }
