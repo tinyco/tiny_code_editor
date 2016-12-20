@@ -3,17 +3,18 @@ TEST := test
 SRCS := $(wildcard ./**/*.c)
 OBJS := $(SRCS:%.c=%.o)
 DEFS := $(SRCS:%.c=%.gen.h)
+CFLAGS ?= -g -Wall -Wextra
 
 all: $(PROG) $(TEST)
 
 $(PROG): $(OBJS) main.c
-	gcc -g -Wall -Wextra -o $@ $^
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 $(TEST): $(OBJS) test.c
-	gcc -g -Wall -Wextra -o $@ $^
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 .c.o:
-	gcc -g -Wall -Wextra -c -o $@ $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf $(PROG) $(OBJS) *.dSYM
