@@ -1,6 +1,6 @@
-//This file is auto-generated from main.c
-#ifndef MAIN_C
-#define MAIN_C
+//This file is auto-generated from test.c
+#ifndef TEST_C
+#define TEST_C
 //EXPORT
 #define BUFFER_SIZE 10
 
@@ -10,7 +10,6 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <termios.h>
-
 
 #include "type/unsigned_type.gen.h"
 #include "type/utf8char_type.gen.h"

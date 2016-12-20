@@ -1,4 +1,6 @@
 .DS_Store
 *.o
+*.dSYM
 main
+test
 src/node_modules
