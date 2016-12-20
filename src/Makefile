@@ -26,3 +26,6 @@ delete_gen_h:
 
 code_format:
 	sh code_format.sh
+
+test_run:
+	sh test_runner.sh

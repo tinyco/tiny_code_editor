@@ -29,7 +29,7 @@ let exe_chain = cmds => {
 
 gulp.task("c", () => {
   gulp.watch("\./**/*\.c", event => {
-    exe_chain(["clear", "make create_gen_h", "make clean", "make"])
+    exe_chain(["clear", "make create_gen_h", "make clean", "make", "make test_run"])
   })
 })
 
