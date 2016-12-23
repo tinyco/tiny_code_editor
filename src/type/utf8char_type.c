@@ -19,7 +19,7 @@ void utf8char_free(utf8char utf8char) // PUBLIC;
   utf8char = NULL;
 }
 
-utf8char mbcher_zero_clear(utf8char utf8char) // PUBLIC;
+utf8char utf8char_zero_clear(utf8char utf8char) // PUBLIC;
 {
   uint i = UTF8_MAX_BYTE;
   while (i--) {

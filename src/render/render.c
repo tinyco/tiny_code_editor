@@ -1,7 +1,7 @@
 #include "render_util.gen.h"
 void debug_print_lines(context context);
 
-void vailidate_render_position(context *context) {
+void validate_render_position(context *context) {
   while ((*context).cursor.position_y <= (*context).render_start_height) {
     (*context).render_start_height -= 1;
   }
@@ -18,7 +18,7 @@ void render_setting(context *context) // PUBLIC;
   (*context).header_height = 1;
   (*context).body_height = (*context).view_size.height - 2;
   (*context).footer_height = 1;
-  vailidate_render_position(context);
+  validate_render_position(context);
 }
 
 void render(context context) // PUBLIC;

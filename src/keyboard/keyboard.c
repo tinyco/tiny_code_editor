@@ -18,13 +18,13 @@ uchar get_single_byte_key() {
 
 utf8char keyboard_scan(utf8char *out) // PUBLIC;
 {
-  mbcher_zero_clear(*out);
+  utf8char_zero_clear(*out);
   uint i = 0;
   while (utf8char_size(*out, i) < 0) {
     *out[i] = get_single_byte_key();
     i++;
     if (utf8char_size(*out, i) == UTF8_ILLIEGAL) {
-      mbcher_zero_clear(*out);
+      utf8char_zero_clear(*out);
     }
   }
   return *out;

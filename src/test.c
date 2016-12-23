@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[1], "utf8char") == 0) {
       printf("test - utf8char\n");
       utf8char uc = utf8char_malloc();
-      mbcher_zero_clear(uc);
+      utf8char_zero_clear(uc);
       printf("- clear %s\n", uc);
       strcpy((char *)uc, "あ");
       printf("- char %s\n", uc);

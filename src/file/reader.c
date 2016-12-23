@@ -14,7 +14,7 @@ lines *file_read(const char *filepath) // PUBLIC;
   mutable_string *current_mutable_string = head->mutable_string;
 
   utf8char buf = utf8char_malloc();
-  mbcher_zero_clear(buf);
+  utf8char_zero_clear(buf);
   uint len = 0;
   while (1) {
     uchar c;
@@ -30,12 +30,12 @@ lines *file_read(const char *filepath) // PUBLIC;
         current_lines = lines_insert(current_lines);
         current_mutable_string = current_lines->mutable_string;
       }
-      mbcher_zero_clear(buf);
+      utf8char_zero_clear(buf);
       len = 0;
     } else if (mbsize == UTF8_NOT_FILL) {
       len++;
     } else {
-      mbcher_zero_clear(buf);
+      utf8char_zero_clear(buf);
     }
   }
 

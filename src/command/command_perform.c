@@ -1,7 +1,7 @@
 #include "../main.gen.h"
 #include "command.gen.h"
 
-void vailidate_cursor_position(context *context) {
+void validate_cursor_position(context *context) {
 
   if ((*context).cursor.position_x < 1) {
     (*context).cursor.position_x = 1;
@@ -23,7 +23,7 @@ void vailidate_cursor_position(context *context) {
 
 void command_perform(command command, context *context) // PUBLIC;
 {
-  lines_calculatotion_width((*context).lines);
+  lines_calculate_width((*context).lines);
   switch (command.command_key) {
   case UP:
     (*context).cursor.position_y -= 1;
@@ -75,6 +75,6 @@ void command_perform(command command, context *context) // PUBLIC;
   case NONE:
     break;
   }
-  lines_calculatotion_width((*context).lines);
-  vailidate_cursor_position(context);
+  lines_calculate_width((*context).lines);
+  validate_cursor_position(context);
 }
