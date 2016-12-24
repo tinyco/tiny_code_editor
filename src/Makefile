@@ -17,16 +17,19 @@ $(TEST): $(OBJS) test.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf $(PROG) $(OBJS) *.dSYM
+	rm -rf $(PROG) $(TEST) $(OBJS) *.dSYM
 
-create_gen_h:
+clean_force:
+	find . | grep -v '^\./node_modules/' | grep '\.o$$' | xargs rm
+	find . | grep -v '^\./node_modules/' | grep \.gen\.h$$ | xargs rm
+	rm -rf $(PROG) $(TEST) *.dSYM
+
+create_header:
 	node generator/generate_header.js $(SRCS) main.c test.c
-
-delete_gen_h:
-	rm -rf $(DEFS)
+	find test_src | grep '\.gen\.h' | grep -v test_cases.gen.h | sed -e 's/test_src\/\(.*\)/#include "\1"/g' > test_src/test_cases.gen.h
 
 code_format:
-	sh code_format.sh
+	sh tools/code_format.sh
 
 test_run:
-	sh test_runner.sh
+	sh tools/test_runner.sh

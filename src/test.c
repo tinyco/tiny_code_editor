@@ -1,4 +1,4 @@
-#include "test_src/test_cases.h"
+#include "test_src/test_cases.gen.h"
 
 int main(int argc, char *argv[]) {
 
