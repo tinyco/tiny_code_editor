@@ -58,9 +58,29 @@ void test_mutable_string(void) // PUBLIC;
   mutable_string_insert(ms);
   test_mutable_string_print(ms);
 
-  mutable_string_free(ms);
+  printf("---select_postion_x TODO\n");
+  uint byte;
+  mutable_string *select = NULL;
+  select = mutable_string_select_position_x(ms, 10, &byte);
+  printf("pos -> byte %d\n", byte);
+  test_mutable_string_print(select);
+  select = mutable_string_select_position_x(ms, 11, &byte);
+  printf("pos -> byte %d\n", byte);
+  select = mutable_string_select_position_x(ms, 1000, &byte);
+  printf("pos -> byte %d\n", byte);
 
-  // mutable_string *mutable_string_select_position_x(mutable_string *head, unum position_x, uint *byte)  ;
-  // void insert_utf8char(mutable_string *mutable_string, uint byte, utf8char c)  ;
-  // void delete_utf8char(mutable_string *mutable_string, uint byte)  ;
+  utf8char c = (utf8char) "$";
+  byte = 1;
+  printf("---insert_utf8char\n");
+  insert_utf8char(ms, byte, c);
+  insert_utf8char(ms, byte, c);
+  insert_utf8char(ms, byte, c);
+  test_mutable_string_print(ms);
+  printf("---delete_utf8char\n");
+  delete_utf8char(ms, byte);
+  delete_utf8char(ms, byte);
+  delete_utf8char(ms, byte);
+  test_mutable_string_print(ms);
+
+  mutable_string_free(ms);
 }
