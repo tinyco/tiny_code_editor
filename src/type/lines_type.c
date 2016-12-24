@@ -92,7 +92,7 @@ lines *lines_select_position_y(lines *head, unum position_y) // PUBLIC;
   return current_lines;
 }
 
-void lines_calculatotion_width(lines *head) // PUBLIC;
+void lines_calculate_width(lines *head) // PUBLIC;
 {
   lines *current_lines = head;
   mutable_string *current_mutable_string = head->mutable_string;
