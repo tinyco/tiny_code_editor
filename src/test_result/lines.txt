@@ -67,4 +67,16 @@ test_lines start
  - string: 白発中
  - move next mutable_string
  - move next lines
+---select
+ - 12 width, 6 position_count - byte_count: 9
+ - string: 西南北
+ - move next mutable_string
+ - byte_count: 0
+ - string: 
+ - move next mutable_string
+ - byte_count: 9
+ - string: 白発中
+ - move next mutable_string
+ - move next lines
+should null
 finish

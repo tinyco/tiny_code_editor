@@ -52,6 +52,13 @@ void test_lines(void) // PUBLIC;
   lines_divide(ls, ls->mutable_string, safed_utf8char_size((utf8char) "東"), (utf8char) "\n");
   lines_calculate_width(ls);
   test_lines_print(ls);
-  // lines *lines_select_position_y(lines *head, unum position_y)  ;
+
+  printf("---select\n");
+  lines *select = NULL;
+  select = lines_select_position_y(ls, 2)  ;
+  test_lines_print(select);
+  select = lines_select_position_y(ls, 3)  ;
+  if(!select){printf("should null\n");};
+
   // lines_free(ls);
 }
