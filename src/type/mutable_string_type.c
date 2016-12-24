@@ -22,7 +22,7 @@ mutable_string *mutable_string_malloc() // PUBLIC;
 }
 
 int mutable_string_free_tail(mutable_string *i) {
-  if (!i){
+  if (!i) {
     return 0;
   }
   if (!i->next) {
@@ -43,7 +43,8 @@ void mutable_string_free(mutable_string *i) // PUBLIC;
   if (!i) {
     return;
   }
-  while (mutable_string_free_tail(i));
+  while (mutable_string_free_tail(i))
+    ;
 }
 
 mutable_string *mutable_string_insert(mutable_string *current) // PUBLIC;
@@ -58,7 +59,7 @@ mutable_string *mutable_string_insert(mutable_string *current) // PUBLIC;
   return i;
 }
 
-void mutable_string_add_char(mutable_string *head, utf8char c) // PUBLIC;
+void mutable_string_add_utf8char_to_tail(mutable_string *head, utf8char c) // PUBLIC;
 {
   if (!head) {
     return;

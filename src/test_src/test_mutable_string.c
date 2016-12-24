@@ -34,10 +34,10 @@ void test_mutable_string(void) // PUBLIC;
   utf8char c4 = (utf8char) "4";
   uint i = 10;
   while (i--) {
-    mutable_string_add_char(ms, c1);
-    mutable_string_add_char(ms, c2);
-    mutable_string_add_char(ms, c3);
-    mutable_string_add_char(ms, c4);
+    mutable_string_add_utf8char_to_tail(ms, c1);
+    mutable_string_add_utf8char_to_tail(ms, c2);
+    mutable_string_add_utf8char_to_tail(ms, c3);
+    mutable_string_add_utf8char_to_tail(ms, c4);
   }
   print(ms);
 
@@ -48,10 +48,10 @@ void test_mutable_string(void) // PUBLIC;
     tail_test = tail_test->next;
   }
 
-  mutable_string_insert(ms)  ;
-  mutable_string_insert(ms)  ;
-  mutable_string_insert(ms)  ;
-  mutable_string_insert(ms)  ;
+  mutable_string_insert(ms);
+  mutable_string_insert(ms);
+  mutable_string_insert(ms);
+  mutable_string_insert(ms);
   print(ms);
 
   mutable_string_free(ms);

@@ -75,7 +75,7 @@ void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8
     current->byte_count -= safed_utf8char_size(tail);
     insert_utf8char(current_lines->next->mutable_string, 0, tail);
   }
-  mutable_string_add_char(current, divide_char);
+  mutable_string_add_utf8char_to_tail(current, divide_char);
 }
 
 lines *lines_select_position_y(lines *head, unum position_y) // PUBLIC;

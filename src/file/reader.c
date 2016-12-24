@@ -25,7 +25,7 @@ lines *file_read(const char *filepath) // PUBLIC;
     buf[len] = c;
     mbsize = utf8char_size(buf, len + 1);
     if (mbsize > 0) {
-      mutable_string_add_char(current_mutable_string, buf);
+      mutable_string_add_utf8char_to_tail(current_mutable_string, buf);
       if (is_mutable_string_break(buf)) {
         current_lines = lines_insert(current_lines);
         current_mutable_string = current_lines->mutable_string;
