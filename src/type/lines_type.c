@@ -13,22 +13,6 @@ typedef struct _lines {
 
 */
 
-lines *lines_insert(lines *current) // PUBLIC;
-{
-  lines *i = malloc(sizeof(lines));
-  i->prev = current;
-  i->next = NULL;
-  if (current) {
-    if (current->next) {
-      current->next->prev = i;
-      i->next = current->next;
-    }
-    current->next = i;
-  }
-  i->mutable_string = mutable_string_malloc();
-  return i;
-}
-
 lines *lines_malloc(void) // PUBLIC;
 {
   lines *i = malloc(sizeof(lines));
@@ -36,6 +20,22 @@ lines *lines_malloc(void) // PUBLIC;
   i->next = NULL;
   i->mutable_string = mutable_string_malloc();
   return i;
+}
+
+lines *lines_insert(lines *current) // PUBLIC;
+{
+  if (current) {
+    lines *i = lines_malloc();
+    i->prev = current;
+    i->next = current->next;
+    if(current->next) {
+      current->next->prev = i;
+    }
+    current->next = i;
+    return i;
+  } else {
+    return lines_malloc();
+  }
 }
 
 void lines_free(lines *t) // PUBLIC;

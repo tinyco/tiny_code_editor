@@ -13,8 +13,8 @@ typedef struct _lines {
 
 
 //PUBLIC
-lines *lines_insert(lines *current)  ;
 lines *lines_malloc(void)  ;
+lines *lines_insert(lines *current)  ;
 void lines_free(lines *t)  ;
 void lines_combine_next(lines *current)  ;
 void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char)  ;

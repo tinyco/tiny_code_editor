@@ -12,21 +12,31 @@ test_lines start
  - string: 北
  - move next mutable_string
  - move next lines
----insert TODO
+---insert
+ - 8 width, 4 position_count - byte_count: 9
+ - string: 東西南
+ - move next mutable_string
+ - byte_count: 3
+ - string: 北
+ - move next mutable_string
+ - move next lines
+ - 0 width, 0 position_count - byte_count: 0
+ - string: 
+ - move next mutable_string
+ - move next lines
+---inserted_all
  - 9 width, 5 position_count - byte_count: 9
  - string: 東西南
  - move next mutable_string
  - byte_count: 4
  - string: 北<BR>
  - move next mutable_string
- - move next lines - 6 width, 3 position_count - byte_count: 9
- - string: 東西南
- - move next mutable_string
- - byte_count: 4
- - string: 北<BR>
+ - move next lines
+ - 6 width, 3 position_count - byte_count: 9
+ - string: 白発中
  - move next mutable_string
  - move next lines
----inserted
+---inserted_line
  - 6 width, 3 position_count - byte_count: 9
  - string: 白発中
  - move next mutable_string
@@ -42,12 +52,19 @@ test_lines start
  - string: 白発中
  - move next mutable_string
  - move next lines
----divide TODO
+---divide
  - 3 width, 2 position_count - byte_count: 4
  - string: 東<BR>
  - move next mutable_string
- - move next lines - 12 width, 6 position_count - byte_count: 4
- - string: 東<BR>
+ - move next lines
+ - 12 width, 6 position_count - byte_count: 9
+ - string: 西南北
+ - move next mutable_string
+ - byte_count: 0
+ - string: 
+ - move next mutable_string
+ - byte_count: 9
+ - string: 白発中
  - move next mutable_string
  - move next lines
 finish
