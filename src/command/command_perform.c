@@ -12,13 +12,13 @@ void validate_cursor_position(context *context) {
     (*context).cursor.position_y = 1;
   }
 
-  while (!lines_select_position_y((*context).lines, (*context).cursor.position_y + 1)) {
+  while (!lines_select_position_y((*context).lines, (*context).cursor.position_y)) {
     (*context).cursor.position_y -= 1;
   }
 
   unum max_x = lines_select_position_y((*context).lines, (*context).cursor.position_y)->position_count - 1;
-  if ((*context).cursor.position_x > max_x) {
-    (*context).cursor.position_x = max_x;
+  if ((*context).cursor.position_x > max_x + 1) {
+    (*context).cursor.position_x = max_x + 1;
   }
 }
 

@@ -33,6 +33,12 @@ void render_body(context context) // PUBLIC;
             color_cursor_normal(1);
             cursor_color_flag = 1;
           }
+          if (current_lines->position_count == context.cursor.position_x && context.cursor.position_x != 1 && is_mutable_string_break(&current_mutable_string->string[wrote_byte]) && context.cursor.position_y == pos_y) {
+            color_cursor_normal(1);
+            printf(" ");
+            color_cursor_normal(0);
+          }
+
           wrote_byte += print_one_utf8char(&(current_mutable_string->string[wrote_byte]));
           pos_x++;
         } else {
