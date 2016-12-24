@@ -1,4 +1,4 @@
-#include "test_src/utf8char.gen.h"
+#include "test_src/test_cases.h"
 
 int main(int argc, char *argv[]) {
 
