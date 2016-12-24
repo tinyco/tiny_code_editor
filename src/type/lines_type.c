@@ -15,75 +15,75 @@ typedef struct _lines {
 
 lines *lines_malloc(void) // PUBLIC;
 {
-  lines *i = malloc(sizeof(lines));
-  i->prev = NULL;
-  i->next = NULL;
-  i->mutable_string = mutable_string_malloc();
-  return i;
+  lines *ls = malloc(sizeof(lines));
+  ls->prev = NULL;
+  ls->next = NULL;
+  ls->mutable_string = mutable_string_malloc();
+  return ls;
 }
 
-lines *lines_insert(lines *current) // PUBLIC;
+lines *lines_insert(lines *ls) // PUBLIC;
 {
-  if (current) {
+  if (ls) {
     lines *i = lines_malloc();
-    i->prev = current;
-    i->next = current->next;
-    if (current->next) {
-      current->next->prev = i;
+    i->prev = ls;
+    i->next = ls->next;
+    if (ls->next) {
+      ls->next->prev = i;
     }
-    current->next = i;
+    ls->next = i;
     return i;
   } else {
     return lines_malloc();
   }
 }
 
-void lines_free_without_mutable_string(lines *t) {
-  lines *p = t->prev;
-  lines *n = t->next;
+void lines_free_without_mutable_string(lines *ls) {
+  lines *p = ls->prev;
+  lines *n = ls->next;
   if (p) {
     p->next = n;
   }
   if (n) {
     n->prev = p;
   }
-  free(t);
+  free(ls);
 }
 
-void lines_free(lines *t) // PUBLIC;
+void lines_free(lines *ls) // PUBLIC;
 {
-  mutable_string_all_free(t->mutable_string);
-  lines_free_without_mutable_string(t);
+  mutable_string_all_free(ls->mutable_string);
+  lines_free_without_mutable_string(ls);
 }
 
-void lines_combine_next(lines *current) // PUBLIC;
+void lines_combine_next(lines *ls) // PUBLIC;
 {
-  if (!current && !current->next) {
+  if (!ls && !ls->next) {
     return;
   }
-  mutable_string *tail = current->mutable_string;
+  mutable_string *tail = ls->mutable_string;
   while (tail->next) {
     tail = tail->next;
   }
   delete_utf8char(tail, tail->byte_count - safed_utf8char_size(mutable_string_get_tail(tail)));
-  tail->next = current->next->mutable_string;
-  lines_free_without_mutable_string(current->next);
+  tail->next = ls->next->mutable_string;
+  lines_free_without_mutable_string(ls->next);
 }
 
-void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char) // PUBLIC;
+void lines_divide(lines *ls, mutable_string *target, uint byte, utf8char divide_char) // PUBLIC;
 {
-  lines_insert(current_lines);
-  if (current->next) {
-    free(current_lines->next->mutable_string);
-    current_lines->next->mutable_string = current->next;
-    current->next = NULL;
+  lines_insert(ls);
+  if (target->next) {
+    free(ls->next->mutable_string);
+    ls->next->mutable_string = target->next;
+    target->next = NULL;
   }
-  while (current->byte_count > byte) {
-    utf8char tail = mutable_string_get_tail(current);
-    current->byte_count -= safed_utf8char_size(tail);
-    insert_utf8char(current_lines->next->mutable_string, 0, tail);
+  while (target->byte_count > byte) {
+    utf8char tail = mutable_string_get_tail(target);
+    target->byte_count -= safed_utf8char_size(tail);
+    insert_utf8char(ls->next->mutable_string, 0, tail);
   }
-  mutable_string_add_utf8char_to_tail(current, divide_char);
+  mutable_string_add_utf8char_to_tail(target, divide_char);
 }
 
 lines *lines_select_position_y(lines *head, unum position_y) // PUBLIC;
