@@ -21,8 +21,8 @@ void test_utf8char(void) // PUBLIC;
   printf("- is_\\n %d\n", is_mutable_string_break(uc));
   printf("- width %d\n", utf8char_width(uc));
 
-  printf("- jp-width %d\n", string_width("テストです"));
-  printf("- ascii-width %d\n", string_width("12345"));
+  printf("- jp-width %llu\n", string_width((uchar *)"テストです"));
+  printf("- ascii-width %llu\n", string_width((uchar *)"12345"));
 
   utf8char_free(uc);
 }

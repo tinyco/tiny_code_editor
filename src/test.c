@@ -1,4 +1,7 @@
 #include "test_src/test_cases.gen.h"
+#include <stdio.h>
+#include <string.h>
+
 
 int main(int argc, char *argv[]) {
 
