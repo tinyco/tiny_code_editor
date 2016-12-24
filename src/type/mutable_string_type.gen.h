@@ -15,6 +15,7 @@ typedef struct _mutable_string {
 
 //PUBLIC
 mutable_string *mutable_string_malloc()  ;
+void mutable_string_all_free(mutable_string *head)  ;
 void mutable_string_free(mutable_string *ms)  ;
 mutable_string *mutable_string_insert(mutable_string *target)  ;
 void mutable_string_add_utf8char_to_tail(mutable_string *head, utf8char c)  ;

@@ -86,5 +86,5 @@ void test_mutable_string(void) // PUBLIC;
   delete_utf8char(select, byte);
   test_mutable_string_print(select);
 
-  mutable_string_free(ms);
+  mutable_string_all_free(ms);
 }

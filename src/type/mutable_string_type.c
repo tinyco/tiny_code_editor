@@ -38,16 +38,20 @@ int mutable_string_free_tail(mutable_string *ms) {
   return 1;
 }
 
-void mutable_string_free(mutable_string *ms) // PUBLIC;
+void mutable_string_all_free(mutable_string *head) // PUBLIC;
 {
-  if (!ms) {
+  if (!head) {
     return;
   }
-  while (mutable_string_free_tail(ms)) {
+  while (mutable_string_free_tail(head)) {
     ; // only loop
   }
 }
 
+void mutable_string_free(mutable_string *ms) // PUBLIC;
+{
+  free(ms);
+}
 mutable_string *mutable_string_insert(mutable_string *target) // PUBLIC;
 {
   mutable_string *ms = malloc(sizeof(mutable_string));
