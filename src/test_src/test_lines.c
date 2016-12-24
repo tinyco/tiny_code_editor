@@ -55,10 +55,15 @@ void test_lines(void) // PUBLIC;
 
   printf("---select\n");
   lines *select = NULL;
-  select = lines_select_position_y(ls, 2)  ;
+  select = lines_select_position_y(ls, 2);
   test_lines_print(select);
-  select = lines_select_position_y(ls, 3)  ;
-  if(!select){printf("should null\n");};
+  select = lines_select_position_y(ls, 3);
+  if (!select) {
+    printf("should null\n");
+  };
 
-  // lines_free(ls);
+  select = lines_select_position_y(ls, 1);
+  lines_free(select);
+  select = lines_select_position_y(ls, 2);
+  lines_free(select);
 }

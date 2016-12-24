@@ -28,7 +28,7 @@ lines *lines_insert(lines *current) // PUBLIC;
     lines *i = lines_malloc();
     i->prev = current;
     i->next = current->next;
-    if(current->next) {
+    if (current->next) {
       current->next->prev = i;
     }
     current->next = i;
@@ -42,8 +42,12 @@ void lines_free(lines *t) // PUBLIC;
 {
   lines *p = t->prev;
   lines *n = t->next;
-  p->next = n;
-  n->prev = p;
+  if (p) {
+    p->next = n;
+  }
+  if (n) {
+    n->prev = p;
+  }
   free(t);
 }
 
