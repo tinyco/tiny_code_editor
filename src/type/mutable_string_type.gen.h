@@ -14,6 +14,7 @@ typedef struct _mutable_string {
 
 
 //PUBLIC
+#include "../main.gen.h" 
 mutable_string *mutable_string_malloc()  ;
 void mutable_string_all_free(mutable_string *head)  ;
 void mutable_string_free(mutable_string *ms)  ;

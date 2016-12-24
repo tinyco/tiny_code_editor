@@ -8,5 +8,6 @@ typedef struct _context_footer {
 } context_footer;
 
 //PUBLIC
+#include "../main.gen.h" 
 void render_footer(context_footer context)  ;
 #endif

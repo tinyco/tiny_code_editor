@@ -8,4 +8,5 @@ typedef struct _cursor {
 } cursor;
 
 //PUBLIC
+#include "../main.gen.h" 
 #endif

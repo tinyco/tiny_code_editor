@@ -1,4 +1,4 @@
-#include "../main.gen.h"
+#include "../main.gen.h" //PUBLIC
 
 /*EXPORT
 typedef struct _cursor {

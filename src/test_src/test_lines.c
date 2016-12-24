@@ -1,6 +1,5 @@
-#include "../consts_for_test.h"        // PUBLIC
-#include "../common_includes.h"        // PUBLIC
-#include "./test_mutable_string.gen.h" // PUBLIC
+#include "../test.gen.h" // PUBLIC
+#include "test_mutable_string.gen.h"
 
 void test_lines_print(lines *ls) // PUBLIC;
 {

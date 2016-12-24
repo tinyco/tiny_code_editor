@@ -1,4 +1,4 @@
-#include "../main.gen.h"
+#include "../main.gen.h" //PUBLIC
 
 #define UTF8_MAX_BYTE 6 // PUBLIC
 

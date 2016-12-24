@@ -3,5 +3,6 @@
 #define __FILE_READER_C
 //EXPORT
 //PUBLIC
+#include "../main.gen.h" 
 lines *file_read(const char *filepath)  ;
 #endif

@@ -1,4 +1,4 @@
-#include "../main.gen.h"
+#include "../main.gen.h" //PUBLIC
 #include "command.gen.h"
 
 enum ControlKeyFlag { NORMAL_KEY, ESC_KEY, ARROW_KEY };

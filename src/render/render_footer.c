@@ -1,3 +1,6 @@
+#include "../console/color.gen.h"
+#include "../main.gen.h" //PUBLIC
+#include "render_footer.gen.h"
 #include "render_util.gen.h"
 
 /*EXPORT

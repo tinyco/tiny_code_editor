@@ -1,3 +1,6 @@
+#include "../console/color.gen.h"
+#include "../main.gen.h" //PUBLIC
+#include "context.gen.h"
 #include "render_util.gen.h"
 
 void render_body(context context) // PUBLIC;

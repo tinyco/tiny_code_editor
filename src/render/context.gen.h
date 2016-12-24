@@ -2,7 +2,6 @@
 #ifndef __RENDER_CONTEXT_C
 #define __RENDER_CONTEXT_C
 //EXPORT
-#include "../console/screen.gen.h"
 
 typedef struct _context {
   char* filename;
@@ -16,6 +15,7 @@ typedef struct _context {
 } context;
 
 //PUBLIC
+#include "../main.gen.h" 
 void context_read_file(context *context, char *filename)  ;
 void context_write_override_file(context *context)  ;
 #endif

@@ -3,5 +3,7 @@
 #define __COMMAND_COMMAND_PERFORM_C
 //EXPORT
 //PUBLIC
+#include "../main.gen.h"           
+#include "../render/context.gen.h" 
 void command_perform(command command, context *context)  ;
 #endif

@@ -8,5 +8,6 @@ typedef struct _context_header {
 } context_header;
 
 //PUBLIC
+#include "../main.gen.h" 
 void render_header(context_header context)  ;
 #endif

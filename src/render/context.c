@@ -1,9 +1,9 @@
-#include "../main.gen.h"
 #include "../file/reader.gen.h"
 #include "../file/writer.gen.h"
+#include "../main.gen.h" //PUBLIC
+#include "context.gen.h"
 
 /*EXPORT
-#include "../console/screen.gen.h"
 
 typedef struct _context {
   char* filename;

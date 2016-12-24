@@ -1,6 +1,5 @@
-#include "../consts_for_test.h"  // PUBLIC
-#include "../common_includes.h"  // PUBLIC
-#include "./test_utf8char.gen.h" // PUBLIC
+#include "../test.gen.h"       // PUBLIC
+#include "test_utf8char.gen.h" // PUBLIC
 
 void test_mutable_string_print(mutable_string *ms) // PUBLIC;
 {

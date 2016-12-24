@@ -3,5 +3,6 @@
 #define __FILE_WRITER_C
 //EXPORT
 //PUBLIC
+#include "../main.gen.h" 
 void file_write(const char *filepath, lines *head)  ;
 #endif

@@ -3,5 +3,6 @@
 #define __COMMAND_COMMAND_PARSE_C
 //EXPORT
 //PUBLIC
+#include "../main.gen.h" 
 command command_parse(utf8char key)  ;
 #endif

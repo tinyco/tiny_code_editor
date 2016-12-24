@@ -1,4 +1,4 @@
-#include "../main.gen.h"
+#include "../main.gen.h" //PUBLIC
 
 uchar get_single_byte_key() {
   static int is_init = 0;

@@ -15,5 +15,6 @@
 #include "type/mutable_string_type.gen.h"
 #include "type/lines_type.gen.h"
 #include "type/cursor_type.gen.h"
+#include "type/view_size.gen.h"
 
 #endif

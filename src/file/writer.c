@@ -1,4 +1,4 @@
-#include "../main.gen.h"
+#include "../main.gen.h" //PUBLIC
 
 void file_write(const char *filepath, lines *head) // PUBLIC;
 {

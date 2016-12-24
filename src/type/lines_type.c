@@ -1,5 +1,4 @@
-#include "../main.gen.h"
-#include "./mutable_string_type.gen.h"
+#include "../main.gen.h" //PUBLIC
 
 /*EXPORT
 

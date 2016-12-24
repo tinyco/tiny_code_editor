@@ -1,4 +1,9 @@
-#include "render_util.gen.h"
+#include "../console/screen.gen.h"
+#include "../main.gen.h" //PUBLIC
+#include "context.gen.h"
+#include "render_body.gen.h"
+#include "render_footer.gen.h"
+#include "render_header.gen.h"
 
 #ifdef DEBUG_MODE
 void debug_print_lines(context context);
@@ -20,9 +25,9 @@ void render_setting(context *context) // PUBLIC;
   (*context).view_size = view_size;
   (*context).header_height = 1;
   (*context).body_height = (*context).view_size.height - 2;
-  #ifdef DEBUG_MODE
+#ifdef DEBUG_MODE
   (*context).body_height = (*context).view_size.height - 38;
-  #endif
+#endif
   (*context).footer_height = 1;
   validate_render_position(context);
 }
@@ -41,9 +46,9 @@ void render(context context) // PUBLIC;
   render_header(context_header);
   render_body(context);
   render_footer(context_footer);
-  #ifdef DEBUG_MODE
+#ifdef DEBUG_MODE
   debug_print_lines(context);
-  #endif
+#endif
 }
 
 #ifdef DEBUG_MODE

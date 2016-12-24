@@ -3,4 +3,5 @@
 #define TEST_C
 //EXPORT
 //PUBLIC
+#include "_consts_for_test.h"  
 #endif

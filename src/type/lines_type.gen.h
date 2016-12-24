@@ -13,6 +13,7 @@ typedef struct _lines {
 
 
 //PUBLIC
+#include "../main.gen.h" 
 lines *lines_malloc(void)  ;
 lines *lines_insert(lines *ls)  ;
 void lines_free(lines *ls)  ;

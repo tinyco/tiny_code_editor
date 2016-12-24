@@ -1,12 +1,4 @@
-#include "../main.gen.h"
-#include "screen.gen.h"
-
-/*EXPORT
-typedef struct _view_size {
-  uint width;
-  uint height;
-} view_size;
-*/
+#include "../main.gen.h" //PUBLIC
 
 void console_clear(void) // PUBLIC;
 {

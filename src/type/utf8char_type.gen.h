@@ -3,6 +3,7 @@
 #define __TYPE_UTF8CHAR_TYPE_C
 //EXPORT
 //PUBLIC
+#include "../main.gen.h" 
 #define UTF8_MAX_BYTE 6  
 #define UTF8_NULL 0       
 #define UTF8_NOT_FILL -1  

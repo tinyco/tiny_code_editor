@@ -10,9 +10,6 @@ typedef struct _command {
   utf8char command_value;
 } command;
 
-#include "command_parse.gen.h"
-#include "command_perform.gen.h"
-
 
 //PUBLIC
 #endif

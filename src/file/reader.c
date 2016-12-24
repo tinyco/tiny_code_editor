@@ -1,4 +1,4 @@
-#include "../main.gen.h"
+#include "../main.gen.h" //PUBLIC
 
 lines *file_read(const char *filepath) // PUBLIC;
 {

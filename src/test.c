@@ -1,7 +1,6 @@
-#include "test_src/test_cases.gen.h"
-#include <stdio.h>
-#include <string.h>
+#include "_consts_for_test.h" // PUBLIC
 #include "render/context.gen.h"
+#include "test_src/test_cases.gen.h"
 
 int main(int argc, char *argv[]) {
 
