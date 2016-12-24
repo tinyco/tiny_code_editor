@@ -1,13 +1,13 @@
-test - utf8char
+test_utf8char start
 - clear 
-- char あ
-- size 3
-- is_\n 0
-- width 2
-- char 
-
 - size 1
-- is_\n 1
+- char a
+- width 1
+- size 3
+- char あ
+- width 2
+- size 1
+- char \n
 - width 1
 - jp-width 10
 - ascii-width 5
