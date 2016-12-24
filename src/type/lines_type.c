@@ -38,8 +38,7 @@ lines *lines_insert(lines *current) // PUBLIC;
   }
 }
 
-void lines_free(lines *t) // PUBLIC;
-{
+void lines_free_without_mutable_string(lines *t) {
   lines *p = t->prev;
   lines *n = t->next;
   if (p) {
@@ -49,6 +48,12 @@ void lines_free(lines *t) // PUBLIC;
     n->prev = p;
   }
   free(t);
+}
+
+void lines_free(lines *t) // PUBLIC;
+{
+  mutable_string_all_free(t->mutable_string);
+  lines_free_without_mutable_string(t);
 }
 
 void lines_combine_next(lines *current) // PUBLIC;
@@ -62,8 +67,7 @@ void lines_combine_next(lines *current) // PUBLIC;
   }
   delete_utf8char(tail, tail->byte_count - safed_utf8char_size(mutable_string_get_tail(tail)));
   tail->next = current->next->mutable_string;
-  free(current->next);
-  current->next = NULL;
+  lines_free_without_mutable_string(current->next);
 }
 
 void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char) // PUBLIC;
