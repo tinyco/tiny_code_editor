@@ -13,6 +13,39 @@ typedef struct _mutable_string {
 
 */
 
+mutable_string *mutable_string_malloc() // PUBLIC;
+{
+  mutable_string *i = malloc(sizeof(mutable_string));
+  i->next = NULL;
+  i->byte_count = 0;
+  return i;
+}
+
+int mutable_string_free_tail(mutable_string *i) {
+  if (!i){
+    return 0;
+  }
+  if (!i->next) {
+    free(i);
+    return 0;
+  }
+
+  while (i->next->next) {
+    i = i->next;
+  }
+  free(i->next);
+  i->next = NULL;
+  return 1;
+}
+
+void mutable_string_free(mutable_string *i) // PUBLIC;
+{
+  if (!i) {
+    return;
+  }
+  while (mutable_string_free_tail(i));
+}
+
 mutable_string *mutable_string_insert(mutable_string *current) // PUBLIC;
 {
   mutable_string *i = malloc(sizeof(mutable_string));
@@ -29,6 +62,9 @@ void mutable_string_add_char(mutable_string *head, utf8char c) // PUBLIC;
 {
   if (!head) {
     return;
+  }
+  while (head->next) {
+    head = head->next;
   }
   mutable_string *current = head;
   while (current->byte_count >= BUFFER_SIZE - safed_utf8char_size(c)) {

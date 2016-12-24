@@ -12,8 +12,8 @@ int main(int argc, char *argv[]) {
       printf("test_utf8char start\n");
       test_utf8char();
     } else if (strcmp(argv[1], "mutable_string") == 0) {
-      printf("test mutable_string\n");
-      printf("TODO\n");
+      printf("test_mutable_string start\n");
+      test_mutable_string();
     }
     printf("finish\n");
     return 0;

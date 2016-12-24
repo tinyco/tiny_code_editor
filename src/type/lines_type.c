@@ -25,21 +25,17 @@ lines *lines_insert(lines *current) // PUBLIC;
     }
     current->next = i;
   }
-  i->mutable_string = malloc(sizeof(mutable_string));
-  i->mutable_string->next = NULL;
-  i->mutable_string->byte_count = 0;
+  i->mutable_string = mutable_string_malloc();
   return i;
 }
 
 lines *lines_malloc(void) // PUBLIC;
 {
-  lines *head = malloc(sizeof(lines));
-  head->prev = NULL;
-  head->next = NULL;
-  head->mutable_string = malloc(sizeof(mutable_string));
-  head->mutable_string->next = NULL;
-  head->mutable_string->byte_count = 0;
-  return head;
+  lines *i = malloc(sizeof(lines));
+  i->prev = NULL;
+  i->next = NULL;
+  i->mutable_string = mutable_string_malloc();
+  return i;
 }
 
 void lines_free(lines *t) // PUBLIC;
