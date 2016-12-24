@@ -1,5 +1,8 @@
 #include "render_util.gen.h"
+
+#ifdef DEBUG_MODE
 void debug_print_lines(context context);
+#endif
 
 void validate_render_position(context *context) {
   while ((*context).cursor.position_y <= (*context).render_start_height) {
@@ -17,6 +20,9 @@ void render_setting(context *context) // PUBLIC;
   (*context).view_size = view_size;
   (*context).header_height = 1;
   (*context).body_height = (*context).view_size.height - 2;
+  #ifdef DEBUG_MODE
+  (*context).body_height = (*context).view_size.height - 38;
+  #endif
   (*context).footer_height = 1;
   validate_render_position(context);
 }
@@ -35,8 +41,12 @@ void render(context context) // PUBLIC;
   render_header(context_header);
   render_body(context);
   render_footer(context_footer);
-  // debug_print_lines(context);
+  #ifdef DEBUG_MODE
+  debug_print_lines(context);
+  #endif
 }
+
+#ifdef DEBUG_MODE
 
 void debug_print_lines(context context) {
   printf("\n---debug---\n");
@@ -68,3 +78,5 @@ void debug_print_lines(context context) {
   }
   printf("\n");
 }
+
+#endif

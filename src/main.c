@@ -2,6 +2,7 @@
 
 /*EXPORT
 #define BUFFER_SIZE 10
+#define DEBUG_MODE
 
 #include <stdio.h>
 #include <stdlib.h>
