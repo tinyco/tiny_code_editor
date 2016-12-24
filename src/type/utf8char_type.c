@@ -110,14 +110,14 @@ uint utf8char_width(utf8char uc) // PUBLIC;
   }
 }
 
-unum string_width(utf8char uc) // PUBLIC;
+unum string_width(uchar *str) // PUBLIC;
 {
   uint width = 0;
-  long max_byte = strlen((char *)uc);
+  long max_byte = strlen((char *)str);
   uint i = 0;
   while (i < max_byte) {
-    width += utf8char_width(&uc[i]);
-    i += safed_utf8char_size(&uc[i]);
+    width += utf8char_width(&str[i]);
+    i += safed_utf8char_size(&str[i]);
   }
   return width;
 }

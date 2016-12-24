@@ -15,5 +15,5 @@ int utf8char_size(utf8char uc, uint byte)  ;
 uint safed_utf8char_size(utf8char uc)  ;
 int is_mutable_string_break(utf8char uc)  ;
 uint utf8char_width(utf8char uc)  ;
-unum string_width(utf8char uc)  ;
+unum string_width(uchar *str)  ;
 #endif
