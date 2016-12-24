@@ -88,8 +88,6 @@ if(key[0] == 0x1B && flag == NOT_CTRL) {
 ```わかったキー
 Backspace = 0x7F //文字削除
 Esc = 0x1B //終了
-Alt + UP = 0x1B,0x5B,0x41 //ファイル先頭へ
-Alt + DOWN = 0x1B,0x5B,0x42 //ファイル末尾へ
 Alt + LEFT = 0x1B,0x62 //行先頭へ
 Alt + RIGHT = 0x1B,0x66 //行末尾へ
 Alt + S = 0xC3 // 保存
@@ -97,11 +95,12 @@ Alt + Q = 0xC5 // 終了
 Ctrl + S = 0x13 // 保存
 Ctrl + Q = 0x11 // 終了
 Shift + LEFT = 0x1B,0x5B,0x31,0x3B,0x32,0x44 //範囲選択
-Shift + DOWN = 0x1B,0x5B,0x31,0x3B,0x32,0x44 //範囲選択
+Shift + RIGHT = 0x1B,0x5B,0x31,0x3B,0x32,0x44 //範囲選択
 ```
 
 ```わからないキー
 Shift + UP / DOWN = 判別不能(Shiftを押さない時と同じ文字コードになる)
+ALT + UP / DOWN = 判別不能(Shiftを押さない時と同じ文字コードになる)
 Ctrl + 十字キー = 測定不能(Macのスクリーン移動に操作を取られる)
 Cmd + 各種キー = 測定不能(Macの固有機能に操作を取られる)
 ```
