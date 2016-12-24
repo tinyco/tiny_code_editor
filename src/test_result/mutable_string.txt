@@ -1,34 +1,30 @@
 test_mutable_string start
 ---malloc
-print start
  - byte_count: 0
  - string: 
- - next
-print end
+ - move next mutable_string
 ---add_utf8char_to_tail
-print start
  - byte_count: 7
  - string: 1２341
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: ２341２
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: 341２341
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: ２341２
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: 341２341
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: ２341２
- - next
+ - move next mutable_string
  - byte_count: 8
  - string: 341２34
- - next
-print end
+ - move next mutable_string
 ---get_tail
 - size 1
 - char 1
@@ -52,85 +48,74 @@ print end
 - char 4
 - width 1
 ---insert
-print start
  - byte_count: 7
  - string: 1２341
- - next
+ - move next mutable_string
  - byte_count: 0
  - string: 
- - next
+ - move next mutable_string
  - byte_count: 0
  - string: 
- - next
+ - move next mutable_string
  - byte_count: 0
  - string: 
- - next
+ - move next mutable_string
  - byte_count: 0
  - string: 
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: ２341２
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: 341２341
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: ２341２
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: 341２341
- - next
+ - move next mutable_string
  - byte_count: 9
  - string: ２341２
- - next
+ - move next mutable_string
  - byte_count: 8
  - string: 341２34
- - next
-print end
+ - move next mutable_string
 ---select_postion_x
 pos -> byte 6
-print start
  - byte_count: 8
  - string: 341２34
- - next
-print end
+ - move next mutable_string
 pos -> byte 7
-print start
  - byte_count: 8
  - string: 341２34
- - next
-print end
+ - move next mutable_string
 pos -> byte 0
-print start
-print end
+should null
 ---insert_utf8char
-print start
  - byte_count: 9
  - string: 341２$$$
- - next
+ - move next mutable_string
  - byte_count: 1
  - string: 3
- - next
+ - move next mutable_string
  - byte_count: 1
  - string: 4
- - next
+ - move next mutable_string
  - byte_count: 0
  - string: 
- - next
-print end
+ - move next mutable_string
 ---delete_utf8char
-print start
  - byte_count: 6
  - string: 341２
- - next
+ - move next mutable_string
  - byte_count: 1
  - string: 3
- - next
+ - move next mutable_string
  - byte_count: 1
  - string: 4
- - next
+ - move next mutable_string
  - byte_count: 0
  - string: 
- - next
-print end
+ - move next mutable_string
 finish

@@ -4,7 +4,6 @@
 
 void test_mutable_string_print(mutable_string *ms) // PUBLIC;
 {
-  printf("print start\n");
   while (ms) {
     uint i = 0;
     printf(" - byte_count: %d\n", ms->byte_count);
@@ -18,9 +17,8 @@ void test_mutable_string_print(mutable_string *ms) // PUBLIC;
       i++;
     }
     ms = ms->next;
-    printf("\n - next\n");
+    printf("\n - move next mutable_string\n");
   }
-  printf("print end\n");
 }
 
 void test_mutable_string(void) // PUBLIC;
@@ -70,7 +68,9 @@ void test_mutable_string(void) // PUBLIC;
   test_mutable_string_print(select);
   select = mutable_string_select_position_x(ms, 41, &byte);
   printf("pos -> byte %d\n", byte);
-  test_mutable_string_print(select);
+  if (!select) {
+    printf("should null\n");
+  }
 
   utf8char c = (utf8char) "$";
   byte = 1;
