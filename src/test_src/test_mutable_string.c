@@ -58,29 +58,33 @@ void test_mutable_string(void) // PUBLIC;
   mutable_string_insert(ms);
   test_mutable_string_print(ms);
 
-  printf("---select_postion_x TODO\n");
+  printf("---select_postion_x\n");
+  mutable_string_calculate_width(ms,NULL,NULL);
   uint byte;
   mutable_string *select = NULL;
-  select = mutable_string_select_position_x(ms, 10, &byte);
+  select = mutable_string_select_position_x(ms, 39, &byte);
   printf("pos -> byte %d\n", byte);
   test_mutable_string_print(select);
-  select = mutable_string_select_position_x(ms, 11, &byte);
+  select = mutable_string_select_position_x(ms, 40, &byte);
   printf("pos -> byte %d\n", byte);
-  select = mutable_string_select_position_x(ms, 1000, &byte);
+  test_mutable_string_print(select);
+  select = mutable_string_select_position_x(ms, 41, &byte);
   printf("pos -> byte %d\n", byte);
+  test_mutable_string_print(select);
 
   utf8char c = (utf8char) "$";
   byte = 1;
+  select = mutable_string_select_position_x(ms, 39, &byte);
   printf("---insert_utf8char\n");
-  insert_utf8char(ms, byte, c);
-  insert_utf8char(ms, byte, c);
-  insert_utf8char(ms, byte, c);
-  test_mutable_string_print(ms);
+  insert_utf8char(select, byte, c);
+  insert_utf8char(select, byte, c);
+  insert_utf8char(select, byte, c);
+  test_mutable_string_print(select);
   printf("---delete_utf8char\n");
-  delete_utf8char(ms, byte);
-  delete_utf8char(ms, byte);
-  delete_utf8char(ms, byte);
-  test_mutable_string_print(ms);
+  delete_utf8char(select, byte);
+  delete_utf8char(select, byte);
+  delete_utf8char(select, byte);
+  test_mutable_string_print(select);
 
   mutable_string_free(ms);
 }

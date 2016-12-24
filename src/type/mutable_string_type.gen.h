@@ -22,4 +22,5 @@ mutable_string *mutable_string_select_position_x(mutable_string *head, unum posi
 utf8char mutable_string_get_tail(mutable_string *mutable_string)  ;
 void insert_utf8char(mutable_string *mutable_string, uint byte, utf8char c)  ;
 void delete_utf8char(mutable_string *mutable_string, uint byte)  ;
+void mutable_string_calculate_width(mutable_string *ms, unum *width_count, unum *position_count)  ;
 #endif

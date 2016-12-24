@@ -99,6 +99,7 @@ mutable_string *mutable_string_select_position_x(mutable_string *head, unum posi
     }
     return current;
   }
+  *byte = 0;
   return NULL;
 }
 
@@ -145,4 +146,30 @@ void delete_utf8char(mutable_string *mutable_string, uint byte) // PUBLIC;
     move++;
   }
   mutable_string->byte_count -= s;
+}
+
+void mutable_string_calculate_width(mutable_string *ms, unum *width_count, unum *position_count) // PUBLIC;
+{
+  unum total_width = 0;
+  unum total_position = 0;
+
+  while (ms) {
+    int mutable_string_postition = 0;
+    uint i = 0;
+    while (i < ms->byte_count) {
+      int w = utf8char_width(&ms->string[i]);
+      total_width += w;
+      mutable_string_postition++;
+      i += safed_utf8char_size(&ms->string[i]);
+    }
+    ms->position_count = mutable_string_postition;
+    total_position += mutable_string_postition;
+    ms = ms->next;
+  }
+  if (width_count) {
+    *width_count = total_width;
+  }
+  if (position_count) {
+    *position_count = total_position;
+  }
 }

@@ -87,133 +87,50 @@ print start
  - string: 341２34
  - next
 print end
----select_postion_x TODO
-pos -> byte 11
+---select_postion_x
+pos -> byte 6
 print start
- - byte_count: 7
- - string: 1２341
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 9
- - string: 341２341
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 9
- - string: 341２341
- - next
- - byte_count: 9
- - string: ２341２
- - next
  - byte_count: 8
  - string: 341２34
  - next
 print end
-pos -> byte 15
-pos -> byte 1038
+pos -> byte 7
+print start
+ - byte_count: 8
+ - string: 341２34
+ - next
+print end
+pos -> byte 0
+print start
+print end
 ---insert_utf8char
 print start
  - byte_count: 9
- - string: 1$$$２34
+ - string: 341２$$$
  - next
  - byte_count: 1
- - string: 1
+ - string: 3
+ - next
+ - byte_count: 1
+ - string: 4
  - next
  - byte_count: 0
  - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 9
- - string: 341２341
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 9
- - string: 341２341
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 8
- - string: 341２34
  - next
 print end
 ---delete_utf8char
 print start
  - byte_count: 6
- - string: 1２34
+ - string: 341２
  - next
  - byte_count: 1
- - string: 1
+ - string: 3
+ - next
+ - byte_count: 1
+ - string: 4
  - next
  - byte_count: 0
  - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 0
- - string: 
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 9
- - string: 341２341
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 9
- - string: 341２341
- - next
- - byte_count: 9
- - string: ２341２
- - next
- - byte_count: 8
- - string: 341２34
  - next
 print end
 finish
