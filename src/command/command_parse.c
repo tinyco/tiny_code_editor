@@ -37,8 +37,7 @@ command command_parse(utf8char key) // PUBLIC;
       cmd.command_value = (utf8char) " ";
     } else if (key[0] == 0x13) {
       cmd.command_key = SAVE_OVERRIDE;
-    }
-    /**/ else {
+    } else {
       cmd.command_key = INSERT;
     }
     flag = NORMAL_KEY;

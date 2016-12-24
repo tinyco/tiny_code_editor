@@ -37,8 +37,8 @@ void test_utf8char(void) // PUBLIC;
   strcpy((char *)uc, "\n");
   test_utf8char_print(uc);
 
-  printf("- jp-width %llu\n", string_width((uchar *)"テストです"));
-  printf("- ascii-width %llu\n", string_width((uchar *)"12345"));
+  printf("- jp-width %llu\n", string_width((utf8char) "テストです"));
+  printf("- ascii-width %llu\n", string_width((utf8char) "12345"));
 
   utf8char_free(uc);
 }

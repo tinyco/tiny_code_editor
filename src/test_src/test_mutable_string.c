@@ -59,7 +59,7 @@ void test_mutable_string(void) // PUBLIC;
   test_mutable_string_print(ms);
 
   printf("---select_postion_x\n");
-  mutable_string_calculate_width(ms,NULL,NULL);
+  mutable_string_calculate_width(ms, NULL, NULL);
   uint byte;
   mutable_string *select = NULL;
   select = mutable_string_select_position_x(ms, 39, &byte);
