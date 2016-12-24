@@ -16,25 +16,39 @@ void test_lines_print(lines *ls) // PUBLIC;
 
 void test_lines(void) // PUBLIC;
 {
+  printf("---malloc\n");
   lines *ls = lines_malloc();
+  lines_calculate_width(ls);
   test_lines_print(ls);
 
-  // utf8char c1 = (utf8char) "東";
-  // utf8char c2 = (utf8char) "西";
-  // utf8char c3 = (utf8char) "南";
-  // utf8char c4 = (utf8char) "北";
-  // uint i = 10;
-  // while (i--) {
-  //   mutable_string_add_utf8char_to_tail(ms, c1);
-  //   mutable_string_add_utf8char_to_tail(ms, c2);
-  //   mutable_string_add_utf8char_to_tail(ms, c3);
-  //   mutable_string_add_utf8char_to_tail(ms, c4);
-  // }
+  printf("---add_char\n");
+  mutable_string_add_utf8char_to_tail(ls->mutable_string, (utf8char) "東");
+  mutable_string_add_utf8char_to_tail(ls->mutable_string, (utf8char) "西");
+  mutable_string_add_utf8char_to_tail(ls->mutable_string, (utf8char) "南");
+  mutable_string_add_utf8char_to_tail(ls->mutable_string, (utf8char) "北");
+  lines_calculate_width(ls);
+  test_lines_print(ls);
 
-// lines *lines_insert(lines *current)  ;
-// void lines_free(lines *t)  ;
-// void lines_combine_next(lines *current)  ;
-// void lines_divide(lines *current_lines, mutable_string *current, uint byte, utf8char divide_char)  ;
-// lines *lines_select_position_y(lines *head, unum position_y)  ;
-// void lines_calculate_width(lines *head)  ;
+  printf("---insert TODO\n");
+  lines *insert = lines_insert(ls);
+  mutable_string_add_utf8char_to_tail(ls->mutable_string, (utf8char) "\n");
+  mutable_string_add_utf8char_to_tail(insert->mutable_string, (utf8char) "白");
+  mutable_string_add_utf8char_to_tail(insert->mutable_string, (utf8char) "発");
+  mutable_string_add_utf8char_to_tail(insert->mutable_string, (utf8char) "中");
+  lines_calculate_width(ls);
+  test_lines_print(ls);
+  printf("---inserted\n");
+  test_lines_print(insert);
+
+  printf("---combine\n");
+  lines_combine_next(ls);
+  lines_calculate_width(ls);
+  test_lines_print(ls);
+
+  printf("---divide TODO\n");
+  lines_divide(ls, ls->mutable_string, safed_utf8char_size((utf8char) "東"), (utf8char) "\n");
+  lines_calculate_width(ls);
+  test_lines_print(ls);
+  // lines *lines_select_position_y(lines *head, unum position_y)  ;
+  // lines_free(ls);
 }

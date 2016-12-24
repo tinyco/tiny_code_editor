@@ -14,6 +14,9 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(argv[1], "mutable_string") == 0) {
       printf("test_mutable_string start\n");
       test_mutable_string();
+    } else if (strcmp(argv[1], "lines") == 0) {
+      printf("test_lines start\n");
+      test_lines();
     }
     printf("finish\n");
     return 0;
