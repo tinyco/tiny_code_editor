@@ -1,9 +1,11 @@
 test_mutable_string start
+---malloc
 print start
  - byte_count: 0
  - string: 
  - next
 print end
+---add_utf8char_to_tail
 print start
  - byte_count: 7
  - string: 1２341
@@ -27,6 +29,7 @@ print start
  - string: 341２34
  - next
 print end
+---get_tail
 - size 1
 - char 1
 - width 1
@@ -48,6 +51,7 @@ print end
 - size 1
 - char 4
 - width 1
+---insert
 print start
  - byte_count: 7
  - string: 1２341

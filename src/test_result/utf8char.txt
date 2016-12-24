@@ -1,5 +1,6 @@
 test_utf8char start
 - clear 
+---utf8_char_code
 - size 1
 - char a
 - width 1

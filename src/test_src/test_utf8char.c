@@ -26,6 +26,8 @@ void test_utf8char(void) // PUBLIC;
   utf8char_zero_clear(uc);
   printf("- clear %s\n", uc);
 
+  printf("---utf8_char_code\n");
+
   strcpy((char *)uc, "a");
   test_utf8char_print(uc);
 

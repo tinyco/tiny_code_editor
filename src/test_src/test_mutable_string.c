@@ -2,7 +2,7 @@
 #include "../common_includes.h"  // PUBLIC
 #include "./test_utf8char.gen.h" // PUBLIC
 
-void print(mutable_string *ms) // PUBLIC;
+void test_mutable_string_print(mutable_string *ms) // PUBLIC;
 {
   printf("print start\n");
   while (ms) {
@@ -25,9 +25,11 @@ void print(mutable_string *ms) // PUBLIC;
 
 void test_mutable_string(void) // PUBLIC;
 {
+  printf("---malloc\n");
   mutable_string *ms = mutable_string_malloc();
-  print(ms);
+  test_mutable_string_print(ms);
 
+  printf("---add_utf8char_to_tail\n");
   utf8char c1 = (utf8char) "1";
   utf8char c2 = (utf8char) "２";
   utf8char c3 = (utf8char) "3";
@@ -39,8 +41,9 @@ void test_mutable_string(void) // PUBLIC;
     mutable_string_add_utf8char_to_tail(ms, c3);
     mutable_string_add_utf8char_to_tail(ms, c4);
   }
-  print(ms);
+  test_mutable_string_print(ms);
 
+  printf("---get_tail\n");
   mutable_string *tail_test = ms;
   while (tail_test) {
     utf8char tail = mutable_string_get_tail(tail_test);
@@ -48,11 +51,12 @@ void test_mutable_string(void) // PUBLIC;
     tail_test = tail_test->next;
   }
 
+  printf("---insert\n");
   mutable_string_insert(ms);
   mutable_string_insert(ms);
   mutable_string_insert(ms);
   mutable_string_insert(ms);
-  print(ms);
+  test_mutable_string_print(ms);
 
   mutable_string_free(ms);
 
