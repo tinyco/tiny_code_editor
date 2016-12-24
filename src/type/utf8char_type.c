@@ -96,7 +96,7 @@ uint safed_utf8char_size(utf8char uc) // PUBLIC;
   return head_one_bits;
 }
 
-int is_mutable_string_break(utf8char uc) // PUBLIC;
+int is_break(utf8char uc) // PUBLIC;
 {
   return (uc[0] == '\n' ? 1 : 0);
 }

@@ -66,7 +66,7 @@ void debug_print_lines(context context) {
       i = 0;
       printf("[%db,%dp]", current_mutable_string->byte_count, current_mutable_string->position_count);
       while (i < current_mutable_string->byte_count) {
-        if (is_mutable_string_break(&current_mutable_string->string[i])) {
+        if (is_break(&current_mutable_string->string[i])) {
           printf("<BR>");
         } else {
           printf("%c", current_mutable_string->string[i]);

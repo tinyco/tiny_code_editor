@@ -8,7 +8,7 @@ void test_mutable_string_print(mutable_string *ms) // PUBLIC;
     printf(" - byte_count: %d\n", ms->byte_count);
     printf(" - string: ");
     while (i < ms->byte_count) {
-      if (is_mutable_string_break(&ms->string[i])) {
+      if (is_break(&ms->string[i])) {
         printf("<BR>");
       } else {
         printf("%c", ms->string[i]);

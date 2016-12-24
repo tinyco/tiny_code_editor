@@ -5,7 +5,7 @@ void test_utf8char_print(utf8char uc) // PUBLIC;
   uint s = safed_utf8char_size(uc);
   printf("- size %d\n", s);
   printf("- char ");
-  if (is_mutable_string_break(uc)) {
+  if (is_break(uc)) {
     printf("\\n");
   } else {
     uint i = 0;
