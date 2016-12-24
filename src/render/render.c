@@ -10,10 +10,10 @@ void debug_print_lines(context context);
 #endif
 
 void validate_render_position(context *context) {
-  while ((*context).cursor.position_y <= (*context).render_start_height) {
+  while ((*context).cursor.end_position_y <= (*context).render_start_height) {
     (*context).render_start_height -= 1;
   }
-  while ((*context).cursor.position_y >= (*context).render_start_height + (*context).body_height) {
+  while ((*context).cursor.end_position_y >= (*context).render_start_height + (*context).body_height) {
     (*context).render_start_height += 1;
   }
 }

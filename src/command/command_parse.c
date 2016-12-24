@@ -11,8 +11,16 @@ command command_parse(utf8char key) // PUBLIC;
   cmd.command_value = key;
   if (key[0] == 0x1B && flag == NORMAL_KEY) {
     flag = ESC_KEY;
-  } else if (key[0] == 0x5B && flag == ESC_KEY) {
-    flag = ARROW_KEY;
+  } else if (flag == ESC_KEY) {
+    if (key[0] == 0x5B) {
+      flag = ARROW_KEY;
+    } else if (key[0] == 0x62) {
+      cmd.command_key = SELECT_LEFT;
+      flag = NORMAL_KEY;
+    } else if (key[0] == 0x66) {
+      cmd.command_key = SELECT_RIGHT;
+      flag = NORMAL_KEY;
+    }
   } else if (flag == ARROW_KEY) {
     if (key[0] == 0x41) {
       cmd.command_key = UP;

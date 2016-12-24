@@ -3,44 +3,55 @@
 #include "context.gen.h"
 #include "render_util.gen.h"
 
+cursor cursor_for_render(cursor in) {
+  cursor c = in;
+  unum tmp;
+  if (c.end_position_x < c.start_position_x) {
+    tmp = c.end_position_x;
+    c.end_position_x = c.start_position_x;
+    c.start_position_x = tmp;
+  }
+  if (c.end_position_y < c.start_position_y) {
+    c.end_position_y = c.start_position_y;
+  }
+  return c;
+}
+
 void render_body(context context) // PUBLIC;
 {
   int height = context.body_height;
   int render_max_height = context.render_start_height + height;
   lines *current_lines = context.lines;
   mutable_string *current_mutable_string = context.lines->mutable_string;
+  cursor c = cursor_for_render(context.cursor);
 
   unum pos_x = 1;
   unum pos_y = 1;
   unum wrote_byte;
-  int cursor_color_flag = 0;
   while (current_lines) {
     current_mutable_string = current_lines->mutable_string;
     while (current_mutable_string) {
       wrote_byte = 0;
-      if (current_lines->position_count <= 1 && context.cursor.position_y == pos_y) {
+      if (current_lines->position_count <= 1 && c.start_position_y == pos_y) {
         color_cursor_normal(1);
         printf(" ");
         color_cursor_normal(0);
       }
       while (wrote_byte < current_mutable_string->byte_count) {
         if ((unum)render_max_height > pos_y && pos_y > context.render_start_height) {
-          if (cursor_color_flag) {
-            color_cursor_normal(0);
-            cursor_color_flag = 0;
-          }
-          if (context.cursor.position_x == pos_x && context.cursor.position_y == pos_y) {
+          if (c.start_position_x == pos_x && c.start_position_y == pos_y) {
             color_cursor_normal(1);
-            cursor_color_flag = 1;
           }
-          if (current_lines->position_count == context.cursor.position_x && context.cursor.position_x != 1 &&
-              is_break(&current_mutable_string->string[wrote_byte]) && context.cursor.position_y == pos_y) {
+          if (current_lines->position_count == c.end_position_x && c.end_position_x != 1 &&
+              is_break(&current_mutable_string->string[wrote_byte]) && c.end_position_y == pos_y) {
             color_cursor_normal(1);
             printf(" ");
             color_cursor_normal(0);
           }
-
           wrote_byte += print_one_utf8char(&(current_mutable_string->string[wrote_byte]));
+          if (c.end_position_x == pos_x && c.end_position_y == pos_y) {
+            color_cursor_normal(0);
+          }
           pos_x++;
         } else {
           wrote_byte++;

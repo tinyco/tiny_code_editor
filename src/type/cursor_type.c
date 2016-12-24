@@ -2,7 +2,9 @@
 
 /*EXPORT
 typedef struct _cursor {
-  unum position_x;
-  unum position_y;
+  unum start_position_x;
+  unum start_position_y;
+  unum end_position_x;
+  unum end_position_y;
 } cursor;
 */
