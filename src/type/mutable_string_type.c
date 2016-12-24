@@ -86,18 +86,18 @@ void mutable_string_add_utf8char_to_tail(mutable_string *head, utf8char c) // PU
 mutable_string *mutable_string_select_position_x(mutable_string *head, unum position_x, uint *byte) // PUBLIC;
 {
   unum i = position_x;
-  mutable_string *current_mutable_string = head;
-  while (current_mutable_string && i > current_mutable_string->position_count) {
-    i -= current_mutable_string->position_count;
-    current_mutable_string = current_mutable_string->next;
+  mutable_string *current = head;
+  while (current && i > current->position_count) {
+    i -= current->position_count;
+    current = current->next;
   }
-  if (current_mutable_string) {
+  if (current) {
     *byte = 0;
     while (i-- > 1) // insert before cursor
     {
-      *byte += safed_utf8char_size(&current_mutable_string->string[*byte]);
+      *byte += safed_utf8char_size(&current->string[*byte]);
     }
-    return current_mutable_string;
+    return current;
   }
   return NULL;
 }
