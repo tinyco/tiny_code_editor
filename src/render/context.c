@@ -19,7 +19,7 @@ typedef struct _context {
 
 void context_read_file(context *context, char *filename) // PUBLIC;
 {
-  (*context).filename = malloc(strlen(filename)+1);
+  (*context).filename = malloc(strlen(filename) + 1);
   strcpy((*context).filename, filename);
   (*context).lines = file_read((*context).filename);
 }
