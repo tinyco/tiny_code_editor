@@ -61,8 +61,8 @@ void test_lines(void) // PUBLIC;
     printf("should null\n");
   };
 
-  select = lines_select_position_y(ls, 1);
-  lines_free(select);
   select = lines_select_position_y(ls, 2);
+  lines_free(select);
+  select = lines_select_position_y(ls, 1);
   lines_free(select);
 }
