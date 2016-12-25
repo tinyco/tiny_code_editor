@@ -9,6 +9,7 @@
 int main(int argc, char *argv[]) {
 
   if (argc != 2) {
+#ifdef DEBUG_MODE
     while (1) {
       utf8char k = utf8char_malloc();
       keyboard_scan(&k);
@@ -16,6 +17,7 @@ int main(int argc, char *argv[]) {
       if (k[0] == 4)
         break;
     }
+#endif
     printf("[error]illegal args\n");
     return (EXIT_FAILURE);
   } else {
