@@ -13,5 +13,7 @@ typedef struct _cursor {
 #include "../main.gen.h"           
 #include "../render/context.gen.h" 
 cursor cursor_sort_start_end(cursor in)  ;
-void cursor_delete(context *context)  ;
+void cursor_delete_one(context *context)  ;
+void cursor_delete_range(context *context)  ;
+int cursor_is_range(cursor c)  ;
 #endif

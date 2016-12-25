@@ -69,7 +69,11 @@ void command_perform(command command, context *context) // PUBLIC;
     cursor_set_one_width(context);
   } break;
   case DELETE: {
-    cursor_delete(context);
+    if (cursor_is_range(context->cursor)) {
+      cursor_delete_one(context);
+    } else {
+      cursor_delete_range(context);
+    }
     cursor_set_one_width(context);
   } break;
   case ENTER: {
