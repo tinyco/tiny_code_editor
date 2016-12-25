@@ -11,4 +11,5 @@ typedef struct _cursor {
 
 //PUBLIC
 #include "../main.gen.h" 
+cursor cursor_sort_start_end(cursor in)  ;
 #endif

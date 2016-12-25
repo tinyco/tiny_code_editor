@@ -3,27 +3,13 @@
 #include "context.gen.h"
 #include "render_util.gen.h"
 
-cursor cursor_for_render(cursor in) {
-  cursor c = in;
-  unum tmp;
-  if (c.end_position_x < c.start_position_x) {
-    tmp = c.end_position_x;
-    c.end_position_x = c.start_position_x;
-    c.start_position_x = tmp;
-  }
-  if (c.end_position_y < c.start_position_y) {
-    c.end_position_y = c.start_position_y;
-  }
-  return c;
-}
-
 void render_body(context context) // PUBLIC;
 {
   int height = context.body_height;
   int render_max_height = context.render_start_height + height;
   lines *current_lines = context.lines;
   mutable_string *current_mutable_string = context.lines->mutable_string;
-  cursor c = cursor_for_render(context.cursor);
+  cursor c = cursor_sort_start_end(context.cursor);
 
   unum pos_x = 1;
   unum pos_y = 1;
