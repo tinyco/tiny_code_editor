@@ -1,0 +1,12 @@
+[render/render.c:67]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[render/render.c:67]: (warning) %d in format string (no. 2) requires 'int' but the argument type is 'unsigned int'.
+[render/render_body.c:8]: (style) The scope of the variable 'tmp' can be reduced.
+[test_src/test_mutable_string.c:8]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[test_src/test_mutable_string.c:63]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[test_src/test_mutable_string.c:66]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[test_src/test_mutable_string.c:69]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[test_src/test_utf8char.c:6]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[test_src/test_utf8char.c:18]: (warning) %d in format string (no. 1) requires 'int' but the argument type is 'unsigned int'.
+[type/lines_type.c:60] -> [type/lines_type.c:60]: (warning) Either the condition '!ls' is redundant or there is possible null pointer dereference: ls.
+[type/utf8char_type.c:19]: (warning) Assignment of function parameter has no effect outside the function. Did you forget dereferencing it?
+(information) Cppcheck cannot find all the include files (use --check-config for details)

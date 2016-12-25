@@ -1,6 +1,8 @@
 .DS_Store
 *.o
 *.dSYM
+*.plist
 main
 test
 src/node_modules
+src/infer-out

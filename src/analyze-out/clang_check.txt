@@ -1,0 +1,24 @@
+Error while trying to load a compilation database:
+Could not auto-detect compilation database for file "./command/command.c"
+No compilation database found in /Users/yoshiki/edt/tiny_code_editor/src/command or any parent directory
+json-compilation-database: Error while opening JSON database: No such file or directory
+Running without flags.
+/Users/yoshiki/edt/tiny_code_editor/src/file/writer.c:12:19: warning: Value stored to 'current_mutable_string' during its initialization is never read
+  mutable_string *current_mutable_string = head->mutable_string;
+                  ^~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+/Users/yoshiki/edt/tiny_code_editor/src/main.c:34:5: warning: Passed-by-value struct argument contains uninitialized data (e.g., field: 'command_value')
+    command_perform(cmd_none, &context);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+/Users/yoshiki/edt/tiny_code_editor/src/render/render_body.c:25:19: warning: Value stored to 'current_mutable_string' during its initialization is never read
+  mutable_string *current_mutable_string = context.lines->mutable_string;
+                  ^~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+/Users/yoshiki/edt/tiny_code_editor/src/type/lines_type.c:60:15: warning: Access to field 'next' results in a dereference of a null pointer (loaded from variable 'ls')
+  if (!ls && !ls->next) {
+              ^~~~~~~~
+/Users/yoshiki/edt/tiny_code_editor/src/type/lines_type.c:80:10: warning: Potential memory leak
+  while (target->byte_count > byte) {
+         ^~~~~~
+2 warnings generated.

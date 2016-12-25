@@ -1,0 +1,26 @@
+Found 7 issues
+
+command/command_perform.c:66: error: NULL_DEREFERENCE
+  pointer head last assigned on line 64 could be null and is dereferenced at line 66, column 42
+
+render/context.c:23: error: NULL_DEREFERENCE
+  pointer context->filename last assigned on line 22 could be null and is dereferenced by call to strcpy() at line 23, column 3
+
+file/reader.c:25: error: NULL_DEREFERENCE
+  pointer buf last assigned on line 16 could be null and is dereferenced at line 25, column 5
+
+type/lines_type.c:18: error: NULL_DEREFERENCE
+  pointer ls last assigned on line 17 could be null and is dereferenced at line 18, column 3
+
+type/mutable_string_type.c:58: error: NULL_DEREFERENCE
+  pointer ms last assigned on line 57 could be null and is dereferenced at line 58, column 3
+
+type/mutable_string_type.c:19: error: NULL_DEREFERENCE
+  pointer ms last assigned on line 18 could be null and is dereferenced at line 19, column 3
+
+test_src/test_utf8char.c:30: error: NULL_DEREFERENCE
+  pointer uc last assigned on line 23 could be null and is dereferenced by call to strcpy() at line 30, column 3
+
+Summary of the reports
+
+  NULL_DEREFERENCE: 7

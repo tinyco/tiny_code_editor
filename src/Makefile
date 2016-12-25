@@ -3,7 +3,7 @@ TEST := test
 SRCS := $(wildcard ./**/*.c)
 OBJS := $(SRCS:%.c=%.o)
 DEFS := $(SRCS:%.c=%.gen.h)
-CFLAGS ?= -g -Wall -Wextra
+CFLAGS ?= -g -Wall -Wextra -fno-omit-frame-pointer -fsanitize=address
 
 all: $(PROG) $(TEST)
 
