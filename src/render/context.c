@@ -4,7 +4,7 @@
 #include "context.gen.h"
 
 /*EXPORT
-
+#include "../type/view_size.gen.h"
 typedef struct _context {
   char* filename;
   lines* lines;

@@ -1,4 +1,5 @@
-#include "../main.gen.h" //PUBLIC
+#include "../main.gen.h"           //PUBLIC
+#include "../render/context.gen.h" //PUBLIC
 
 /*EXPORT
 typedef struct _cursor {
@@ -29,3 +30,39 @@ cursor cursor_sort_start_end(cursor in) // PUBLIC;
   return c;
 }
 
+void cursor_delete_one_char(context *context) {
+  cursor c = cursor_sort_start_end(context->cursor);
+  if (c.start_position_x > 1) {
+    uint byte;
+    lines *head = lines_select_position_y(context->lines, c.start_position_y);
+    mutable_string *ms = mutable_string_select_position_x(head->mutable_string, c.start_position_x - 1, &byte);
+    delete_utf8char(ms, byte);
+    c.start_position_x -= 1;
+  } else if (c.start_position_y > 1) {
+    lines *head = lines_select_position_y(context->lines, c.start_position_y - 1);
+    lines_combine_next(head);
+    c.start_position_x = lines_select_position_y((*context).lines, c.start_position_y - 1)->position_count;
+    c.start_position_y -= 1;
+  }
+}
+
+void cursor_delete_selected_char(context *context) {
+  cursor c = cursor_sort_start_end(context->cursor);
+  unum i = c.end_position_x - c.start_position_x + 1;
+  while(i--){
+    uint byte;
+    lines *head = lines_select_position_y(context->lines, c.start_position_y);
+    mutable_string *ms = mutable_string_select_position_x(head->mutable_string, c.start_position_x , &byte);
+    delete_utf8char(ms, byte);
+  }
+}
+
+void cursor_delete(context *context) // PUBLIC;
+{
+  if (context->cursor.start_position_x == context->cursor.end_position_x &&
+      context->cursor.start_position_y == context->cursor.end_position_y) {
+    cursor_delete_one_char(context);
+  } else {
+    cursor_delete_selected_char(context);
+  }
+}

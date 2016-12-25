@@ -10,6 +10,8 @@ typedef struct _cursor {
 } cursor;
 
 //PUBLIC
-#include "../main.gen.h" 
+#include "../main.gen.h"           
+#include "../render/context.gen.h" 
 cursor cursor_sort_start_end(cursor in)  ;
+void cursor_delete(context *context)  ;
 #endif

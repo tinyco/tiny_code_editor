@@ -2,7 +2,7 @@
 #ifndef __RENDER_CONTEXT_C
 #define __RENDER_CONTEXT_C
 //EXPORT
-
+#include "../type/view_size.gen.h"
 typedef struct _context {
   char* filename;
   lines* lines;
