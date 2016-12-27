@@ -83,6 +83,10 @@ void command_perform(command command, context *context) // PUBLIC;
     cursor_set_one_width(context);
   } break;
   case ENTER: {
+    if (cursor_is_range(context->cursor)) {
+      cursor_delete_range(context);
+    }
+    cursor_set_one_width(context);
     uint byte;
     lines *head = lines_select_position_y(context->lines, context->cursor.start_position_y);
     mutable_string *mutable_string =
