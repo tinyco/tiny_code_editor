@@ -13,6 +13,10 @@
 ### how to use
 
 - arrow key - move cursor
+- Alt+left/right - select string
+- Ctrl+X - cut selected string
+- Ctrl+C - copy selected string
+- Ctrl+V - paste string
 - Ctrl+S - save file
 - Ctrl+Q - exit
 
@@ -20,9 +24,10 @@
 
 - gulp - generate headers and build each time C-files is saved
 - make - build
-- make create_gen_h - generated headers
+- make create_header - generated headers
 - make clean - remove objects
-- make delete_gen_h - remove generated headers
+- make code_format - execute clang-format
+- make test_run - execute test
 
 # LICENSE
 
