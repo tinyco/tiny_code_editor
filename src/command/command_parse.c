@@ -45,6 +45,12 @@ command command_parse(utf8char key) // PUBLIC;
       cmd.command_value = (utf8char) " ";
     } else if (key[0] == 0x13) {
       cmd.command_key = SAVE_OVERRIDE;
+    } else if (key[0] == 0x18) {
+      cmd.command_key = CUT;
+    } else if (key[0] == 0x03) {
+      cmd.command_key = COPY;
+    } else if (key[0] == 0x16) {
+      cmd.command_key = PASTE;
     } else {
       cmd.command_key = INSERT;
     }

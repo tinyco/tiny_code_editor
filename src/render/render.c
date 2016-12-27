@@ -55,6 +55,22 @@ void render(context context) // PUBLIC;
 
 void debug_print_lines(context context) {
   printf("\n---debug---\n");
+  printf("- clip_board: ");
+  mutable_string *ms = context.clip_board;
+  while (ms) {
+    uint i = 0;
+    while (i < ms->byte_count) {
+      if (is_break(&ms->string[i])) {
+        printf("<BR>");
+      } else {
+        printf("%c", ms->string[i]);
+      }
+      i++;
+    }
+    ms = ms->next;
+  }
+  printf("\n");
+
   lines *current_lines = context.lines;
   mutable_string *current_mutable_string = context.lines->mutable_string;
 

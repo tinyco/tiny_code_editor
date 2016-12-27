@@ -9,13 +9,24 @@ typedef struct _context {
   char* filename;
   lines* lines;
   view_size view_size;
+  mutable_string* clip_board;
+  cursor cursor;
   uint header_height;
   uint body_height;
   uint footer_height;
   uint render_start_height;
-  cursor cursor;
 } context;
 */
+
+void context_initialize(context *context) // PUBLIC;
+{
+  context->clip_board = mutable_string_malloc();
+  context->cursor.start_position_x = 1;
+  context->cursor.start_position_y = 1;
+  context->cursor.end_position_x = 1;
+  context->cursor.end_position_y = 1;
+  context->render_start_height = 0;
+}
 
 void context_read_file(context *context, char *filename) // PUBLIC;
 {

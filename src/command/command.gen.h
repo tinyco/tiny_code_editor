@@ -16,6 +16,9 @@ enum CommandType {
   // SELECT_DOWN,
   SELECT_LEFT,
   SELECT_RIGHT,
+  COPY,
+  CUT,
+  PASTE,
   SAVE_OVERRIDE,
   EXIT
 };

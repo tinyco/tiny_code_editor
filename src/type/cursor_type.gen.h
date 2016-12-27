@@ -15,5 +15,7 @@ typedef struct _cursor {
 cursor cursor_sort_start_end(cursor in)  ;
 void cursor_delete_one(context *context)  ;
 void cursor_delete_range(context *context)  ;
+void cursor_copy_range(context *context)  ;
+void cursor_paste_range(context *context)  ;
 int cursor_is_range(cursor c)  ;
 #endif

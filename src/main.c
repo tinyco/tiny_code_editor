@@ -22,12 +22,8 @@ int main(int argc, char *argv[]) {
     return (EXIT_FAILURE);
   } else {
     context context;
+    context_initialize(&context);
     context_read_file(&context, argv[1]);
-    context.cursor.start_position_x = 1;
-    context.cursor.start_position_y = 1;
-    context.cursor.end_position_x = 1;
-    context.cursor.end_position_y = 1;
-    context.render_start_height = 0;
     utf8char key = utf8char_malloc();
     command cmd_none;
     cmd_none.command_key = NONE;

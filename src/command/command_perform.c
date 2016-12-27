@@ -74,6 +74,23 @@ void command_perform(command command, context *context) // PUBLIC;
     (*context).cursor.start_position_x += 1;
     cursor_set_one_width(context);
   } break;
+  case CUT:
+    if (cursor_is_range(context->cursor)) {
+      cursor_copy_range(context);
+      cursor_delete_range(context);
+    }
+    cursor_set_one_width(context);
+    break;
+  case COPY:
+    cursor_copy_range(context);
+    break;
+  case PASTE:
+    if (cursor_is_range(context->cursor)) {
+      cursor_delete_range(context);
+    }
+    cursor_set_one_width(context);
+    cursor_paste_range(context);
+    break;
   case DELETE: {
     if (cursor_is_range(context->cursor)) {
       cursor_delete_range(context);

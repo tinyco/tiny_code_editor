@@ -59,6 +59,41 @@ void cursor_delete_range(context *context) // PUBLIC;
   }
 }
 
+void cursor_copy_range(context *context) // PUBLIC;
+{
+  mutable_string_all_free(context->clip_board);
+  context->clip_board = mutable_string_malloc();
+  cursor c = cursor_sort_start_end(context->cursor);
+  unum s = c.end_position_x - c.start_position_x + 1;
+  unum i = 0;
+  while (i < s) {
+    uint byte;
+    lines *head = lines_select_position_y(context->lines, c.start_position_y);
+    mutable_string *ms = mutable_string_select_position_x(head->mutable_string, c.start_position_x + i, &byte);
+    mutable_string_add_utf8char_to_tail(context->clip_board, &ms->string[byte]);
+    i++;
+  }
+}
+
+void cursor_paste_range(context *context) // PUBLIC;
+{
+  mutable_string *ms = context->clip_board;
+  while (ms) {
+    uint i = 0;
+    while (i < ms->byte_count) {
+
+      uint byte;
+      lines *head = lines_select_position_y(context->lines, context->cursor.start_position_y);
+      mutable_string *mutable_string =
+          mutable_string_select_position_x(head->mutable_string, context->cursor.start_position_x + i, &byte);
+      insert_utf8char(mutable_string, byte, &ms->string[i]);
+
+      i++;
+    }
+    ms = ms->next;
+  }
+}
+
 int cursor_is_range(cursor c) // PUBLIC;
 {
   return !(c.start_position_x == c.end_position_x && c.start_position_y == c.end_position_y);
