@@ -60,6 +60,10 @@ void command_perform(command command, context *context) // PUBLIC;
     exit(EXIT_SUCCESS);
     break;
   case INSERT: {
+    if (cursor_is_range(context->cursor)) {
+      cursor_delete_range(context);
+    }
+    cursor_set_one_width(context);
     uint byte;
     lines *head = lines_select_position_y(context->lines, context->cursor.start_position_y);
     mutable_string *mutable_string =
@@ -70,9 +74,9 @@ void command_perform(command command, context *context) // PUBLIC;
   } break;
   case DELETE: {
     if (cursor_is_range(context->cursor)) {
-      cursor_delete_one(context);
-    } else {
       cursor_delete_range(context);
+    } else {
+      cursor_delete_one(context);
     }
     cursor_set_one_width(context);
   } break;

@@ -61,5 +61,5 @@ void cursor_delete_range(context *context) // PUBLIC;
 
 int cursor_is_range(cursor c) // PUBLIC;
 {
-  return c.start_position_x == c.end_position_x && c.start_position_y == c.end_position_y;
+  return !(c.start_position_x == c.end_position_x && c.start_position_y == c.end_position_y);
 }
