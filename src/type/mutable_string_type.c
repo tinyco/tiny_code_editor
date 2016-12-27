@@ -119,6 +119,10 @@ utf8char mutable_string_get_tail(mutable_string *ms) // PUBLIC;
 
 void insert_utf8char(mutable_string *ms, uint byte, utf8char c) // PUBLIC;
 {
+  if(!ms)
+  {
+    ms = mutable_string_malloc();
+  }
   uint s = safed_utf8char_size(c);
   if (ms->byte_count + UTF8_MAX_BYTE >= BUFFER_SIZE) {
     mutable_string_insert(ms);
