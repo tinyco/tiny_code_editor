@@ -1,3 +1,4 @@
+#include "../console/screen.gen.h"
 #include "../main.gen.h"           //PUBLIC
 #include "../render/context.gen.h" //PUBLIC
 #include "command.gen.h"
@@ -57,6 +58,7 @@ void command_perform(command command, context *context) // PUBLIC;
     (*context).cursor.end_position_x -= 1;
     break;
   case EXIT:
+    console_clear();
     exit(EXIT_SUCCESS);
     break;
   case INSERT: {
