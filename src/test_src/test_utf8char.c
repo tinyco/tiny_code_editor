@@ -3,7 +3,7 @@
 void test_utf8char_print(utf8char uc) // PUBLIC;
 {
   uint s = safed_utf8char_size(uc);
-  printf("- size %d\n", s);
+  printf("- size %u\n", s);
   printf("- char ");
   if (is_break(uc)) {
     printf("\\n");
@@ -15,7 +15,7 @@ void test_utf8char_print(utf8char uc) // PUBLIC;
     }
   }
   printf("\n");
-  printf("- width %d\n", utf8char_width(uc));
+  printf("- width %u\n", utf8char_width(uc));
 }
 
 void test_utf8char(void) // PUBLIC;
