@@ -80,7 +80,7 @@ void debug_print_lines(context context) {
     printf("#%lluw %llup", current_lines->width_count, current_lines->position_count);
     while (current_mutable_string) {
       i = 0;
-      printf("[%db,%dp]", current_mutable_string->byte_count, current_mutable_string->position_count);
+      printf("[%ub,%up]", current_mutable_string->byte_count, current_mutable_string->position_count);
       while (i < current_mutable_string->byte_count) {
         if (is_break(&current_mutable_string->string[i])) {
           printf("<BR>");

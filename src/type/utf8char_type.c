@@ -16,7 +16,6 @@ utf8char utf8char_malloc(void) // PUBLIC;
 void utf8char_free(utf8char uc) // PUBLIC;
 {
   free(uc);
-  uc = NULL;
 }
 
 utf8char utf8char_zero_clear(utf8char uc) // PUBLIC;
