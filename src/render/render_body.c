@@ -8,14 +8,13 @@ void render_body(context context) // PUBLIC;
   int height = context.body_height;
   int render_max_height = context.render_start_height + height;
   lines *current_lines = context.lines;
-  mutable_string *current_mutable_string = context.lines->mutable_string;
   cursor c = cursor_sort_start_end(context.cursor);
 
   unum pos_x = 1;
   unum pos_y = 1;
   unum wrote_byte;
   while (current_lines) {
-    current_mutable_string = current_lines->mutable_string;
+    mutable_string *current_mutable_string = current_lines->mutable_string;
     while (current_mutable_string) {
       wrote_byte = 0;
       if (current_lines->position_count <= 1 && c.start_position_y == pos_y) {
